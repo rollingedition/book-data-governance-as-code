@@ -1,0 +1,8 @@
+# How the enforcement layer (lib/enforce.py) applies access decisions. Thresholds here are rules of thumb, not
+# measurements, so they live in this file rather than in code, and a change to one is reviewed like a policy change.
+
+[reports]
+# A reported group with fewer people than this is held back. A rule of thumb, the same as one public data-use agreement
+# (CMS's), under which "no cell ... less than 11 may be displayed". It stops a reader from looking up one person in a
+# small group; it doesn't stop differencing.
+minimum_group_size = 11

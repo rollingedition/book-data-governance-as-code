@@ -1,0 +1,15 @@
+events: 8
+course_performance START, reads: billing.payments, learning.courses, learning.enrollments, learning.reviews
+course_performance COMPLETE, writes: analytics.course_performance (7 columns with lineage)
+learner_activity START, reads: crm.learners, learning.events
+learner_activity COMPLETE, writes: analytics.learner_activity (6 columns with lineage)
+marketing_audience START, reads: crm.learners, learning.courses, learning.enrollments
+marketing_audience COMPLETE, writes: marketing.audience (5 columns with lineage)
+review_corpus START, reads: learning.courses, learning.reviews
+review_corpus COMPLETE, writes: ai.review_corpus (5 columns with lineage)
+event times: 2026-10-01T02:00:00+00:00
+distinct run IDs: 4
+run facets the client added: tags
+same bytes when sent again: True
+two random run IDs equal: False
+two static run IDs equal: True

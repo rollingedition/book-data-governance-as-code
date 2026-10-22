@@ -1,0 +1,28 @@
+SELECT
+  "reviews"."course_id" AS "course_id",
+  "reviews"."rating" AS "rating",
+  "reviews"."body" AS "body"
+FROM (
+  SELECT
+    CAST(NULL AS BIGINT) AS review_id,
+    CAST(NULL AS BIGINT) AS learner_id,
+    CASE WHEN source.course_id IN (2, 75, 80, 87, 103, 134) THEN source.course_id END AS course_id,
+    CASE WHEN source.course_id IN (2, 75, 80, 87, 103, 134) THEN source.rating END AS rating,
+    CASE
+      WHEN source.course_id IN (2, 75, 80, 87, 103, 134)
+      THEN REGEXP_REPLACE(
+        REGEXP_REPLACE(source.body, '[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+', '[email]', 'g'),
+        '\+?\(?[0-9][0-9 ().-]{6,}[0-9]',
+        '[phone]',
+        'g'
+      )
+    END AS body,
+    CAST(NULL AS TIMESTAMPTZ) AS posted_at
+  FROM learning.reviews AS source
+  WHERE
+    source.course_id IN (2, 75, 80, 87, 103, 134)
+) AS "reviews"
+WHERE
+  "reviews"."rating" <= 2
+reviews returned: 9
+of them holding an email: 0

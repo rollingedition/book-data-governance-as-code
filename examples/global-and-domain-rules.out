@@ -1,0 +1,20 @@
+rules: governance/ci/domains/crm.rego
+rules: governance/ci/global.rego
+coverage: failed, findings 3, new 1, on main 2, waived 0, 12 tables checked
+contract-rules: failed, findings 2, new 2, on main 0, waived 0, 10 contracts checked
+coverage/ai.review_corpus: no metadata; on main, owner team-platform
+coverage/crm.learners.work_email: classified public; its name suggests personal; needs team-crm's approval
+coverage/marketing.audience: no metadata; on main, owner team-platform
+contract-rules/crm.learners.work_email/described: no description (global rule described)
+contract-rules/crm.learners.work_email/no-public: crm classifies no column public (domains.crm rule no-public)
+change crm.learners, field 16: added as work_email string; named by 0 pipelines, reaches 0 columns
+job: failed
+moved to analytics, coverage: failed, findings 3, new 1, on main 2, waived 0, 12 tables checked
+moved to analytics, contract-rules: passed, findings 0, new 0, on main 0, waived 0, 10 contracts checked
+moved to analytics, owner-review: failed, findings 1, new 1, on main 0, waived 0, 77 columns checked
+moved to analytics, coverage/ai.review_corpus: no metadata; on main, owner team-platform
+moved to analytics, coverage/crm.learners.work_email: classified public; its name suggests personal; needs team-crm's approval
+moved to analytics, coverage/marketing.audience: no metadata; on main, owner team-platform
+moved to analytics, owner-review/crm.learners/domain: domain changed from crm to analytics; needs team-crm's approval
+moved to analytics, change crm.learners, field 16: added as work_email string; named by 0 pipelines, reaches 0 columns
+moved to analytics, job: failed

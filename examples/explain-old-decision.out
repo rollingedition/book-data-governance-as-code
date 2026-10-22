@@ -1,0 +1,9 @@
+logged under revision: f761e4ad08d4
+current revision: 0350e789b34d
+policy modules changed: False
+data document changed: True
+email, as logged: pseudonymize
+under the current revision, email: shown as stored
+under the current revision, the decision matches the log: False
+under the logged revision, email: pseudonymize
+under the logged revision, the decision matches the log: True

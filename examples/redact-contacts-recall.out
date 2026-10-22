@@ -1,0 +1,10 @@
+reviews, EMAIL_ADDRESS, left in the text: 0 of 120
+reviews, PERSON, left in the text: 798 of 798
+tickets, CREDIT_CARD, left in the text: 0 of 213
+tickets, DATE_TIME, left in the text: 0 of 196
+tickets, EMAIL_ADDRESS, left in the text: 0 of 423
+tickets, IBAN_CODE, left in the text: 0 of 236
+tickets, LOCATION, left in the text: 210 of 210
+tickets, PERSON, left in the text: 1,657 of 1,657
+tickets, PHONE_NUMBER, left in the text: 0 of 439
+[phone] replacements in tickets: 1,520

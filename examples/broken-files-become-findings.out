@@ -1,0 +1,27 @@
+files the pull request changes: governance/users.toml, migrations/0001-add-work-email.sql, migrations/0002-country-as-number.sql
+coverage: failed, findings 3, new 1, on main 2, waived 0, 12 tables checked
+contract-rules: passed, findings 0, new 0, on main 0, waived 0, 10 contracts checked
+contracts: passed, findings 0, new 0, on main 0, waived 0, 11 files checked
+policy-tests: failed, the check could not run
+enforcement-tests: failed, the check could not run
+migrations: failed, findings 1, new 1, on main 0, waived 0, 2 migrations checked
+pipelines: passed, findings 0, new 0, on main 0, waived 0, 4 pipelines checked
+lineage-classifications: passed, findings 0, new 0, on main 0, waived 0, 23 columns checked
+owner-review: passed, findings 0, new 0, on main 0, waived 0, 77 columns checked
+removals: passed, findings 0, new 0, on main 0, waived 0, 87 columns checked
+properties: passed, findings 4, new 0, on main 4, waived 0, 12 tables checked
+coverage/ai.review_corpus: no metadata; on main, owner team-platform
+coverage/crm.learners.work_email: not classified; its name suggests personal
+coverage/marketing.audience: no metadata; on main, owner team-platform
+policy-tests/error: the check could not run: governance/users.toml doesn't parse: Illegal character '\n' (at line 13, column 20)
+enforcement-tests/error: the check could not run: governance/users.toml doesn't parse: Illegal character '\n' (at line 13, column 20)
+migrations/0002-country-as-number.sql: refused: Cannot change column type: country: string -> int
+properties/ai.review_corpus: 7 of 7 generated properties missing; on main, owner team-platform
+properties/analytics.course_performance: 4 of 4 generated properties missing; on main, owner team-analytics
+properties/analytics.learner_activity: 4 of 4 generated properties missing; on main, owner team-analytics
+properties/marketing.audience: 7 of 7 generated properties missing; on main, owner team-platform
+change crm.learners, field 16: added as work_email string; named by 0 pipelines, reaches 0 columns
+job: failed
+checks that could not run: policy-tests, enforcement-tests
+checks that ran: 9
+exit code: 1

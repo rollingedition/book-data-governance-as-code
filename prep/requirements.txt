@@ -1,0 +1,3 @@
+# Exact pins for prep/generate.py, compiled from requirements.in.
+faker==40.43.0
+pyarrow==26.0.0

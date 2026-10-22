@@ -1,0 +1,7 @@
+equality, with the filter in WHERE only: the cast never saw a dropped row's value
+equality, as the layer writes it: the cast never saw a dropped row's value
+IN list, with the filter in WHERE only: the cast never saw a dropped row's value
+IN list, as the layer writes it: the cast never saw a dropped row's value
+consent semi-join, with the filter in WHERE only: the cast saw a dropped row's value
+consent semi-join, as the layer writes it: the cast never saw a dropped row's value
+filter shapes the layer's subquery keeps safe: 3 of 3

@@ -1,0 +1,7 @@
+allow: True
+row filters: [{"column": "support_region", "equals": "emea"}]
+column masks: {}
+reasons: support may read crm.learners
+learners agent-a05 sees in emea: 1,581
+emails agent-a05 sees, as stored: 1,581 of 1,581
+learners in the platform's data: 5,000

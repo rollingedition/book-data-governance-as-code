@@ -1,0 +1,4 @@
+# What prep/generate.py needs to generate the platform's data once. Not part of the examples' environment, so a
+# release of these never changes an example. Compiled like examples/requirements.txt.
+faker
+pyarrow

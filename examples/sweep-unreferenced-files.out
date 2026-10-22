@@ -1,0 +1,8 @@
+snapshots expired: 8
+files under the plan's tables: 100
+files no metadata references: 28
+files holding the learner, after expiry: 9
+files swept with the configured minimum age: 0
+files swept with no minimum age: 28
+files holding the learner, after the sweep: 1
+crm.learners, manifest entry with status 2, email bounds: ALEXA590@POST.EX to zofia.haase@exan

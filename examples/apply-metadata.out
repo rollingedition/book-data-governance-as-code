@@ -1,0 +1,7 @@
+crm.learners schema ID before: 0
+tables changed: 8
+crm.learners schema ID after: 1
+email's doc, in the Iceberg schema: The email the learner signs in with.
+email's doc, in a scan's Arrow schema: The email the learner signs in with.
+crm.learners properties: domain=crm, owner=team-crm
+tables changed by applying again: 0

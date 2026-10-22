@@ -1,0 +1,8 @@
+a WHERE on the raw column: []
+the whole row as a struct: [(None,)]
+COLUMNS(...): [(None,)]
+to_json: [(None,)]
+a cast error: QueryFailed, the query failed: the platform team can see why
+in the operator's log: a query by analyst-1 failed in the engine: Conversion Error: Could not convert string 'e4f62f1a…' to INT32 when casting from source column email
+the relation, running SQL of its own: [('<a stored email>',)]
+what answer returns: list

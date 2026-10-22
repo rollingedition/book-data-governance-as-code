@@ -1,0 +1,30 @@
+# Who uses the platform's data, and the attributes access policies read. IDs name a role, never a person.
+# Instructors' courses aren't listed here: lib/policy.py reads them from learning.courses, so they can't go stale.
+
+[users.agent-a01]
+groups = ["support"]
+region = "americas"
+
+[users.agent-a05]
+groups = ["support"]
+region = "emea"
+
+[users.agent-a09]
+groups = ["support"]
+region = "apac"
+
+[users.instructor-17]
+groups = ["instructor"]
+instructor_id = 17
+
+[users.marketing-1]
+groups = ["marketing"]
+
+[users.finance-1]
+groups = ["finance"]
+
+[users.analyst-1]
+groups = ["data-science"]
+
+[users.assistant-1]
+groups = ["ai"]

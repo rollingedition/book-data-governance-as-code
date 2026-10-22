@@ -1,0 +1,5 @@
+schema ID before the edit: 1
+schema ID after the edit: 2
+schemas the table keeps: 3
+schema ID changed: True
+field IDs, names or types changed: False

@@ -1,0 +1,12 @@
+waivers in the file, before: 0
+job, before the waivers: failed
+id-columns, findings: 21
+id-columns, findings on main: 0
+id-columns, findings classified internal: 20
+id-columns, findings classified public: 1
+id-columns, the public one: learning.courses.course_id
+waivers in the file, after: 21
+job, with the waivers: passed
+coverage, not acted on: 2 of 2 findings, 100%: 0 waived, 2 on main
+properties, not acted on: 4 of 4 findings, 100%: 0 waived, 4 on main
+id-columns, not acted on: 21 of 21 findings, 100%: 21 waived, 0 on main

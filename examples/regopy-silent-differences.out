@@ -1,0 +1,6 @@
+a false decision, queried on its own: undefined
+the same decision, bound to a variable: false
+a rule in pre-1.0 syntax: true
+a deny with a misspelt, unbound variable, for apac: true
+region under a mock written as a literal: "emea"
+region under a mock that refers to a rule: "apac"

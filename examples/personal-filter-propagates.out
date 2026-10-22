@@ -1,0 +1,10 @@
+learners in marketing.birthday_offers: 165
+crm.learners.date_of_birth declared: personal
+marketing.birthday_offers.learner_id, through DIRECT and INDIRECT: personal
+marketing.birthday_offers.learner_id, through DIRECT and INDIRECT, decided by: crm.learners.date_of_birth (INDIRECT FILTER)
+marketing.birthday_offers.country, through DIRECT and INDIRECT: personal
+marketing.birthday_offers.country, through DIRECT and INDIRECT, decided by: crm.learners.date_of_birth (INDIRECT FILTER)
+marketing.birthday_offers.learner_id, through DIRECT: internal
+marketing.birthday_offers.learner_id, through DIRECT, decided by: crm.learners.learner_id (DIRECT IDENTITY)
+marketing.birthday_offers.country, through DIRECT: internal
+marketing.birthday_offers.country, through DIRECT, decided by: crm.learners.country (DIRECT IDENTITY)

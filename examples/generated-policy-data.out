@@ -1,0 +1,9 @@
+users, from governance/users.toml: 8
+agent-a05: {'groups': ['support'], 'region': 'emea'}
+instructor-17: {'groups': ['instructor'], 'instructor_id': 17}
+tables, from governance/metadata.toml: 10
+columns classified: 77
+crm.learners.email: personal
+billing.payments.card_number: sensitive
+instructors with courses, from learning.courses: 48
+instructor 17's courses: [2, 75, 80, 87, 103, 134]

@@ -1,0 +1,7 @@
+# How the platform's audit log (lib/audit.py) is reviewed. Thresholds here are rules of thumb, not measurements, so
+# they live in this file rather than in code, and a change to one is reviewed like a policy change.
+
+[review]
+# A user with at least this many denied queries in the period reviewed is flagged for someone to look at. A rule of
+# thumb: one denial is usually a mistake, and several in a row are a person, or an assistant, trying tables one by one.
+denied_queries_flagged = 3

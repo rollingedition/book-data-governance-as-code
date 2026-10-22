@@ -1,0 +1,9 @@
+schema ID at the start: 0
+schema ID after a doc edit: 1
+fields to classify after the doc edit: 0
+schema ID after adding a column: 2
+fields to classify after adding a column: 1
+support.tickets.callback_number, field ID: 9
+support.tickets.callback_number, entity its name suggests: None
+support.tickets.callback_number, found in its sampled values: PHONE_NUMBER in 154 of 173
+support.tickets.callback_number, proposed classification: personal

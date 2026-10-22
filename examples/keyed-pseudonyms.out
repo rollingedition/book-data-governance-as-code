@@ -1,0 +1,9 @@
+reviews naming Patrick: 2
+Presidio's hash, the same name in two reviews gets one value: False
+Presidio's hash, one review hashed twice gets one value: False
+a fixed salt of 10 bytes: Salt must be at least 16 bytes (128 bits). Provided salt is 10 bytes.
+keyed pseudonyms: <PERSON_d14171be>, <PERSON_d14171be>
+the name typed in lowercase: <PERSON_d14171be>
+instructors who share a first name with another: 0
+the enforcement layer's pseudonymize mask, on the same name: 23b3d8671d01840655296f752121aecc4f7991694260e5e1431d2b57c5e3d53f
+HMAC functions in DuckDB: 0

@@ -1,0 +1,3 @@
+sqlglot, qualified l.emial: OptimizeError: Unknown column: emial
+sqlglot, unqualified emial comes from: crm.learners.emial
+book, unqualified emial: crm.learners has no column emial

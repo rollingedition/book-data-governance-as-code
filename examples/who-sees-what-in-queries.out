@@ -1,0 +1,15 @@
+agent-a05, crm.learners: 1,581 of 5,000 rows, changed: none
+agent-a05, billing.payments: denied
+instructor-17, learning.reviews: 69 of 3,000 rows, changed: body
+instructor-17, crm.learners: denied
+marketing-1, crm.learners: 1,861 of 5,000 rows, changed: phone
+finance-1, billing.payments: 17,562 of 17,562 rows, changed: card_number
+analyst-1, billing.payments: 17,562 of 17,562 rows, changed: card_number
+analyst-1, crm.learners: 5,000 of 5,000 rows, changed: email, notes
+analyst-1, learning.reviews: 3,000 of 3,000 rows, changed: body
+analyst-1 for ai-training, learning.reviews: 436 of 3,000 rows, changed: body
+assistant-1, learning.reviews: 436 of 3,000 rows, changed: body
+someone-else, crm.learners: denied
+cases where what the user gets agrees with the decision: 12 of 12
+marketing-1, marketing.audience, which has no metadata, rows: 1,829
+marketing-1, marketing.audience, which has no metadata, columns with a value: 0 of 5

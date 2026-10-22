@@ -1,0 +1,32 @@
+# How the platform's governance job runs on every pull request, read by lib/ci.py. Turning a check off is a change to
+# this file, reviewed by its code owners like any other.
+
+# The checks the job runs, in this order. A finding the pull request introduces fails it, unless the team whose
+# approval it asks for approves, or a waiver covers it. A finding the main branch's job also reports is reported, with
+# its owner, and fails nothing.
+checks = ["coverage", "contract-rules", "contracts", "policy-tests", "enforcement-tests", "migrations", "pipelines",
+          "lineage-classifications", "owner-review", "removals", "properties"]
+
+[waivers]
+# A waiver may run at most this many days past the day the job runs, so every waiver comes back for a decision. A rule
+# of thumb, not a measurement.
+longest_days = 90
+# Checks whose findings no waiver silences, whatever its end date: a table with no owner or a column with no
+# classification is fixed in the pull request, and so is a failing test of the enforcement layer.
+never = ["coverage", "enforcement-tests"]
+
+[approvals]
+# How many approving reviews from the team a finding asks for settle it, for the findings an owner can answer: a
+# lowered classification, a changed owner or domain, a classification below what a column's name suggests. Branch
+# protection's own count is one number for the branch, and any reviewer with write access counts towards it.
+default = 1
+teams = {}          # a team that wants more names its number here, such as { team-crm = 2 }
+
+[codeowners]
+# Placeholders: the book names no real organization. The platform team owns the job, its global rules, the waivers,
+# the migrations, the pipelines and the CODEOWNERS file; each domain's team owns its folder of contracts and its own
+# rules, and each pipeline goes to the team that owns its table. The platform team also answers for any finding about a
+# table nobody owns.
+organization = "example-org"
+platform = "team-platform"
+contracts = "governance/contracts"     # one folder per domain, one ODCS contract per table, generated from the metadata

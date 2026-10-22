@@ -1,0 +1,53 @@
+# How long the platform keeps its data, and how it removes what it no longer keeps. Read by lib/retention.py.
+#
+# Every period here is the platform's own choice for this book's case: not legal advice, and not a recommendation for
+# your data. A change to one is reviewed like a policy change, by the table's owner.
+
+# A rule deletes a table's rows once `keep_days` have passed since the date in `counted_from`. The job is given the day
+# it runs for and never reads the clock, so the same day always deletes the same rows. `only_when` limits a rule to
+# rows in a final state.
+[tables."support.tickets"]
+keep_days = 730
+counted_from = "opened_at"        # tickets record when they were opened, not when they were closed
+only_when = { column = "status", equals = "closed" }
+
+[tables."learning.events"]
+keep_days = 365
+counted_from = "occurred_at"
+
+[tables."billing.payments"]
+keep_days = 3650                  # a placeholder for the period the platform's legal team sets for payment records
+counted_from = "paid_at"
+
+[snapshots]
+# How long a deleted row stays readable through time travel, as each table's history.expire.* properties, generated
+# from here. PyIceberg's snapshot expiry, at the version this book pins, ignores them, so lib/retention.py applies
+# them itself.
+max_age_days = 5                  # Iceberg's own default
+min_to_keep = 1
+
+[files]
+# A file no snapshot references is removed only once it is older than this, because a write still in progress may yet
+# commit it. Iceberg Java's default for removing orphan files is 3 days.
+min_age_hours = 72
+
+[statistics]
+# Manifests keep each data file's smallest and largest value of every column, strings cut to 16 characters. Columns
+# with these classifications, and columns nobody has classified, keep no values: generated into
+# write.metadata.metrics.column.<name> = mode.
+classifications = ["personal", "sensitive"]
+mode = "none"
+
+[erasure]
+# The columns of crm.learners whose values identify a learner on their own: what the check after an erasure looks for.
+identifying_columns = ["full_name", "email", "phone", "street_address"]
+
+# Exceptions to erasure. GDPR Article 17(3) lists when the right to erasure doesn't apply, and whether one does is for
+# the platform's legal team to decide, never for this file's code. The team writes each exception here, with its
+# reason, in a change reviewed like any other. An erasure keeps the person's rows in an excepted table until the table's
+# retention rule above deletes them, erases the columns listed in `erase_columns` from those rows at once, and records
+# the reason with the request.
+[erasure.exceptions."billing.payments"]
+reason = "PLACEHOLDER: a legal obligation to keep payment records, such as tax records. The legal team replaces this with the obligation and the law it comes from."
+decided_by = "legal team"         # a role, never a person's name
+erase_columns = ["card_number"]   # what the obligation doesn't need; an empty list keeps the whole row

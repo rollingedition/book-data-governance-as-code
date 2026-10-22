@@ -1,0 +1,11 @@
+events: START of marketing_audience, COMPLETE of marketing_audience
+the run read: crm.learners, learning.courses, learning.enrollments
+the run wrote: marketing.audience
+marketing.audience.full_name comes from: crm.learners.full_name (DIRECT IDENTITY)
+marketing.audience.email comes from: crm.learners.email (DIRECT IDENTITY)
+its rows are shaped by, INDIRECT FILTER: crm.learners.marketing_consent, crm.learners.status
+its rows are shaped by, INDIRECT JOIN: crm.learners.learner_id, learning.courses.category, learning.courses.course_id, learning.enrollments.course_id, learning.enrollments.learner_id
+consenting, active learners in crm.learners: 1,861
+rows in marketing.audience: 1,829
+a change to crm.learners.email reaches: marketing.audience.email
+the catalog check finds: marketing.audience: no metadata

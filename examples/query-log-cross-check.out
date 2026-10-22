@@ -1,0 +1,8 @@
+queries allowed: 9
+queries denied: 4
+queries DuckDB ran: 9
+queries DuckDB ran with no decision record: 0
+next check, records checked: 14 to 15
+next check, queries with no decision record: 1
+unrecorded: SELECT email FROM crm.learners WHERE learner_id = ?
+next check, decision records DuckDB has no query for: 0

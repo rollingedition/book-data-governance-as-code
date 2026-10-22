@@ -1,0 +1,11 @@
+# Book manifest: how this book is cataloged. Validated against the taxonomy on every pull request.
+slug = "data-governance-as-code"
+title = "Data Governance as Code"
+summary = "Governing a data platform with code that runs in CI: a catalog where every table has an owner and every column a classification, personal data found automatically, lineage from pipelines, access policies as tested Rego enforced as row filters and column masks, retention, consent and erasure that remove data, an audit trail, and the same rules for data that trains or grounds AI."
+status = "live"                       # draft | live | unmaintained | retired
+level = "in-practice"                 # foundations | in-practice
+reader = "For data, analytics and platform engineers who already build pipelines and warehouses and have been asked to make them governed: comfortable with SQL, Python and Parquet, and looking for governance that is tested and reviewed like the rest of their code."
+skills = ["data-governance", "data-warehousing", "data-quality", "data-pipelines"]   # 1 to 5; the first is primary
+line = "main"                         # edition line
+core_libraries = ["pyiceberg", "duckdb", "sqlglot"]   # names only; versions are pinned in examples/requirements.txt
+sponsor = ""

@@ -1,0 +1,6 @@
+tables with a learner_id column: 7
+learner_id classified as: internal
+personal columns in crm.learners: full_name, email, phone, city, street_address, date_of_birth, notes
+enrollments whose learner_id leads to an email: 20,000 of 20,000
+users who see learners' names in crm.learners: agent-a01, agent-a05, agent-a09, marketing-1
+of them, users who read learner_id in another table: agent-a01 (support.tickets), agent-a05 (support.tickets), agent-a09 (support.tickets)

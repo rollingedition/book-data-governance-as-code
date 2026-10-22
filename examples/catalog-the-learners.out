@@ -1,0 +1,8 @@
+owner: team-crm
+domain: crm
+columns classified personal: 7
+personal columns: full_name, email, phone, city, street_address, date_of_birth, notes
+columns classified internal: 8
+table properties: domain=crm, owner=team-crm
+email's description, in the Iceberg schema: The email the learner signs in with.
+problems the check finds: 0

@@ -1,0 +1,21 @@
+unclassified, coverage: failed, findings 3, new 1, on main 2, waived 0, 12 tables checked
+unclassified, coverage/ai.review_corpus: no metadata; on main, owner team-platform
+unclassified, coverage/crm.learners.work_email: not classified; its name suggests personal
+unclassified, coverage/marketing.audience: no metadata; on main, owner team-platform
+unclassified, change crm.learners, field 16: added as work_email string; named by 0 pipelines, reaches 0 columns
+unclassified, waiver coverage/crm.learners.work_email: silences nothing, coverage findings are never waived
+unclassified, job: failed
+undescribed, asked until 2027-06-30, coverage: passed, findings 2, new 0, on main 2, waived 0, 12 tables checked
+undescribed, asked until 2027-06-30, contract-rules: failed, findings 1, new 1, on main 0, waived 0, 10 contracts checked
+undescribed, asked until 2027-06-30, coverage/ai.review_corpus: no metadata; on main, owner team-platform
+undescribed, asked until 2027-06-30, coverage/marketing.audience: no metadata; on main, owner team-platform
+undescribed, asked until 2027-06-30, contract-rules/crm.learners.work_email/described: no description (global rule described)
+undescribed, asked until 2027-06-30, change crm.learners, field 16: added as work_email string; named by 0 pipelines, reaches 0 columns
+undescribed, asked until 2027-06-30, waiver contract-rules/crm.learners.work_email/described: silences nothing, runs to 2027-06-30, past the longest allowed, 2026-12-30
+undescribed, asked until 2027-06-30, job: failed
+undescribed, asked until 2026-10-31, on 2026-10-01, contract-rules: passed
+undescribed, asked until 2026-10-31, on 2026-10-01, findings waived: 1
+undescribed, asked until 2026-10-31, on 2026-10-01, waivers that silence nothing: none
+undescribed, asked until 2026-10-31, on 2026-11-01, contract-rules: failed
+undescribed, asked until 2026-10-31, on 2026-11-01, findings waived: 0
+undescribed, asked until 2026-10-31, on 2026-11-01, waivers that silence nothing: expired on 2026-10-31

@@ -1,0 +1,5 @@
+columns the spreadsheet lists: 15
+of them without a classification, by the spreadsheet: 0
+columns crm.learners has: 16
+columns the spreadsheet doesn't list: work_email
+the check against the catalog finds: crm.learners.work_email: not classified

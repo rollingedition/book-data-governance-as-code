@@ -1,0 +1,70 @@
+model: openai/privacy-filter decoded with viterbi
+patterns, detections: 1,539
+patterns, CREDIT_CARD, recall, exact: 0.71
+patterns, CREDIT_CARD, recall, overlap: 0.71
+patterns, DATE_TIME, recall, exact: 1.00
+patterns, DATE_TIME, recall, overlap: 1.00
+patterns, EMAIL_ADDRESS, recall, exact: 1.00
+patterns, EMAIL_ADDRESS, recall, overlap: 1.00
+patterns, IBAN_CODE, recall, exact: 1.00
+patterns, IBAN_CODE, recall, overlap: 1.00
+patterns, LOCATION, recall, exact: 0.00
+patterns, LOCATION, recall, overlap: 0.00
+patterns, PERSON, recall, exact: 0.00
+patterns, PERSON, recall, overlap: 0.00
+patterns, PHONE_NUMBER, recall, exact: 0.84
+patterns, PHONE_NUMBER, recall, overlap: 0.85
+patterns, precision, exact: 0.97
+patterns, texts with every labelled span masked: 405 of 2,586
+model, detections: 4,424
+model, CREDIT_CARD, recall, exact: 0.69
+model, CREDIT_CARD, recall, overlap: 0.69
+model, DATE_TIME, recall, exact: 0.97
+model, DATE_TIME, recall, overlap: 0.97
+model, EMAIL_ADDRESS, recall, exact: 1.00
+model, EMAIL_ADDRESS, recall, overlap: 1.00
+model, IBAN_CODE, recall, exact: 0.99
+model, IBAN_CODE, recall, overlap: 1.00
+model, LOCATION, recall, exact: 0.67
+model, LOCATION, recall, overlap: 0.79
+model, PERSON, recall, exact: 0.84
+model, PERSON, recall, overlap: 0.84
+model, PHONE_NUMBER, recall, exact: 0.94
+model, PHONE_NUMBER, recall, overlap: 0.94
+model, precision, exact: 0.84
+model, texts with every labelled span masked: 2,095 of 2,586
+both, detections: 5,963
+both, CREDIT_CARD, recall, exact: 0.92
+both, CREDIT_CARD, recall, overlap: 0.92
+both, DATE_TIME, recall, exact: 1.00
+both, DATE_TIME, recall, overlap: 1.00
+both, EMAIL_ADDRESS, recall, exact: 1.00
+both, EMAIL_ADDRESS, recall, overlap: 1.00
+both, IBAN_CODE, recall, exact: 1.00
+both, IBAN_CODE, recall, overlap: 1.00
+both, LOCATION, recall, exact: 0.67
+both, LOCATION, recall, overlap: 0.79
+both, PERSON, recall, exact: 0.84
+both, PERSON, recall, overlap: 0.84
+both, PHONE_NUMBER, recall, exact: 0.99
+both, PHONE_NUMBER, recall, overlap: 0.99
+both, precision, exact: 0.88
+both, texts with every labelled span masked: 2,120 of 2,586
+model, account_number, detections: 746
+model, account_number, precision, exact: 0.51
+model, account_number, precision, overlap: 0.51
+model, private_address, detections: 177
+model, private_address, precision, exact: 0.79
+model, private_address, precision, overlap: 1.00
+model, private_date, detections: 384
+model, private_date, precision, exact: 0.50
+model, private_date, precision, overlap: 0.50
+model, private_email, detections: 543
+model, private_email, precision, exact: 1.00
+model, private_email, precision, overlap: 1.00
+model, private_person, detections: 2,110
+model, private_person, precision, exact: 0.98
+model, private_person, precision, overlap: 0.98
+model, private_phone, detections: 464
+model, private_phone, precision, exact: 0.89
+model, private_phone, precision, overlap: 0.89

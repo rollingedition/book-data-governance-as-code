@@ -1,0 +1,21 @@
+billing.payments, rows deleted: 0
+crm.learners, rows deleted: 1
+learning.enrollments, rows deleted: 2
+learning.events, rows deleted: 19
+learning.reviews, rows deleted: 1
+support.tickets, rows deleted: 0
+analytics.course_performance: rebuilt
+analytics.learner_activity, rows deleted: 1
+marketing.audience, rows deleted: 0
+ai.review_corpus, rows deleted: 1
+tables one row was deleted from: crm.learners, learning.reviews, analytics.learner_activity, ai.review_corpus
+billing.payments, the learner's rows kept: 2
+billing.payments, card numbers left in them: 0
+the learner's rows in crm.learners, read now: 0
+the learner's rows in crm.learners, read by time travel: 1
+the learner's rows in learning.events, read now: 0
+the learner's rows in learning.events, read by time travel: 19
+crm.learners, rows written again to delete one: 4,999
+crm.learners, the commit records: erasure-0001
+snapshots that still hold the rows the erasure deleted: 6
+of them current: 0

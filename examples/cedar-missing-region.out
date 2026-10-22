@@ -1,0 +1,9 @@
+with `has region`, a learner in americas: Deny
+with `has region`, a learner in apac: Deny
+with `has region`, a learner in emea: Deny
+with `has region`, policies skipped on an error: []
+without it, a learner in americas: Allow
+without it, a learner in apac: Allow
+without it, a learner in emea: Allow
+without it, policies skipped on an error: ['error while evaluating policy `policy6`: `User::"agent-new"` does not have the attribute `region`']
+validation without it: for policy `policy6`, unable to guarantee safety of access to optional attribute `region` on entity type `User`

@@ -1,0 +1,10 @@
+analytics.daily_revenue columns: day, revenue_usd
+sqlglot, INSERT outputs: paid_at, _col_1
+book, INSERT day: billing.payments.paid_at DIRECT TRANSFORMATION
+book, INSERT revenue_usd: billing.payments.amount DIRECT AGGREGATION
+book, INSERT rows shaped by: billing.payments.paid_at GROUP_BY, billing.payments.status FILTER
+sqlglot, MERGE USING a table, outputs: none
+sqlglot, MERGE USING a subquery, outputs: learner_id, country, email
+book, INSERT with one value too many: analytics.daily_revenue: the INSERT writes 2 columns, and its SELECT has 3 values
+book, MERGE USING a table: analytics.learner_activity: lineage is read only from CREATE ... AS and INSERT ... SELECT, not from MERGE
+book, MERGE USING a subquery: analytics.learner_activity: lineage is read only from CREATE ... AS and INSERT ... SELECT, not from MERGE

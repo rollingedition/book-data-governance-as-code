@@ -1,0 +1,9 @@
+agent-a05, support.tickets: source.support_region = 'emea'
+instructor-17, learning.reviews: source.course_id IN (2, 75, 80, 87, 103, 134)
+assistant-1, learning.reviews: source.learner_id IN (SELECT consent.learner_id FROM crm.learners AS consent WHERE consent.ai_training_consent IS TRUE)
+a region that looks like SQL: source.support_region = 'emea'' or ''1'' = ''1'
+reviews the assistant reads: 436 of 3,000
+reviews whose author's AI-training consent is false: 955
+reviews whose author's AI-training consent is never asked: 1,609
+reviews whose author's AI-training consent is true: 436
+the assistant reading crm.learners: assistant-1 may not read crm.learners: no group of this user may read this table

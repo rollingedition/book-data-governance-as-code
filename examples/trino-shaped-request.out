@@ -1,0 +1,22 @@
+{
+  "context": {
+    "identity": {
+      "user": "agent-a05"
+    }
+  },
+  "action": {
+    "operation": "SelectFromColumns",
+    "resource": {
+      "table": {
+        "catalogName": "platform",
+        "schemaName": "support",
+        "tableName": "tickets",
+        "columns": [
+          "ticket_id",
+          "opened_at",
+          "body"
+        ]
+      }
+    }
+  }
+}

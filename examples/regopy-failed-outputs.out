@@ -1,0 +1,4 @@
+tests that end in ERROR: 13 of 13
+the query true succeeds: False
+lib.policy.decide raises: regopy couldn't evaluate data.platform.access.decision, so there is no decision to read
+printing the failed output ends Python with: SIGSEGV

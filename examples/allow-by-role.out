@@ -1,0 +1,10 @@
+ai may read: learning.courses, learning.reviews
+data-science may read: analytics.course_performance, analytics.learner_activity, billing.payments, crm.learners, learning.courses, learning.enrollments, learning.events, learning.reviews
+finance may read: billing.payments, learning.courses, learning.enrollments
+instructor may read: learning.courses, learning.enrollments, learning.reviews
+marketing may read: crm.learners, learning.courses, marketing.audience
+support may read: crm.learners, support.tickets
+finance-1, SelectFromColumns on billing.payments: allowed | finance may read billing.payments
+marketing-1, SelectFromColumns on billing.payments: denied | no group of this user may read this table
+someone-else, SelectFromColumns on crm.learners: denied | no group of this user may read this table
+finance-1, DeleteFromTable on billing.payments: denied | DeleteFromTable is not an operation this policy allows

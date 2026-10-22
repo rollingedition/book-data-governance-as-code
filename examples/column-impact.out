@@ -1,0 +1,16 @@
+edges in the column graph: 51
+crm.learners.email reaches:
+  marketing.audience.email: DIRECT IDENTITY
+crm.learners.email, columns reached through values: 1
+crm.learners.email, columns reached in all: 1
+crm.learners.marketing_consent reaches:
+  marketing.audience, every row: INDIRECT FILTER
+crm.learners.marketing_consent, columns reached through values: 0
+crm.learners.marketing_consent, columns reached in all: 5
+learning.courses.category reaches:
+  analytics.course_performance, every row: INDIRECT GROUP_BY
+  analytics.course_performance.category: DIRECT IDENTITY
+  marketing.audience, every row: INDIRECT GROUP_BY, INDIRECT JOIN
+  marketing.audience.favourite_category: DIRECT IDENTITY
+learning.courses.category, columns reached through values: 2
+learning.courses.category, columns reached in all: 12

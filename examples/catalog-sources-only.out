@@ -1,0 +1,16 @@
+a table function in FROM: denied, not a table in the catalog: QUERY_TABLE('crm.learners')
+a table function in a scalar subquery: denied, not a table in the catalog: QUERY_TABLE('crm.learners')
+a table function under LATERAL: denied, a LATERAL that isn't a subquery: LATERAL QUERY_TABLE('crm.learners')
+a catalog-qualified name: denied, not a table in the catalog: memory.crm.learners
+an information_schema view: denied, not a table in the catalog: information_schema.tables
+a CTE's name outside its scope: denied, not a table in the catalog: other
+a CTE's name before the CTE: denied, not a table in the catalog: scan_crm_learners
+a function that writes DuckDB's log: denied, a function DuckDB marks as having side effects: write_log
+a statement sqlglot keeps as text: denied, only a single query is allowed
+functions with side effects: current_connection_id, current_query, current_query_id, current_transaction_id, currval, error, gen_random_uuid, nextval, pg_sleep, random, setseed, setval, sleep_ms, stats, uuid, uuidv4, uuidv7, vector_type, write_log
+functions with side effects, denied: 19 of 19
+cases whose parse sqlglot logged, quoting the query: 0 of 29
+cases that pass: 29 of 29
+a CTE's name before the CTE, run directly: 5,000 rows
+the log function, run directly, query-log entries it leaves: ["select write_log('an entry', log_type := 'QueryLog')", 'an entry']
+a CTE, a join and a scalar subquery, allowed: 61 rows

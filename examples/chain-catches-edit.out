@@ -1,0 +1,15 @@
+records: 13
+head written down at noon, at record: 9
+record 3: agent-a05 reads SELECT full_name, email, phone FROM crm.learners WHERE learner_id = ?
+untouched, checked alone: no problem found
+untouched, checked against the noon head: no problem found
+record 3 edited, checked alone: record 3 was changed: record 4 doesn't follow it
+record 3 edited, checked against the noon head: record 3 was changed: record 4 doesn't follow it
+record 3 edited, chain rebuilt, checked alone: no problem found
+record 3 edited, chain rebuilt, checked against the noon head: the chain no longer passes through the head written down at record 9
+record 12 removed, checked alone: record 12 is missing: record 13 follows record 11
+record 12 removed, checked against the noon head: record 12 is missing: record 13 follows record 11
+record 12 removed, chain rebuilt, checked alone: no problem found
+record 12 removed, chain rebuilt, checked against the noon head: no problem found
+last 2 records removed, checked alone: no problem found
+last 2 records removed, checked against the noon head: no problem found

@@ -1,0 +1,25 @@
+names in lowercase, labelled: 211
+names in lowercase, caught: 0
+initial and surname, labelled: 163
+initial and surname, caught: 0
+first names that are words, labelled: 187
+first names that are words, caught: 0
+instructors named in reviews, labelled: 798
+instructors named in reviews, caught: 0
+phones typed as digits only, labelled: 257
+phones typed as digits only, caught: 220
+hard cases of a name, caught: 0
+invoice numbers, in the tickets: 224
+invoice numbers, flagged as personal data: 31
+order numbers, in the tickets: 212
+order numbers, flagged as personal data: 0
+dates of a problem, in the tickets: 225
+dates of a problem, flagged as personal data: 0
+CREDIT_CARD, missed: 62
+CREDIT_CARD, missed, 19 digits: 23
+CREDIT_CARD, missed, 12 digits: 22
+CREDIT_CARD, missed, 16 digits starting with 2: 10
+CREDIT_CARD, missed, 15 digits starting with 2: 7
+IBAN_CODE, missed: 0
+phone numbers missed: 65
+of them, invalid in the learner's country: 63

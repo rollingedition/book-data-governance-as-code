@@ -1,0 +1,24 @@
+// The entities and the one action of access.cedar. lib/policy.py's cedar_entities generates the entities from
+// governance/users.toml, governance/metadata.toml and crm.learners, so they're never typed.
+// Attributes are required unless marked with `?`: only support agents have a region.
+
+entity Group;
+
+entity User in [Group] {
+  region?: String,
+};
+
+entity Table;
+
+entity Column in [Table] {
+  classification: String,
+};
+
+entity Learner in [Table] {
+  support_region: String,
+};
+
+action read appliesTo {
+  principal: [User],
+  resource: [Table, Column, Learner],
+};

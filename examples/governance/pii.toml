@@ -1,0 +1,42 @@
+# How the platform finds personal data: rules on column names, what finding each entity means for a column's
+# classification, how a column's values are sampled, and the Presidio recognizers it runs, each with the lowest score
+# it accepts. Read by lib/pii.py. Every change here is measured again against data/platform/pii_spans.parquet.
+
+[columns]
+floor = "internal"       # what a column with no evidence is proposed as: only a person decides that a column is public
+sample_rows = 200        # non-null values sampled per text column
+sample_seed = 2026
+
+# Rules on lowercased column names, tried in order; the first match wins. IP addresses come before the address rule.
+name_rules = [
+    { pattern = '(^|_)ip(_|$)', entity = "IP_ADDRESS" },
+    { pattern = 'e_?mail', entity = "EMAIL_ADDRESS" },
+    { pattern = 'phone|mobile', entity = "PHONE_NUMBER" },
+    { pattern = '(full|first|last|sur)_?name', entity = "PERSON" },
+    { pattern = 'address|street|city|post_?code|zip', entity = "LOCATION" },
+    { pattern = 'birth|dob', entity = "DATE_TIME" },
+    { pattern = 'card_?(number|num|no)|(^|_)pan$', entity = "CREDIT_CARD" },
+    { pattern = 'iban', entity = "IBAN_CODE" },
+]
+
+# What finding an entity means for a column. An entity not listed raises nothing.
+[classification]
+PERSON = "personal"
+EMAIL_ADDRESS = "personal"
+PHONE_NUMBER = "personal"
+LOCATION = "personal"
+DATE_TIME = "personal"
+IP_ADDRESS = "personal"
+CREDIT_CARD = "sensitive"
+IBAN_CODE = "sensitive"
+
+# The Presidio recognizers the platform keeps, for the identifiers its text can hold, each with its own threshold.
+# A phone number scores a fixed 0.4 when no context word raises it, and with no NLP model none can, so its threshold
+# is 0.4. The phone recognizer's regions aren't set here: lib/pii.py reads them from the learners' countries.
+[recognizers]
+EmailRecognizer = 0.5
+PhoneRecognizer = 0.4
+CreditCardRecognizer = 0.5
+IbanRecognizer = 0.5
+DateRecognizer = 0.5
+IpRecognizer = 0.5

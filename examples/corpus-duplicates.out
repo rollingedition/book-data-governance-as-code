@@ -1,0 +1,15 @@
+reviews read: 436
+distinct texts: 96
+exact duplicates removed: 340
+near-duplicate pairs from LSH: 381
+near-duplicate pairs confirmed: 8
+of them, differing only in a name: 8
+near-duplicates removed: 0
+records kept: 96
+share of the reviews read that duplicate another: 78%
+the most repeated text: Clear explanations and good exercises.
+its copies: 56
+a near-duplicate pair: Some videos are out of date. <PERSON_85783bac> explains things well. Happy to talk about it, write to me at [email]. | Some videos are out of date. <PERSON_967f9ae8> explains things well. Happy to talk about it, write to me at [email].
+its Jaccard similarity: 0.81
+it differs only in a name: True
+records that stand for reviews of several courses: 23

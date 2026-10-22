@@ -1,0 +1,14 @@
+tables described: 10
+columns described: 77
+columns classified public: 6
+columns classified internal: 57
+columns classified personal: 12
+columns classified sensitive: 2
+teams that own tables: 5
+owners: team-analytics, team-billing, team-crm, team-learning, team-support
+crm.learners owner: team-crm
+crm.learners domain: crm
+crm.learners field 1: learner_id | internal | The learner's ID, which the platform's other tables use for the learner. Identifies a person through this table's personal columns.
+crm.learners field 3: email | personal | The email the learner signs in with.
+crm.learners field 5: country | internal | The learner's country, as an ISO 3166 two-letter code.
+crm.learners field 6: city | personal | The learner's city. Identifying together with date of birth.

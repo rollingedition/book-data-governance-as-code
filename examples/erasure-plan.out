@@ -1,0 +1,18 @@
+billing.payments: keep, under an exception, and erase card_number
+crm.learners: delete where learner_id in [3590]
+learning.enrollments: delete where learner_id in [3590]
+learning.events: delete where learner_id in [3590]
+learning.reviews: delete where learner_id in [3590]
+support.tickets: delete where learner_id in [3590]
+analytics.course_performance: run course_performance again
+analytics.learner_activity: delete where learner_id in [3590], a copy of crm.learners.learner_id
+marketing.audience: delete where learner_id in [3590], a copy of crm.learners.learner_id
+ai.review_corpus: delete where review_id in [1199], a copy of learning.reviews.review_id
+tables in the plan: 10
+tables found by their learner_id column: 6
+tables found by lineage: 4
+the reason recorded for billing.payments: PLACEHOLDER: a legal obligation to keep payment records, such as tax records. The legal team replaces this with the obligation and the law it comes from.
+the learner's rows in billing.payments: 2
+the learner's rows in marketing.audience: 0
+the learner's identifying values, as the scan searches for them: •••-•••-5880 x•, 87199 jacob rad, alexa reed, alexa590@post.e
+rows the plan doesn't delete whose text names the learner: 0

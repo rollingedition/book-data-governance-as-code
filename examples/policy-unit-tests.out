@@ -1,0 +1,13 @@
+PASS: test_support_reads_only_its_own_region
+PASS: test_support_without_a_region_is_denied
+PASS: test_marketing_sees_only_consenting_active_learners
+PASS: test_a_group_only_reads_its_own_tables
+PASS: test_finance_sees_only_the_last_four_digits
+PASS: test_data_science_never_sees_card_numbers
+PASS: test_data_science_sees_pseudonyms_not_people
+PASS: test_an_unclassified_column_is_hidden
+PASS: test_an_unknown_user_is_denied
+PASS: test_an_instructor_sees_only_their_courses
+PASS: test_the_assistant_reads_only_consented_reviews
+PASS: test_training_reads_only_consented_reviews_without_contacts
+tests passed: 12 of 12

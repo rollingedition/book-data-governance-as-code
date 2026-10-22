@@ -1,0 +1,23 @@
+metadata problem: ai.review_corpus: no metadata
+metadata problem: marketing.audience: no metadata
+propagated through: DIRECT and INDIRECT
+marketing.audience.learner_id: internal, from crm.learners.learner_id (DIRECT IDENTITY)
+marketing.audience.full_name: personal, from crm.learners.full_name (DIRECT IDENTITY)
+marketing.audience.email: personal, from crm.learners.email (DIRECT IDENTITY)
+marketing.audience.country: internal, from crm.learners.country (DIRECT IDENTITY)
+marketing.audience.favourite_category: internal, from crm.learners.learner_id (INDIRECT JOIN)
+ai.review_corpus.review_id: internal, from learning.reviews.review_id (DIRECT IDENTITY)
+ai.review_corpus.course_id: internal, from learning.reviews.course_id (DIRECT IDENTITY)
+ai.review_corpus.course_title: internal, from learning.reviews.course_id (INDIRECT JOIN)
+ai.review_corpus.rating: internal, from learning.reviews.rating (DIRECT IDENTITY)
+ai.review_corpus.body: personal, from learning.reviews.body (DIRECT IDENTITY)
+personal columns proposed: 3
+declared classifications checked: 13
+classes declared for them: internal
+declared classifications reproduced, through DIRECT and INDIRECT: 13 of 13
+declared classifications reproduced, through DIRECT: 10 of 13
+missed with DIRECT inputs only: 3
+  analytics.course_performance.course_id: declared internal, DIRECT inputs propose public
+  analytics.course_performance.title: declared internal, DIRECT inputs propose public
+  analytics.course_performance.category: declared internal, DIRECT inputs propose public
+declared less protected than lineage proposes: 0

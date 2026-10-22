@@ -1,0 +1,8 @@
+pipeline output: analytics.course_performance
+pipeline output: analytics.learner_activity
+pipeline output: marketing.audience
+pipeline output: ai.review_corpus
+tables in the catalog: 12
+problems found: 2
+problem: ai.review_corpus: no metadata
+problem: marketing.audience: no metadata

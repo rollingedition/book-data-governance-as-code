@@ -1,0 +1,10 @@
+allow, ExecuteQuery, agent-a05: False
+allow, AccessCatalog, agent-a05: False
+GetRowFilters, agent-a05, support.tickets, the rule alone: [{"column": "support_region", "equals": "emea"}]
+GetRowFilters, agent-a05, support.tickets, answered: [{"expression": "support_region = 'emea'"}]
+GetRowFilters, instructor-17, learning.reviews, the rule alone: [{"column": "course_id", "in": [2, 75, 80, 87, 103, 134]}]
+GetRowFilters, instructor-17, learning.reviews, answered: [{"expression": "course_id IN (2, 75, 80, 87, 103, 134)"}]
+GetRowFilters, agent-new, support.tickets, the rule alone: []
+GetRowFilters, agent-new, support.tickets, answered: [{"expression": "false"}]
+GetColumnMask as sent, analyst-1, crm.learners.email: {} GetColumnMask is not an operation this policy allows
+GetColumnMask translated, analyst-1, crm.learners.email: {"email": "pseudonymize"}

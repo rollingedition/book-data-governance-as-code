@@ -1,0 +1,9 @@
+agent-a01 reads support.tickets, row filters: [{"column": "support_region", "equals": "americas"}]
+agent-a05 reads support.tickets, row filters: [{"column": "support_region", "equals": "emea"}]
+agent-a09 reads support.tickets, row filters: [{"column": "support_region", "equals": "apac"}]
+instructor-17 reads learning.reviews, row filters: [{"column": "course_id", "in": [2, 75, 80, 87, 103, 134]}]
+marketing-1 reads crm.learners, row filters: [{"column": "marketing_consent", "equals": true}, {"column": "status", "equals": "active"}]
+analyst-1 reads learning.reviews, row filters: []
+analyst-1 reads learning.reviews, body shown as: redact
+analyst-1 for ai-training reads learning.reviews, row filters: [{"learner_consented": "ai_training_consent"}]
+analyst-1 for ai-training reads learning.reviews, body shown as: redact_contacts

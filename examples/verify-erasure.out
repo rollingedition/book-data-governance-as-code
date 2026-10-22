@@ -1,0 +1,22 @@
+ai.review_corpus: 11 files read, 0 holding the learner
+analytics.course_performance: 5 files read, 0 holding the learner
+analytics.learner_activity: 11 files read, 0 holding the learner
+billing.payments: 12 files read, 0 holding the learner
+crm.instructors: 8 files read, 0 holding the learner
+crm.learners: 11 files read, 0 holding the learner
+learning.courses: 8 files read, 0 holding the learner
+learning.enrollments: 11 files read, 0 holding the learner
+learning.events: 11 files read, 0 holding the learner
+learning.reviews: 11 files read, 0 holding the learner
+marketing.audience: 8 files read, 0 holding the learner
+support.tickets: 8 files read, 0 holding the learner
+request: erasure-0001
+tables visited: 10
+rows deleted: 25
+tables rebuilt: analytics.course_performance
+tables kept under an exception, columns erased: billing.payments, card_number
+snapshots a reader can still time travel to: 0
+files no metadata references: 0
+tables missing their generated properties: analytics.course_performance
+files read: 115
+files holding the learner: 0

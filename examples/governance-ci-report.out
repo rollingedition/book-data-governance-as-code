@@ -1,0 +1,63 @@
+files the pull request changes: migrations/0001-add-work-email.sql
+coverage: failed, findings 3, new 1, on main 2, waived 0, 12 tables checked
+contract-rules: passed, findings 0, new 0, on main 0, waived 0, 10 contracts checked
+contracts: passed, findings 0, new 0, on main 0, waived 0, 11 files checked
+policy-tests: passed, findings 0, new 0, on main 0, waived 0, 24 tests and rows checked
+enforcement-tests: passed, findings 0, new 0, on main 0, waived 0, 44 cases checked
+migrations: passed, findings 0, new 0, on main 0, waived 0, 1 migrations checked
+pipelines: passed, findings 0, new 0, on main 0, waived 0, 4 pipelines checked
+lineage-classifications: passed, findings 0, new 0, on main 0, waived 0, 23 columns checked
+owner-review: passed, findings 0, new 0, on main 0, waived 0, 77 columns checked
+removals: passed, findings 0, new 0, on main 0, waived 0, 87 columns checked
+properties: passed, findings 4, new 0, on main 4, waived 0, 12 tables checked
+coverage/ai.review_corpus: no metadata; on main, owner team-platform
+coverage/crm.learners.work_email: not classified; its name suggests personal
+coverage/marketing.audience: no metadata; on main, owner team-platform
+properties/ai.review_corpus: 7 of 7 generated properties missing; on main, owner team-platform
+properties/analytics.course_performance: 4 of 4 generated properties missing; on main, owner team-analytics
+properties/analytics.learner_activity: 4 of 4 generated properties missing; on main, owner team-analytics
+properties/marketing.audience: 7 of 7 generated properties missing; on main, owner team-platform
+change crm.learners, field 16: added as work_email string; named by 0 pipelines, reaches 0 columns
+job: failed
+checks run: 11
+checks failed: 1
+findings: 7
+findings the pull request introduces: 1
+findings already on main: 6
+findings waived: 0
+findings approved: 0
+exit code: 1
+the step exits with: 1
+the summary it writes for the pull request:
+## Governance job: failed
+
+| Check | Result | New | On main | Waived | Checked |
+| --- | --- | ---: | ---: | ---: | --- |
+| `coverage` | failed | 1 | 2 | 0 | 12 tables |
+| `contract-rules` | passed | 0 | 0 | 0 | 10 contracts |
+| `contracts` | passed | 0 | 0 | 0 | 11 files |
+| `policy-tests` | passed | 0 | 0 | 0 | 24 tests and rows |
+| `enforcement-tests` | passed | 0 | 0 | 0 | 44 cases |
+| `migrations` | passed | 0 | 0 | 0 | 1 migrations |
+| `pipelines` | passed | 0 | 0 | 0 | 4 pipelines |
+| `lineage-classifications` | passed | 0 | 0 | 0 | 23 columns |
+| `owner-review` | passed | 0 | 0 | 0 | 77 columns |
+| `removals` | passed | 0 | 0 | 0 | 87 columns |
+| `properties` | passed | 0 | 4 | 0 | 12 tables |
+
+### To fix in this pull request
+
+- `coverage/crm.learners.work_email`: not classified; its name suggests personal
+
+### Already on main, and whose it is
+
+- `coverage/ai.review_corpus`: no metadata (team-platform)
+- `coverage/marketing.audience`: no metadata (team-platform)
+- `properties/ai.review_corpus`: 7 of 7 generated properties missing (team-platform)
+- `properties/analytics.course_performance`: 4 of 4 generated properties missing (team-analytics)
+- `properties/analytics.learner_activity`: 4 of 4 generated properties missing (team-analytics)
+- `properties/marketing.audience`: 7 of 7 generated properties missing (team-platform)
+
+### Schema changes
+
+- `crm.learners`, field 16: added as work_email string; named by 0 pipelines, reaches 0 columns

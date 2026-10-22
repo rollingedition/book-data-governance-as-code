@@ -1,0 +1,6 @@
+the column rewrite: SELECT "learners"."learner_id" AS "learner_id", SHA256($pseudonym_key || CAST("learners"."email" AS TEXT)) AS "email" FROM "crm"."learners" AS "learners"
+a WHERE on the raw column: [(2,)]
+the whole row as a struct: [('<a stored email>',)]
+COLUMNS(...): [('<a stored email>',)]
+to_json: [('<a stored email>',)]
+a cast error: Conversion Error: Could not convert string '<a stored email>' to INT32 when casting from source column email

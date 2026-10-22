@@ -1,0 +1,12 @@
+a string: SELECT learner_id FROM crm.learners WHERE email = ?
+a dollar-quoted string: SELECT learner_id FROM crm.learners WHERE email = ?
+an escape string: SELECT learner_id FROM crm.learners WHERE email = ?
+a list: SELECT learner_id FROM crm.learners WHERE email IN (?)
+a number: SELECT email FROM crm.learners WHERE learner_id = ?
+a comment: SELECT email FROM crm.learners WHERE learner_id = ?
+a name in double quotes: SELECT learner_id FROM crm.learners WHERE full_name = ? (denied: Column '?' could not be resolved)
+a column alias: SELECT learner_id AS alias_1 FROM crm.learners
+a table alias: SELECT alias_1.email FROM crm.learners AS alias_1
+a CTE's name: WITH alias_1 AS (SELECT learner_id FROM crm.learners) SELECT learner_id FROM alias_1
+a table the catalog doesn't hold: SELECT learner_id FROM ? (denied: not a table in the catalog: "?")
+records holding the email, the name or the ID: 0 of 11

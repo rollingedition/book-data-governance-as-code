@@ -1,0 +1,17 @@
+marketing.audience.learner_id: crm.learners.learner_id DIRECT IDENTITY
+marketing.audience.full_name: crm.learners.full_name DIRECT IDENTITY
+marketing.audience.email: crm.learners.email DIRECT IDENTITY
+marketing.audience.country: crm.learners.country DIRECT IDENTITY
+marketing.audience.favourite_category: learning.courses.category DIRECT IDENTITY
+inputs that shape every row of marketing.audience:
+  crm.learners.learner_id: INDIRECT JOIN
+  crm.learners.marketing_consent: INDIRECT FILTER
+  crm.learners.status: INDIRECT FILTER
+  learning.courses.category: INDIRECT GROUP_BY, JOIN
+  learning.courses.course_id: INDIRECT JOIN
+  learning.enrollments.course_id: INDIRECT JOIN
+  learning.enrollments.learner_id: INDIRECT GROUP_BY, JOIN
+source columns, values only: 5
+source columns, with the rows' inputs: 10
+analytics.course_performance.completions: learning.enrollments.completed_at INDIRECT FILTER, learning.enrollments.enrollment_id DIRECT AGGREGATION
+analytics.course_performance.revenue_usd: billing.payments.amount DIRECT AGGREGATION, billing.payments.status INDIRECT FILTER

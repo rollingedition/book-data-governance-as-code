@@ -1,0 +1,14 @@
+columns the model protects less than the review: 19
+columns the model protects more than the review: 5
+sensitive columns the model called internal: 2
+which, sensitive called internal: crm.instructors.payout_iban, billing.payments.card_number
+personal columns the model called internal: 9
+which, personal called internal: crm.learners.full_name, crm.learners.email, crm.learners.phone, crm.learners.date_of_birth, crm.learners.notes, crm.instructors.full_name, crm.instructors.email, learning.events.ip_address, support.tickets.body
+personal columns the model called public: 3
+which, personal called public: crm.learners.city, crm.learners.street_address, learning.reviews.body
+internal columns the model called public: 5
+which, internal called public: learning.events.event_type, learning.events.occurred_at, learning.events.user_agent, learning.reviews.posted_at, support.tickets.opened_at
+internal columns the model called sensitive: 2
+which, internal called sensitive: crm.learners.marketing_consent, crm.learners.ai_training_consent
+public columns the model called internal: 3
+which, public called internal: learning.courses.course_id, learning.courses.title, learning.courses.price_usd

@@ -1,0 +1,24 @@
+agent-a01: may read 2, read 0, denied 0
+  not used: crm.learners, support.tickets
+agent-a05: may read 2, read 2, denied 0
+agent-a09: may read 2, read 0, denied 0
+  not used: crm.learners, support.tickets
+analyst-1: may read 6, read 2, denied 0
+  not used: billing.payments, learning.courses, learning.enrollments, learning.events
+analyst-2: may read 0, read 0, denied 0
+  look at: in group bi, which the policy doesn't know
+assistant-1: may read 2, read 1, denied 0
+  not used: learning.courses
+finance-1: may read 3, read 1, denied 0
+  not used: learning.courses, learning.enrollments
+instructor-17: may read 3, read 1, denied 3 (sent by assistant-1)
+  not used: learning.courses, learning.enrollments
+  look at: 3 denied queries
+marketing-1: may read 2, read 1, denied 0
+  not used: learning.courses
+someone-else: may read 0, read 0, denied 1
+  look at: not in users.toml
+users reviewed: 10
+grants not used: 14
+users to look at: 3
+denied queries flagged at: 3

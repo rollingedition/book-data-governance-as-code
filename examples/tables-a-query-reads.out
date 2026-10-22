@@ -1,0 +1,9 @@
+every column, crm.learners: ai_training_consent, city, closed_at, country, date_of_birth, email, full_name, learner_id, marketing_consent, notes, phone, signup_at, status, street_address, support_region
+a join, crm.learners: country, learner_id
+a join, support.tickets: learner_id
+a CTE, crm.learners: ai_training_consent, city, closed_at, country, date_of_birth, email, full_name, learner_id, marketing_consent, phone, signup_at, status, street_address, support_region
+names in capitals, crm.learners: email
+DuckDB, "CRM"."LEARNERS": 5,000 rows
+duckdb normalizes "LEARNERS" to: learners
+trino normalizes "LEARNERS" to: learners
+postgres normalizes "LEARNERS" to: LEARNERS

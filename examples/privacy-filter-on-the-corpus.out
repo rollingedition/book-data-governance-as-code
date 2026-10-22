@@ -1,0 +1,8 @@
+model: openai/privacy-filter
+reviews measured: 436
+labelled names: 120
+names the model finds, exactly: 83
+names the model misses: 37
+names it misses most often: Marie (4), Liwia (4), Luigi (4)
+the model's detections: 102
+of them, overlapping no labelled span of their type: 0

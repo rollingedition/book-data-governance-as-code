@@ -1,0 +1,5 @@
+transport the client chose: noop
+pipeline wrote: ai.review_corpus
+rows written: 3,000
+events file exists: False
+jobs that ran with no COMPLETE event: review_corpus

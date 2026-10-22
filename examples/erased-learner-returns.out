@@ -1,0 +1,7 @@
+the erasure register's entry: erasure-0001 c25d8a8b12426596f0c0b1ebfb890246b42ea535791f07256efd16fc6c2cb84b
+the learner's rows in crm.learners after the erasure: 0
+the learner's rows in crm.learners after the nightly run: 1
+the learner's rows in analytics.learner_activity after the nightly run: 1
+the learner's rows in marketing.audience after the nightly run: 0
+the check against the register, rows of erased learners in analytics.learner_activity: 1
+the check against the register, rows of erased learners in crm.learners: 1

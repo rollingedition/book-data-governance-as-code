@@ -1,0 +1,31 @@
+record 1:
+  seq: 1
+  event: query
+  time: 2026-10-01T09:00:00Z
+  catalog: platform
+  user: instructor-17
+  via: assistant-1
+  purpose: null
+  query: SELECT course_id, COUNT(*) AS reviews, ROUND(AVG(rating), ?) AS rating FROM learning.reviews GROUP BY ALL
+  outcome: allowed
+  denial: null
+  decision: {"table": "learning.reviews", "columns": ["course_id", "rating"], "allow": true, "row_filters": [{"column": "course_id", "in": [2, 75, 80, 87, 103, 134]}], "column_masks": {}, "reasons": ["instructor may read learning.reviews"]}
+  policy_revision: f761e4ad08d4...
+  rewritten_digest: 385c5cdabeae...
+  prev_hash: 000000000000...
+record 2:
+  seq: 2
+  event: query
+  time: 2026-10-01T09:01:00Z
+  catalog: platform
+  user: instructor-17
+  via: assistant-1
+  purpose: null
+  query: SELECT alias_1.full_name, alias_2.rating FROM learning.reviews AS alias_2 JOIN crm.learners AS alias_1 USING (learner_id)
+  outcome: denied
+  denial: instructor-17 may not read crm.learners: no group of this user may read this table
+  decision: {"table": "crm.learners", "columns": ["full_name", "learner_id"], "allow": false, "row_filters": [], "column_masks": {}, "reasons": ["no group of this user may read this table"]}
+  decision: {"table": "learning.reviews", "columns": ["learner_id", "rating"], "allow": true, "row_filters": [{"column": "course_id", "in": [2, 75, 80, 87, 103, 134]}], "column_masks": {}, "reasons": ["instructor may read learning.reviews"]}
+  policy_revision: f761e4ad08d4...
+  rewritten_digest: null
+  prev_hash: 0d3e61eaadeb...

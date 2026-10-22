@@ -1,0 +1,10 @@
+policies valid against the schema: True
+with region misspelt: for policy `policy6`, attribute `regoin` on entity type `User` not found
+finance-1 reads billing.payments.card_number: Allow
+analyst-1 reads billing.payments.card_number: Deny
+analyst-1 reads billing.payments.amount: Allow
+marketing-1 reads billing.payments: Deny
+agent-a05 (emea) reads a learner in americas: Deny
+agent-a05 (emea) reads a learner in apac: Deny
+agent-a05 (emea) reads a learner in emea: Allow
+everything Cedar returns for finance-1's card numbers: Allow ['policy3'] []

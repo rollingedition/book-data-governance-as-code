@@ -1,0 +1,9 @@
+from input.schema: crm.learners
+from a rule: crm.learners
+from a function: crm.learners
+from iterating over a set: crm.learners
+from object.get, the key found: crm.learners
+from object.get, its default, regopy's invalid JSON: {"expressions":[true], "bindings":{"x":""crm".learners"}}
+from lower(input.schema), regopy's invalid JSON: {"expressions":[true], "bindings":{"x":""crm".learners"}}
+from concat, regopy's invalid JSON: {"expressions":[true], "bindings":{"x":""crm".learners"}}
+from a local variable set to a literal, regopy's invalid JSON: {"expressions":[true], "bindings":{"x":""crm".learners"}}

@@ -1,0 +1,14 @@
+sections: policy, policy tests, who sees what, classification coverage, audit log, engine cross-check, erasures, access review
+policy tests passed: 12 of 12
+who-sees-what cases the policy agrees with: 12 of 12
+classification problem: ai.review_corpus: no metadata
+classification problem: marketing.audience: no metadata
+audit log records: 14
+chain problems, checked alone: 0
+queries DuckDB ran with no decision record: 0
+decision records DuckDB has no query for: 0
+erasure erasure-0001: 25 rows deleted, 0 of 115 files hold the person
+erasure erasure-0001, kept under an exception: billing.payments, decided by legal team, card_number erased
+chain head written down, at record: 14
+engine cross-check, computed again from: the audit log; the engine digests, for the two counts
+engine cross-check, not computed again: the reading of DuckDB's log, and the unrecorded queries' shapes: the layer read that log once, then emptied it

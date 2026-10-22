@@ -1,0 +1,11 @@
+qualify on its own: SELECT * FROM "crm"."learners" AS "l" JOIN "marketing"."audience" AS "a" ON "a"."learner_id" = "l"."learner_id"
+a table missing from the catalog: denied, not a table in the catalog: marketing.audience AS a
+a column the table doesn't have: denied, Column 'shoe_size' could not be resolved. Line: 1, Col: 16
+the scan behind a view: denied, not a table in the catalog: scan_crm_learners
+a Parquet file: denied, not a table in the catalog: READ_PARQUET('data/platform/learners.parquet')
+a table function: denied, not a table in the catalog: QUERY_TABLE('crm.learners')
+a statement that isn't a query: denied, only a single query is allowed
+the scan, run directly: 5,000 rows
+the table function, run directly: 5,000 rows
+the file, run directly: Permission Error
+turning external access back on: Cannot enable external access while database is running

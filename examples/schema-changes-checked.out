@@ -1,0 +1,8 @@
+country field ID, before it was dropped: 5
+country field ID, after it was added back: 17
+country values after it was added back: 5,000 nulls of 5,000
+snapshots the schema changes wrote: 0
+country values, read by time travel to that snapshot: 5,000 of 5,000
+problems(): crm.learners.preferred_name: not classified
+problems(): crm.learners.country: not classified
+dropped(): crm.learners.country: field 5 is described but no longer in the table

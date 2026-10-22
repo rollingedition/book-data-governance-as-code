@@ -1,0 +1,9 @@
+files the pull request changes: migrations/0001-add-work-email.sql
+coverage: failed, findings 3, new 1, on main 2, waived 0, 12 tables checked
+coverage/ai.review_corpus: no metadata; on main, owner team-platform
+coverage/crm.learners.work_email: not classified; its name suggests personal
+coverage/marketing.audience: no metadata; on main, owner team-platform
+job: failed
+findings the pull request introduces: 1
+findings already on main: 2
+exit code: 1

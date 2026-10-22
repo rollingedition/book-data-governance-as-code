@@ -1,0 +1,11 @@
+a record's text: Too fast in the second half. <PERSON_85783bac> explains things well.
+its source_table: learning.reviews
+its review_id: 18
+its job: platform/review_corpus
+its run_id is the COMPLETE event's run: True
+the run's inputs: crm.learners, learning.courses, learning.reviews
+rows filtered by, as run: crm.learners.ai_training_consent, learning.reviews.learner_id
+body, as run: TRANSFORMATION
+rows filtered by, as written: nothing
+body, as written: IDENTITY
+records whose author consented: 96 of 96

@@ -1,0 +1,15 @@
+# The book's direct dependencies. examples/requirements.txt pins these and everything they need, compiled with:
+#   uv pip compile examples/requirements.in -o examples/requirements.txt --python-version 3.12 --no-header --no-annotate
+pyiceberg[sql-sqlite,pyarrow]
+duckdb
+pyarrow
+sqlglot
+openlineage-python
+regopy
+cedarpy
+presidio-analyzer
+presidio-anonymizer
+pytz
+datasketch
+mlcroissant
+pyyaml

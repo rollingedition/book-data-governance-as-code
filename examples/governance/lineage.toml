@@ -1,0 +1,6 @@
+# How classifications travel along lineage, read by lib/lineage.py. A judgement, not a measurement: change it here.
+#
+# A column a pipeline writes is proposed the stricter of the classifications of its inputs, counting the inputs whose
+# transformation types are listed below. DIRECT inputs are copied or computed into the column's value. INDIRECT ones
+# join, filter, group or sort the rows it sits in: they decide which rows exist, so they leak into the table too.
+propagate_through = ["DIRECT", "INDIRECT"]

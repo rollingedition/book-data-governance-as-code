@@ -1,0 +1,150 @@
+# The platform's metadata: who owns each table, what it holds, and how each column is classified.
+# Columns are keyed by their Iceberg field ID, which survives a rename; `name` is the name when last reviewed.
+# Classifications, from least to most protected: public, internal, personal, sensitive.
+
+[tables."crm.learners"]
+owner = "team-crm"
+domain = "crm"
+description = "Every learner who has signed up, with their contact details and consents. One row per learner."
+
+[tables."crm.learners".columns]
+1 = { name = "learner_id", classification = "internal", description = "The learner's ID, which the platform's other tables use for the learner. Identifies a person through this table's personal columns." }
+2 = { name = "full_name", classification = "personal", description = "The learner's name, as they entered it." }
+3 = { name = "email", classification = "personal", description = "The email the learner signs in with." }
+4 = { name = "phone", classification = "personal", description = "The learner's phone number, as they typed it." }
+5 = { name = "country", classification = "internal", description = "The learner's country, as an ISO 3166 two-letter code." }
+6 = { name = "city", classification = "personal", description = "The learner's city. Identifying together with date of birth." }
+7 = { name = "street_address", classification = "personal", description = "The learner's billing street address." }
+8 = { name = "date_of_birth", classification = "personal", description = "The learner's date of birth." }
+9 = { name = "signup_at", classification = "internal", description = "When the learner signed up." }
+10 = { name = "marketing_consent", classification = "internal", description = "Whether the learner agreed to marketing email." }
+11 = { name = "ai_training_consent", classification = "internal", description = "Whether the learner agreed to their text training the platform's AI. Unknown for sign-ups before the question was asked." }
+12 = { name = "status", classification = "internal", description = "Whether the account is active or closed." }
+13 = { name = "closed_at", classification = "internal", description = "When the account was closed, if it was." }
+14 = { name = "support_region", classification = "internal", description = "The support team that serves the learner: americas, emea or apac." }
+15 = { name = "notes", classification = "personal", description = "Free text from support agents. May hold anything, so it is treated as personal." }
+
+[tables."crm.instructors"]
+owner = "team-crm"
+domain = "crm"
+description = "Instructors who teach on the platform. One row per instructor."
+
+[tables."crm.instructors".columns]
+1 = { name = "instructor_id", classification = "internal", description = "The instructor's ID." }
+2 = { name = "full_name", classification = "personal", description = "The instructor's name." }
+3 = { name = "email", classification = "personal", description = "The instructor's email." }
+4 = { name = "country", classification = "internal", description = "The instructor's country, as an ISO 3166 two-letter code." }
+5 = { name = "payout_iban", classification = "sensitive", description = "The bank account the platform pays the instructor into." }
+6 = { name = "joined_at", classification = "internal", description = "When the instructor joined." }
+
+[tables."learning.courses"]
+owner = "team-learning"
+domain = "learning"
+description = "The course catalog. One row per course."
+
+[tables."learning.courses".columns]
+1 = { name = "course_id", classification = "public", description = "The course's ID, shown in its web address." }
+2 = { name = "title", classification = "public", description = "The course's title." }
+3 = { name = "category", classification = "public", description = "The course's category: data, programming, design, business or languages." }
+4 = { name = "instructor_id", classification = "internal", description = "The instructor who teaches the course." }
+5 = { name = "price_usd", classification = "public", description = "The list price in US dollars. Zero for a free course." }
+6 = { name = "language", classification = "public", description = "The language the course is taught in." }
+7 = { name = "published_at", classification = "public", description = "When the course was published." }
+
+[tables."learning.enrollments"]
+owner = "team-learning"
+domain = "learning"
+description = "Which learner enrolled in which course, and how far they got. One row per enrollment."
+
+[tables."learning.enrollments".columns]
+1 = { name = "enrollment_id", classification = "internal", description = "The enrollment's ID." }
+2 = { name = "learner_id", classification = "internal", description = "The learner who enrolled. Identifies a person when joined with crm.learners." }
+3 = { name = "course_id", classification = "internal", description = "The course they enrolled in." }
+4 = { name = "enrolled_at", classification = "internal", description = "When they enrolled." }
+5 = { name = "progress_pct", classification = "internal", description = "How much of the course they have completed, from 0 to 100." }
+6 = { name = "completed_at", classification = "internal", description = "When they completed the course, if they did." }
+
+[tables."learning.events"]
+owner = "team-learning"
+domain = "learning"
+description = "What learners do in their courses, from the web and mobile apps. One row per event."
+
+[tables."learning.events".columns]
+1 = { name = "event_id", classification = "internal", description = "The event's ID." }
+2 = { name = "learner_id", classification = "internal", description = "The learner who acted. Identifies a person when joined with crm.learners." }
+3 = { name = "course_id", classification = "internal", description = "The course they were in." }
+4 = { name = "event_type", classification = "internal", description = "What they did: page_view, video_play, quiz_submit, download or certificate_view." }
+5 = { name = "occurred_at", classification = "internal", description = "When it happened." }
+6 = { name = "ip_address", classification = "personal", description = "The IP address the event came from." }
+7 = { name = "user_agent", classification = "internal", description = "The browser or app the event came from." }
+
+[tables."learning.reviews"]
+owner = "team-learning"
+domain = "learning"
+description = "Course reviews written by learners. One row per review."
+
+[tables."learning.reviews".columns]
+1 = { name = "review_id", classification = "internal", description = "The review's ID." }
+2 = { name = "learner_id", classification = "internal", description = "The learner who wrote it. Identifies a person when joined with crm.learners." }
+3 = { name = "course_id", classification = "internal", description = "The course it reviews." }
+4 = { name = "rating", classification = "internal", description = "The rating, from 1 to 5." }
+5 = { name = "body", classification = "personal", description = "The review's text. Learners sometimes write names or emails in it." }
+6 = { name = "posted_at", classification = "internal", description = "When it was posted." }
+
+[tables."billing.payments"]
+owner = "team-billing"
+domain = "billing"
+description = "Payments for paid courses. One row per payment attempt."
+
+[tables."billing.payments".columns]
+1 = { name = "payment_id", classification = "internal", description = "The payment's ID." }
+2 = { name = "enrollment_id", classification = "internal", description = "The enrollment it paid for." }
+3 = { name = "learner_id", classification = "internal", description = "The learner who paid. Identifies a person when joined with crm.learners." }
+4 = { name = "amount", classification = "internal", description = "The amount charged, in the currency below." }
+5 = { name = "currency", classification = "internal", description = "The currency, as an ISO 4217 code." }
+6 = { name = "paid_at", classification = "internal", description = "When the payment was made." }
+7 = { name = "card_brand", classification = "internal", description = "The card's brand." }
+8 = { name = "card_number", classification = "sensitive", description = "The full card number, from a legacy export. Should not be stored at all." }
+9 = { name = "status", classification = "internal", description = "succeeded, refunded or failed." }
+
+[tables."support.tickets"]
+owner = "team-support"
+domain = "support"
+description = "Support tickets from learners. One row per ticket."
+
+[tables."support.tickets".columns]
+1 = { name = "ticket_id", classification = "internal", description = "The ticket's ID." }
+2 = { name = "learner_id", classification = "internal", description = "The learner who opened it. Identifies a person when joined with crm.learners." }
+3 = { name = "opened_at", classification = "internal", description = "When it was opened." }
+4 = { name = "channel", classification = "internal", description = "How it came in: email, chat or phone." }
+5 = { name = "support_region", classification = "internal", description = "The support team it was routed to." }
+6 = { name = "agent_id", classification = "internal", description = "The support agent handling it." }
+7 = { name = "body", classification = "personal", description = "What the learner wrote. Holds names, emails, phone numbers and more." }
+8 = { name = "status", classification = "internal", description = "open, pending or closed." }
+
+[tables."analytics.course_performance"]
+owner = "team-analytics"
+domain = "analytics"
+description = "How each course is doing, built by pipelines/course_performance.sql. One row per course."
+
+[tables."analytics.course_performance".columns]
+1 = { name = "course_id", classification = "internal", description = "The course's ID." }
+2 = { name = "title", classification = "internal", description = "The course's title." }
+3 = { name = "category", classification = "internal", description = "The course's category." }
+4 = { name = "enrollments", classification = "internal", description = "Enrollments in the course." }
+5 = { name = "completions", classification = "internal", description = "Enrollments completed." }
+6 = { name = "average_rating", classification = "internal", description = "The average review rating." }
+7 = { name = "revenue_usd", classification = "internal", description = "Revenue from succeeded payments." }
+
+[tables."analytics.learner_activity"]
+owner = "team-analytics"
+domain = "analytics"
+description = "Each learner's activity, built by pipelines/learner_activity.sql. One row per learner."
+
+[tables."analytics.learner_activity".columns]
+1 = { name = "learner_id", classification = "internal", description = "The learner. Identifies a person when joined with crm.learners." }
+2 = { name = "country", classification = "internal", description = "The learner's country." }
+3 = { name = "signup_at", classification = "internal", description = "When the learner signed up." }
+4 = { name = "last_active_at", classification = "internal", description = "The learner's last event." }
+5 = { name = "events", classification = "internal", description = "How many events the learner has." }
+6 = { name = "courses_active", classification = "internal", description = "In how many courses the learner has events." }

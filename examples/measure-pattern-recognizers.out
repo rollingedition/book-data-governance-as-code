@@ -1,0 +1,64 @@
+texts: 5,000
+labelled spans: 4,292
+detections: 3,902
+CREDIT_CARD, labelled: 213
+CREDIT_CARD, recall, exact: 0.71
+CREDIT_CARD, recall, overlap: 0.71
+CREDIT_CARD, covered, any label: 0.89
+DATE_TIME, labelled: 196
+DATE_TIME, recall, exact: 1.00
+DATE_TIME, recall, overlap: 1.00
+DATE_TIME, covered, any label: 1.00
+EMAIL_ADDRESS, labelled: 543
+EMAIL_ADDRESS, recall, exact: 1.00
+EMAIL_ADDRESS, recall, overlap: 1.00
+EMAIL_ADDRESS, covered, any label: 1.00
+IBAN_CODE, labelled: 236
+IBAN_CODE, recall, exact: 1.00
+IBAN_CODE, recall, overlap: 1.00
+IBAN_CODE, covered, any label: 1.00
+LOCATION, labelled: 210
+LOCATION, recall, exact: 0.00
+LOCATION, recall, overlap: 0.00
+LOCATION, covered, any label: 0.00
+PERSON, labelled: 2,455
+PERSON, recall, exact: 0.00
+PERSON, recall, overlap: 0.00
+PERSON, covered, any label: 0.00
+PHONE_NUMBER, labelled: 439
+PHONE_NUMBER, recall, exact: 0.78
+PHONE_NUMBER, recall, overlap: 0.79
+PHONE_NUMBER, covered, any label: 0.91
+CREDIT_CARD, detections: 151
+CREDIT_CARD, precision, exact: 1.00
+DATE_TIME, detections: 421
+DATE_TIME, precision, exact: 0.47
+EMAIL_ADDRESS, detections: 543
+EMAIL_ADDRESS, precision, exact: 1.00
+IBAN_CODE, detections: 236
+IBAN_CODE, precision, exact: 1.00
+MEDICAL_LICENSE, detections: 18
+MEDICAL_LICENSE, precision, exact: 0.00
+PHONE_NUMBER, detections: 384
+PHONE_NUMBER, precision, exact: 0.89
+UK_NHS, detections: 8
+UK_NHS, precision, exact: 0.00
+URL, detections: 751
+URL, precision, exact: 0.00
+US_BANK_NUMBER, detections: 689
+US_BANK_NUMBER, precision, exact: 0.00
+US_DRIVER_LICENSE, detections: 683
+US_DRIVER_LICENSE, precision, exact: 0.00
+US_ITIN, detections: 2
+US_ITIN, precision, exact: 0.00
+US_PASSPORT, detections: 8
+US_PASSPORT, precision, exact: 0.00
+US_SSN, detections: 8
+US_SSN, precision, exact: 0.00
+precision of all detections, exact: 0.38
+texts holding personal data: 2,586
+texts with every labelled span masked: 425
+sentence templates the texts are built from: 30
+dates of birth written like 1985-03-12: 196
+dates found in a date of birth written 1985-03-12: 1
+dates found in a date of birth written 12 March 1985: 0

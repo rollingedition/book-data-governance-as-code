@@ -1,0 +1,6 @@
+a query log in a file, on the layer's connection: PermissionException
+unlocked, unrecorded: CALL disable_logging()
+unlocked, unrecorded: SET log_query_path = ?
+locked, disable_logging(): InvalidInputException
+locked, after truncate_duckdb_logs(), queries with no decision record: 0
+locked, decision records DuckDB has no query for: 1

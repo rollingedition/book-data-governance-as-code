@@ -1,0 +1,12 @@
+reviews the plain pipeline copies: 3,000
+reviews the governed build reads, as analyst-1 for ai-training: 436
+reviews read without the purpose: 3,000
+of them, with their text: 0
+reviews a filter on refusals keeps: 2,045
+of them, by learners never asked: 1,609
+share by learners never asked: 79%
+learners never asked signed up: Jan 1, 2024 to May 31, 2025
+plain pipeline, labelled EMAIL_ADDRESS values: 120
+plain pipeline, labelled PERSON values: 798
+plain pipeline, distinct labelled EMAIL_ADDRESS values: 113
+of them, written once: 106

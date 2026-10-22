@@ -1,0 +1,17 @@
+support.tickets.body, values on the branch: 2,000
+support.tickets.body, coverage: no finding
+support.tickets.body, classify-sampled: values support sensitive, reviewed as personal
+support.tickets.body, classify-every-row: values support sensitive, reviewed as personal
+support.tickets.callback_number, values on the branch: 0
+support.tickets.callback_number, coverage: no finding
+support.tickets.callback_number, classify-sampled: no finding
+support.tickets.callback_number, classify-every-row: no finding
+support.tickets.reply_email, values on the branch: 0
+support.tickets.reply_email, coverage: classified public; its name suggests personal; needs team-support's approval
+support.tickets.reply_email, classify-sampled: its name suggests personal, reviewed as public
+support.tickets.reply_email, classify-every-row: its name suggests personal, reviewed as public
+classify-sampled, values read: 1,000
+classify-every-row, values read: 10,000
+text columns in the described tables: 32
+values the sampled check would read in them: 5,800
+values the every-row check would read in them: 429,453

@@ -1,0 +1,5 @@
+the job refuses, because of crm.learners: gc.enabled=false turns off garbage collection for the table
+the job refuses, because of learning.events: history.expire.min-snapshots-to-keep=3 keeps the snapshot from before the delete
+tables the job changed: 0
+tables whose files hold the learner: 7
+files holding the learner: 8

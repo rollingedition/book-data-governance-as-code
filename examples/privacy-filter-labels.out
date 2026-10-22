@@ -1,0 +1,10 @@
+CREDIT_CARD, covered by the model, any label: 0.87
+PHONE_NUMBER, covered by the model, any label: 1.00
+LOCATION, covered by the model, any label: 0.67
+card numbers labelled private_phone: 40
+phone numbers labelled account_number: 27
+addresses with no detection at all: 24
+addresses read, at least in part, as a person: 28
+of them, with no address label: 20
+addresses not fully covered: 70
+of them, with only spaces and punctuation left: 21

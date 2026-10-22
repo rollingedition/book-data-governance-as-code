@@ -1,0 +1,9 @@
+with the guard, allowed: False
+with the guard, reasons: support's row filter needs the user's region, and there is none
+with the guard, row filters: []
+with the guard, regions whose tickets the agent sees: none
+without the guard, allowed: True
+without the guard, reasons: support may read support.tickets; support's row filter needs the user's region, and there is none
+without the guard, row filters: []
+without the guard, regions whose tickets the agent sees: americas, apac, emea
+tests that fail without the guard: test_support_without_a_region_is_denied

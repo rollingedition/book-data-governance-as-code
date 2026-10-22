@@ -1,0 +1,13 @@
+# Findings a pull request introduces that the platform's governance job reports without failing on them, each for a
+# while. Read by lib/ci.py. A finding the main branch already has needs no waiver: it fails no pull request.
+#
+# A waiver names one finding by its ID, the team answerable for it, why it's accepted, and the last day it applies:
+#
+#   [[waivers]]
+#   finding = "check/subject"
+#   owner = "team-..."
+#   reason = "..."
+#   expires = 2026-10-31
+#
+# governance/ci.toml says how long a waiver may run and which checks are never waived. The job counts waivers per
+# check: a check whose findings are mostly waived is a check people have stopped trusting.

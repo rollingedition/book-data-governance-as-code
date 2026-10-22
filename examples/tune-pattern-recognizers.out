@@ -1,0 +1,28 @@
+recognizers kept: 6
+recognizers kept, with their thresholds: EmailRecognizer 0.5, PhoneRecognizer 0.4, CreditCardRecognizer 0.5, IbanRecognizer 0.5, DateRecognizer 0.5, IpRecognizer 0.5
+phone regions, Presidio's default: US, GB, DE, FR, IL, IN, CA, BR
+phone regions, the learners' countries: AU, BR, CA, DE, ES, FR, GB, IN, JP, MX, PL, US
+Presidio's defaults, detections: 3,902
+Presidio's defaults, precision, exact: 0.38
+Presidio's defaults, phone recall, exact: 0.78
+Presidio's defaults, phones covered, any label: 0.91
+Presidio's defaults, cards covered, any label: 0.89
+Presidio's defaults, texts with every labelled span masked: 425
+one threshold of 0.5, detections: 1,903
+one threshold of 0.5, precision, exact: 0.59
+one threshold of 0.5, phone recall, exact: 0.00
+one threshold of 0.5, phones covered, any label: 0.01
+one threshold of 0.5, cards covered, any label: 0.71
+one threshold of 0.5, texts with every labelled span masked: 284
+kept recognizers, own thresholds, detections: 1,510
+kept recognizers, own thresholds, precision, exact: 0.97
+kept recognizers, own thresholds, phone recall, exact: 0.78
+kept recognizers, own thresholds, phones covered, any label: 0.78
+kept recognizers, own thresholds, cards covered, any label: 0.72
+kept recognizers, own thresholds, texts with every labelled span masked: 394
+kept recognizers, learners' phone regions, detections: 1,539
+kept recognizers, learners' phone regions, precision, exact: 0.97
+kept recognizers, learners' phone regions, phone recall, exact: 0.84
+kept recognizers, learners' phone regions, phones covered, any label: 0.84
+kept recognizers, learners' phone regions, cards covered, any label: 0.72
+kept recognizers, learners' phone regions, texts with every labelled span masked: 405

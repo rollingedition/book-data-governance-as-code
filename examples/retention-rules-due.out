@@ -1,0 +1,21 @@
+billing.payments: kept 3650 days from paid_at
+learning.events: kept 365 days from occurred_at
+support.tickets: kept 730 days from opened_at, once status is closed
+billing.payments on 2026-10-01, kept from: 2016-10-03
+billing.payments on 2026-10-01, rows due: 0
+billing.payments on 2026-10-01, rows in the table: 17,562
+learning.events on 2026-10-01, kept from: 2025-10-01
+learning.events on 2026-10-01, rows due: 9,060
+learning.events on 2026-10-01, rows in the table: 100,000
+support.tickets on 2026-10-01, kept from: 2024-10-01
+support.tickets on 2026-10-01, rows due: 58
+support.tickets on 2026-10-01, rows in the table: 2,000
+billing.payments on 2026-12-30, kept from: 2017-01-01
+billing.payments on 2026-12-30, rows due: 0
+billing.payments on 2026-12-30, rows in the table: 17,562
+learning.events on 2026-12-30, kept from: 2025-12-30
+learning.events on 2026-12-30, rows due: 15,545
+learning.events on 2026-12-30, rows in the table: 100,000
+support.tickets on 2026-12-30, kept from: 2024-12-30
+support.tickets on 2026-12-30, rows due: 111
+support.tickets on 2026-12-30, rows in the table: 2,000

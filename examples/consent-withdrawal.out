@@ -1,0 +1,13 @@
+marketing's row filters on crm.learners: [{"column": "marketing_consent", "equals": true}, {"column": "status", "equals": "active"}]
+before, learners marketing sees: 1,861
+before, marketing sees learner 3590: True
+before, rows stored in crm.learners: 5,000
+before, learner 3590's rows in marketing.audience: 1
+after the withdrawal, learners marketing sees: 1,860
+after the withdrawal, marketing sees learner 3590: False
+after the withdrawal, rows stored in crm.learners: 5,000
+after the withdrawal, learner 3590's rows in marketing.audience: 1
+after the audience is built again, learners marketing sees: 1,860
+after the audience is built again, marketing sees learner 3590: False
+after the audience is built again, rows stored in crm.learners: 5,000
+after the audience is built again, learner 3590's rows in marketing.audience: 0

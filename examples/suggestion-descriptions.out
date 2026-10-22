@@ -1,0 +1,8 @@
+crm.learners.ai_training_consent, the model: This column indicates whether a learner has consented to receive AI training.
+crm.learners.ai_training_consent, the review: Whether the learner agreed to their text training the platform's AI. Unknown for sign-ups before the question was asked.
+crm.learners.support_region, the model: The 'support_region' column indicates the regional support area for learners in the online learning platform.
+crm.learners.support_region, the review: The support team that serves the learner: americas, emea or apac.
+crm.learners.notes, the model: Stores notes from learners about their move, billing address, or preferences.
+crm.learners.notes, the review: Free text from support agents. May hold anything, so it is treated as personal.
+billing.payments.card_number, the model: Stores the card numbers of customers for payment processing.
+billing.payments.card_number, the review: The full card number, from a legacy export. Should not be stored at all.

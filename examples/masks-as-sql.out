@@ -1,0 +1,5 @@
+redact: CAST(NULL AS DATE)
+last4: RIGHT(REGEXP_REPLACE(card_number, '[^0-9]', '', 'g'), 4)
+pseudonymize: SHA256($pseudonym_key || CAST(email AS TEXT))
+redact_contacts: REGEXP_REPLACE(REGEXP_REPLACE(body, '[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+', '[email]', 'g'), '\+?\(?[0-9][0-9 ().-]{6,}[0-9]', '[phone]', 'g')
+DuckDB functions named like HMAC: 0

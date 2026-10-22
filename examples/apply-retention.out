@@ -1,0 +1,18 @@
+billing.payments, rows deleted: 0
+learning.events, rows deleted: 9,060
+support.tickets, rows deleted: 58
+rows deleted by running again for the same day: 0
+learning.events, snapshots: append then overwrite
+learning.events, rows written again to delete the others: 90,940
+learning.events, the commit records: learning.events on 2026-10-01
+learning.events, rows due, read now: 0
+learning.events, rows due, read by time travel: 9,060
+learning.events, snapshots expired by age today: 0
+learning.events, snapshots expired by age six days later: 1
+support.tickets, snapshots: append then overwrite
+support.tickets, rows written again to delete the others: 1,942
+support.tickets, the commit records: support.tickets on 2026-10-01
+support.tickets, rows due, read now: 0
+support.tickets, rows due, read by time travel: 58
+support.tickets, snapshots expired by age today: 0
+support.tickets, snapshots expired by age six days later: 1

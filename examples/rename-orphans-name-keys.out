@@ -1,0 +1,7 @@
+contact_email field ID: 3
+values read under the new name: 5,000 of 5,000
+classification of contact_email, looked up by name: None
+classification of contact_email, looked up by field ID: personal
+name-keyed entries that match no column: email
+check: crm.learners.contact_email: renamed from email since it was reviewed
+a support agent reading contact_email sees it as: redact

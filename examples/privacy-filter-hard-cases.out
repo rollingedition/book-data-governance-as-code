@@ -1,0 +1,21 @@
+names in lowercase, labelled: 211
+names in lowercase, caught by the model: 167
+initial and surname, labelled: 163
+initial and surname, caught by the model: 162
+first names that are words, labelled: 187
+first names that are words, caught by the model: 128
+instructors named in reviews, labelled: 798
+instructors named in reviews, caught by the model: 535
+phones typed as digits only, labelled: 257
+phones typed as digits only, caught by the model: 256
+invoice numbers, flagged by the model: 224
+order numbers, flagged by the model: 125
+dates of a problem, flagged by the model: 188
+names the model misses: 387
+first names that are words, missed most often: Summer, Will, Hope
+instructors named in reviews, missed most often: Marie, Lori, Augustin
+missed names that are one word: 337
+missed names of two words or more: 50
+of them, typed in lowercase: 43
+first ticket with a lowercase name both detectors miss: 19
+the name, as typed: juan fonseca

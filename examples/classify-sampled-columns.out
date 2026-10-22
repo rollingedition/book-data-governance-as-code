@@ -1,0 +1,27 @@
+columns classified: 64
+columns sampled: 29
+columns whose sampled values hold personal data: 9
+of them, holding something their name doesn't suggest: 5
+billing.payments.card_number, proposed: sensitive
+billing.payments.card_number, found: CREDIT_CARD in 151 of 200, PHONE_NUMBER in 3 of 200
+crm.instructors.email, proposed: personal
+crm.instructors.email, found: EMAIL_ADDRESS in 50 of 50
+crm.instructors.payout_iban, proposed: sensitive
+crm.instructors.payout_iban, found: IBAN_CODE in 50 of 50
+crm.learners.email, proposed: personal
+crm.learners.email, found: EMAIL_ADDRESS in 200 of 200
+crm.learners.phone, proposed: personal
+crm.learners.phone, found: PHONE_NUMBER in 175 of 200
+crm.learners.notes, proposed: personal
+crm.learners.notes, found: PHONE_NUMBER in 29 of 200, EMAIL_ADDRESS in 18 of 200
+learning.events.ip_address, proposed: personal
+learning.events.ip_address, found: IP_ADDRESS in 200 of 200, PHONE_NUMBER in 39 of 200
+learning.reviews.body, proposed: personal
+learning.reviews.body, found: EMAIL_ADDRESS in 4 of 200
+support.tickets.body, proposed: sensitive
+support.tickets.body, found: EMAIL_ADDRESS in 47 of 200, PHONE_NUMBER in 37 of 200, DATE_TIME in 29 of 200, IBAN_CODE in 21 of 200, CREDIT_CARD in 12 of 200
+sampled card numbers the card recognizer accepts: 151 of 200
+columns the values classify more strictly than the name: crm.learners.notes, learning.reviews.body, support.tickets.body
+columns with evidence: 14
+of them, equal to the metadata: 13
+stricter than the metadata, support.tickets.body: sensitive, reviewed as personal

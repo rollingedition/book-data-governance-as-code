@@ -1,0 +1,23 @@
+{
+  "allow": true,
+  "column_masks": {
+    "linkedin_url": "redact",
+    "phone": "redact"
+  },
+  "reasons": [
+    "linkedin_url is sensitive, shown as redact",
+    "marketing may read crm.learners",
+    "phone is personal, shown as redact"
+  ],
+  "row_filters": [
+    {
+      "column": "marketing_consent",
+      "equals": true
+    },
+    {
+      "column": "status",
+      "equals": "active"
+    }
+  ]
+}
+keys: allow, column_masks, reasons, row_filters

@@ -1,0 +1,17 @@
+columns in the catalog: 64
+name rules: 8
+columns a name rule marks: 11
+  billing.payments.card_number: CREDIT_CARD, so sensitive
+  crm.instructors.full_name: PERSON, so personal
+  crm.instructors.email: EMAIL_ADDRESS, so personal
+  crm.instructors.payout_iban: IBAN_CODE, so sensitive
+  crm.learners.full_name: PERSON, so personal
+  crm.learners.email: EMAIL_ADDRESS, so personal
+  crm.learners.phone: PHONE_NUMBER, so personal
+  crm.learners.city: LOCATION, so personal
+  crm.learners.street_address: LOCATION, so personal
+  crm.learners.date_of_birth: DATE_TIME, so personal
+  learning.events.ip_address: IP_ADDRESS, so personal
+of them, agreeing with the metadata: 11
+columns of text, whose values can be sampled: 29
+personal columns no name rule marks: crm.learners.notes, learning.reviews.body, support.tickets.body

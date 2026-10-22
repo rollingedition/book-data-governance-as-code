@@ -1,0 +1,10 @@
+columns the model was asked about: 64
+answers that parse as the JSON asked for: 64
+answers with one of the four classifications: 64
+classifications that agree with the review: 40 of 64 (62%)
+reviewed public, the model said: internal 3, public 3
+reviewed internal, the model said: internal 37, public 5, sensitive 2
+reviewed personal, the model said: internal 9, public 3
+reviewed sensitive, the model said: internal 2
+personal columns the model called personal: 0 of 12
+sensitive columns the model called sensitive: 0 of 2

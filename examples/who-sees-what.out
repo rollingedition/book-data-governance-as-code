@@ -1,0 +1,13 @@
+agent-a05                  crm.learners      allowed  rows: support_region                masks: -
+agent-a05                  billing.payments  denied   rows: -                             masks: -
+instructor-17              learning.reviews  allowed  rows: course_id                     masks: body: redact_contacts
+instructor-17              crm.learners      denied   rows: -                             masks: -
+marketing-1                crm.learners      allowed  rows: marketing_consent, status     masks: phone: redact
+finance-1                  billing.payments  allowed  rows: -                             masks: card_number: last4
+analyst-1                  billing.payments  allowed  rows: -                             masks: card_number: redact
+analyst-1                  crm.learners      allowed  rows: -                             masks: email: pseudonymize, notes: redact
+analyst-1                  learning.reviews  allowed  rows: -                             masks: body: redact
+analyst-1 (ai-training)    learning.reviews  allowed  rows: ai_training_consent           masks: body: redact_contacts
+assistant-1                learning.reviews  allowed  rows: ai_training_consent           masks: body: redact_contacts
+someone-else               crm.learners      denied   rows: -                             masks: -
+rows of the table the policy matches: 12 of 12

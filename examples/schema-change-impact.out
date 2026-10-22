@@ -1,0 +1,24 @@
+change: renamed from category string to subject string
+field ID, before and after: 3
+courses whose subject an Iceberg reader finds: 200
+pipelines whose SQL names it: course_performance, marketing_audience
+pipeline course_performance, on the branch: Unknown column: category
+pipeline marketing_audience, on the branch: Unknown column: category
+columns whose values come from it: 2
+  value of: analytics.course_performance.category
+  value of: marketing.audience.favourite_category
+columns it can change, DIRECT and INDIRECT: 12
+tables those columns are in: analytics.course_performance, marketing.audience
+owners the report goes to: no owner, team-analytics
+tables on main: 12
+tables on the branch: 10
+coverage findings on the branch: coverage/ai.review_corpus
+files the fixed pull request changes: governance/contracts/learning/courses.odcs.yaml, governance/metadata.toml, migrations/0001-rename-category.sql, pipelines/course_performance.sql, pipelines/marketing_audience.sql
+with the fix, pipelines: passed, findings 0, new 0, on main 0, waived 0, 4 pipelines checked
+with the fix, coverage: passed, findings 2, new 0, on main 2, waived 0, 12 tables checked
+with the fix, contracts: passed, findings 0, new 0, on main 0, waived 0, 11 files checked
+with the fix, lineage-classifications: passed, findings 0, new 0, on main 0, waived 0, 23 columns checked
+with the fix, coverage/ai.review_corpus: no metadata; on main, owner team-platform
+with the fix, coverage/marketing.audience: no metadata; on main, owner team-platform
+with the fix, change learning.courses, field 3: renamed from category string to subject string; named by 2 pipelines, reaches 12 columns
+with the fix, job: passed

@@ -1,0 +1,68 @@
+# How the platform builds the corpus its course assistant learns from, read by lib/ai_data.py: who the job runs as and
+# for which purpose, where the detector's list of names comes from, how duplicates are found, what the dataset card
+# says that the run can't, and the answers the code needs to legal questions. A change to any of it is reviewed like a
+# policy change.
+
+[build]
+job = "review_corpus"            # the OpenLineage job, as chapter 4 names it; it writes ai.review_corpus
+principal = "analyst-1"          # the data-science principal the job runs as, through the enforcement layer
+purpose = "ai-training"          # the purpose the access policy knows: consenting authors only, contacts removed
+
+[names]
+# The detector's list: every word of every name in this column. analyst-1, whom the corpus job runs as, may not read
+# the table, so the governance team's own job builds the list, with the platform's own access, as the enforcement layer
+# reads crm.learners for consent. The corpus job gets the list, never the table, and its card records which job built
+# it and how many words it holds, never the words.
+table = "crm.instructors"
+column = "full_name"
+built_by = "governance/instructor_names"
+
+[pseudonyms]
+hex_digits = 8                   # of the keyed hash, kept in each pseudonym: <PERSON_1a2b3c4d>
+
+[duplicates]
+shingle_characters = 5           # texts are compared as sets of 5-character shingles
+num_perm = 128                   # MinHash permutations
+seed = 1
+# datasketch 2.0.0 changed MinHash's default permutation scheme to affine32, and its hash values differ from earlier
+# versions ("legacy"). The scheme is written out, so an upgrade can't change the counts without a reviewed change here.
+scheme = "affine32"
+# Exact Jaccard similarity of shingles at or above which two texts are near-duplicates. On the platform's reviews, the
+# most similar pair that differs in more than a name, a review with and without its sentence about the instructor, is
+# well below it (examples/names-and-near-duplicates.py), so 0.8 keeps every such pair apart with a margin. Read the
+# pairs near it again whenever the text changes.
+threshold = 0.8
+# What MinHash LSH is tuned for. LSH misses some pairs at its own threshold, so it's set lower, and exact Jaccard
+# similarity then checks every candidate it returns against `threshold`.
+candidate_threshold = 0.6
+# Whether two texts that are the same once their pseudonyms are plain placeholders are duplicates. The course assistant
+# answers about each course and its instructor, and a review that names another instructor says something else, so
+# they aren't. No threshold decides this, since such a pair's similarity rises with the review's length.
+name_only_pairs_are_duplicates = false
+
+[card]
+# What the dataset card says that the run can't know. Placeholder addresses: the book names no real organization.
+name = "platform-review-corpus"
+description = "Course reviews by the platform's learners who agreed to AI training, with personal data replaced by pseudonyms and duplicates removed, for grounding and fine-tuning the platform's course assistant."
+url = "https://platform.example/datasets/review-corpus"
+use_cases = ["Fine-tuning and grounding the platform's course assistant on what learners say about its courses, for the purpose ai-training.",
+             "Answering one person: an index of this corpus keeps each record's review_id, and before a record reaches the model, the retrieval layer drops it unless that person may read its source review through the enforcement layer."]
+
+# Answers the code needs to legal questions. The book answers none of them. Each answer below is a placeholder, and the
+# platform's legal team replaces it and writes its reason.
+[legal.consent]
+# The recorded answer that admits a review to the corpus. The build fails unless the enforcement layer filters on it.
+answer = "crm.learners.ai_training_consent"
+reason = "Placeholder for the legal team: why this answer covers grounding and fine-tuning the course assistant."
+
+[legal.licence]
+# The licence the dataset card states for every record: the reviews were written under one set of platform terms.
+answer = "https://platform.example/terms/reviews"
+reason = "Placeholder for the legal team: whether these terms cover this use, and why."
+
+[legal.withdrawal]
+# What happens to a model or an index made, before a learner withdrew, from a build that holds their records: "retrain"
+# or "keep". Until the legal team answers, "undecided": the job lists them for the legal team and changes nothing. The
+# next build and the next training run leave the learner out whatever the answer.
+models_made_before = "undecided"
+reason = "Placeholder for the legal team: its answer, and why."

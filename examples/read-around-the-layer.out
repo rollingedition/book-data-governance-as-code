@@ -1,0 +1,5 @@
+through the enforcement layer, as agent-a05: emea 1,581
+DuckDB on the same catalog: americas 2,276, apac 1,143, emea 1,581
+PyIceberg's scan of the table: americas 2,276, apac 1,143, emea 1,581
+emails PyIceberg's scan returns: 5,000
+the layer, asked for the raw scan: not a table in the catalog: scan_crm_learners

@@ -1,0 +1,34 @@
+{
+  "script": "recordings/metadata_suggestions.py",
+  "model": "Qwen/Qwen3-1.7B",
+  "model_version": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+  "licence": "Apache-2.0",
+  "weights_sha256": {
+    "model-00001-of-00002.safetensors": "169ad53ec313c3a34b06c0809216e4fc072cce444a5d4ff2b59690d064130ed5",
+    "model-00002-of-00002.safetensors": "912becff8d60672aa8628ef08c05898d9adf17c2ad4ae3caf99b065622fdeff9"
+  },
+  "script_sha256": "0af761de8aa11a08f4e804237b4e2d11a075e3a4e70975c14875c38bdd39e1e0",
+  "prompt_sha256": "f36e30ce50c7ba0c0c993a3b78160f285e333c141d81cdda816cc1bb4e2313bb",
+  "prompts": {
+    "suggestions.parquet": "You are documenting the tables of an online learning platform's data warehouse.\n\nTable: {table}\nColumn: {column}\nType: {type}\nFive sample values:\n{samples}\n\nWrite a one-sentence description of the column, and classify it as one of:\n- public: may be shown to anyone outside the platform, such as a published blog post or a list of job openings\n- internal: for the platform's staff, and doesn't identify a person by itself, such as a server's hostname or a campaign's budget\n- personal: identifies a person or tells something about one, such as a photo of their face or their car's licence plate\n- sensitive: data whose leak would directly harm someone, such as a government ID number or a health condition\n\nReply with JSON only, in this form: {{\"description\": \"...\", \"classification\": \"...\"}}",
+    "suggestions-platform-examples.parquet": "You are documenting the tables of an online learning platform's data warehouse.\n\nTable: {table}\nColumn: {column}\nType: {type}\nFive sample values:\n{samples}\n\nWrite a one-sentence description of the column, and classify it as one of:\n- public: may be shown to anyone outside the platform\n- internal: for the platform's staff, and doesn't identify a person by itself\n- personal: identifies a person or tells something about one, such as a name, contact details, an address or text they wrote\n- sensitive: data whose leak would directly harm someone, such as a card number or a bank account\n\nReply with JSON only, in this form: {{\"description\": \"...\", \"classification\": \"...\"}}"
+  },
+  "settings": {
+    "device": "cpu",
+    "dtype": "float32",
+    "threads": 8,
+    "do_sample": false,
+    "max_new_tokens": 128,
+    "enable_thinking": false,
+    "samples_per_column": 5,
+    "sample_seed": 2026,
+    "samples_from": "non-null values"
+  },
+  "torch": "2.14.1+cpu",
+  "transformers": "5.20.2",
+  "created": "2026-10-22",
+  "outputs": [
+    "suggestions.parquet",
+    "suggestions-platform-examples.parquet"
+  ]
+}

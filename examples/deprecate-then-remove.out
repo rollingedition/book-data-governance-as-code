@@ -1,0 +1,12 @@
+removal, straight away: failed
+  removals/billing.payments.card_number: removed without being deprecated on the main branch first
+removal, after the deprecation merged: passed
+the deprecated column in its ODCS contract:
+id: field-8
+name: card_number
+logicalType: string
+physicalType: string
+required: false
+description: 'The full card number, from a legacy export. Should not be stored at all. Deprecated: reconcile payments by payment_id.'
+classification: sensitive
+deprecated: true

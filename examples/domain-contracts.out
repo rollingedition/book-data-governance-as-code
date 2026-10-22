@@ -1,0 +1,26 @@
+one shared file, review of governance/metadata.toml: @example-org/team-platform
+domain: crm
+team:
+  name: team-crm
+  members:
+  - username: team-crm
+    role: owner
+CODEOWNERS /.github/CODEOWNERS @example-org/team-platform
+CODEOWNERS /governance/ @example-org/team-platform
+CODEOWNERS /migrations/ @example-org/team-platform
+CODEOWNERS /pipelines/ @example-org/team-platform
+CODEOWNERS /pipelines/course_performance.sql @example-org/team-analytics
+CODEOWNERS /pipelines/learner_activity.sql @example-org/team-analytics
+CODEOWNERS /governance/contracts/analytics/ @example-org/team-analytics
+CODEOWNERS /governance/contracts/billing/ @example-org/team-billing
+CODEOWNERS /governance/contracts/crm/ @example-org/team-crm
+CODEOWNERS /governance/ci/domains/crm.rego @example-org/team-crm
+CODEOWNERS /governance/contracts/learning/ @example-org/team-learning
+CODEOWNERS /governance/contracts/support/ @example-org/team-support
+teams that own tables: 5
+before generating again, contracts: failed, findings 1, new 1, on main 0, waived 0, 11 files checked
+before generating again, contracts/governance/contracts/crm/learners.odcs.yaml: differs from what the metadata generates: generate it again
+files generated again: 11
+after generating again, contracts: passed
+a folder per domain, review of governance/contracts/crm/learners.odcs.yaml: @example-org/team-crm
+a folder per domain, review of governance/metadata.toml: @example-org/team-platform

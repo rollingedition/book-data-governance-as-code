@@ -1,0 +1,26 @@
+pairs compared exactly: 4,560
+pairs at a Jaccard similarity of 0.8 or more: 8
+affine32, LSH tuned for 0.8, bands: 9
+affine32, LSH tuned for 0.8, rows per band: 13
+affine32, LSH tuned for 0.8, candidate pairs: 36
+affine32, LSH tuned for 0.8, confirmed: 1
+affine32, LSH tuned for 0.8, missed: 7
+affine32, LSH tuned for 0.6, bands: 18
+affine32, LSH tuned for 0.6, rows per band: 7
+affine32, LSH tuned for 0.6, candidate pairs: 381
+affine32, LSH tuned for 0.6, confirmed: 8
+affine32, LSH tuned for 0.6, missed: 0
+legacy, LSH tuned for 0.8, bands: 9
+legacy, LSH tuned for 0.8, rows per band: 13
+legacy, LSH tuned for 0.8, candidate pairs: 52
+legacy, LSH tuned for 0.8, confirmed: 6
+legacy, LSH tuned for 0.8, missed: 2
+legacy, LSH tuned for 0.6, bands: 18
+legacy, LSH tuned for 0.6, rows per band: 7
+legacy, LSH tuned for 0.6, candidate pairs: 406
+legacy, LSH tuned for 0.6, confirmed: 8
+legacy, LSH tuned for 0.6, missed: 0
+chance of a candidate at similarity 0.8, LSH tuned for 0.8: 0.40
+chance of a candidate at similarity 0.9, LSH tuned for 0.8: 0.93
+the approximate threshold, (1/b)^(1/r): 0.84
+a legacy sketch in an index of affine32 sketches: MinHash scheme 'legacy' does not match scheme 'affine32' of the MinHash previously given to this index

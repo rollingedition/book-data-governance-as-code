@@ -1,0 +1,10 @@
+the book's prompt, classifications that agree with the review: 40 of 64
+the book's prompt, personal columns called personal: 0 of 12
+the book's prompt, sensitive columns called sensitive: 0 of 2
+the book's prompt, crm.instructors.payout_iban: internal
+the book's prompt, billing.payments.card_number: internal
+the prompt with the platform's columns as examples, classifications that agree with the review: 41 of 64
+the prompt with the platform's columns as examples, personal columns called personal: 0 of 12
+the prompt with the platform's columns as examples, sensitive columns called sensitive: 2 of 2
+the prompt with the platform's columns as examples, crm.instructors.payout_iban: sensitive
+the prompt with the platform's columns as examples, billing.payments.card_number: sensitive

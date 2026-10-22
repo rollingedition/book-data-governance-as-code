@@ -1,0 +1,10 @@
+marketing.audience.learner_id comes from: crm.learners.learner_id
+marketing.audience.full_name comes from: crm.learners.full_name
+marketing.audience.email comes from: crm.learners.email
+marketing.audience.country comes from: crm.learners.country
+marketing.audience.favourite_category comes from: learning.courses.category
+the pipeline's WHERE: l.marketing_consent AND l.status = 'active'
+crm.learners.marketing_consent in any column's lineage: False
+crm.learners.status in any column's lineage: False
+analytics.course_performance.completions comes from: learning.enrollments.completed_at, learning.enrollments.enrollment_id
+analytics.course_performance.revenue_usd comes from: billing.payments.amount, billing.payments.status

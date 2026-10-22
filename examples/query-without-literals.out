@@ -1,0 +1,11 @@
+query in the record: SELECT learner_id, full_name FROM crm.learners WHERE email = ?
+query in the record: SELECT email, phone FROM crm.learners WHERE learner_id = ?
+query in the record: SELECT learner_id, email FROM crm.learners
+the email, in the audit log: False
+the email, in DuckDB's query log: True
+the pseudonymization key, in DuckDB's query log: False
+its placeholder, in DuckDB's query log: True
+emails tried: 5,000
+emails a plain SHA-256 of the query confirms: 1
+emails the keyed digest confirms, without the layer's key: 0
+emails the keyed digest confirms, with the layer's key: 1

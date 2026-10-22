@@ -1,0 +1,15 @@
+masked by the enforcement layer, EMAIL_ADDRESS left: 0 of 19
+masked by the enforcement layer, PERSON left: 120 of 120
+then the pattern recognizers, EMAIL_ADDRESS left: 0 of 19
+then the pattern recognizers, PERSON left: 120 of 120
+then the instructors' names, EMAIL_ADDRESS left: 0 of 19
+then the instructors' names, PERSON left: 0 of 120
+words in the list of instructors' names: 106
+words in the list of 3 characters or fewer: Ray, Roy, Ulf, Uss, de, la
+false positives, instructors' names: 0
+words in the list, with learners' names: 4,316
+false positives, with learners' names: 147
+most common false positives: best (80), date (67)
+a review after: Some videos are out of <PERSON_8e2b63a6>.
+false positives, with learners' names, matching case: 0
+names left, with learners' names, matching case: 0 of 120

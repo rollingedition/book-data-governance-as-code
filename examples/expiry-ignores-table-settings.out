@@ -1,0 +1,6 @@
+gc.enabled=false, snapshots: 3
+gc.enabled=false, the book's expiry refuses: crm.learners has gc.enabled=false, which turns off garbage collection for the table
+gc.enabled=false, snapshots left by PyIceberg's expiry: 1
+history.expire.min-snapshots-to-keep=3, snapshots: 3
+history.expire.min-snapshots-to-keep=3, the book's expiry expires: 0
+history.expire.min-snapshots-to-keep=3, snapshots left by PyIceberg's expiry: 1

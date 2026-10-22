@@ -1,0 +1,25 @@
+{
+  "script": "recordings/pii_entities.py",
+  "model": "openai/privacy-filter",
+  "model_version": "7ffa9a043d54d1be65afb281eddf0ffbe629385b",
+  "licence": "Apache-2.0",
+  "weights_sha256": "9c262cbe68a0c8a50590a648ef8341a2b7d3be1fa11dfb79893fe0b03ce57b5c",
+  "code": "https://github.com/openai/privacy-filter, commit f7f00ca7fb869683eb732c010299d901457f19c3 (opf 0.1.0)",
+  "script_sha256": "4482021d650b2b2c5218f4462a00c643e5da8c6fba8a339799b7c306c9c2ee3d",
+  "prompt_sha256": "4d9b9157b1294ffa07657b952a0ffbcfb694ec4d717f0e548f9839ce700b8599",
+  "settings": {
+    "decode_mode": "viterbi",
+    "output_mode": "typed",
+    "device": "cpu",
+    "trim_whitespace": true,
+    "sources": {
+      "tickets": "body",
+      "reviews": "body"
+    }
+  },
+  "torch": "2.14.1+cpu",
+  "created": "2026-10-22",
+  "outputs": [
+    "entities.parquet"
+  ]
+}

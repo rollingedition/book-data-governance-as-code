@@ -1,0 +1,11 @@
+Oct 1 build, records from the learner who withdrew: 1
+Oct 1 build, records whose author consents today: 95 of 96
+Oct 2 build, records from the learner who withdrew: 0
+Oct 2 build, records whose author consents today: 95 of 95
+the two builds are different runs: True
+a model made from the Oct 1 build, the legal team's answer: undecided
+the Oct 1 card says: Kept 96 records, each with its source table, review ID, job and run.
+records in the corpus file now: 95
+problems with the Oct 1 card, checked against the corpus now: 2
+- creator: missing
+- review_corpus.parquet: its SHA-256 isn't the one the card states
