@@ -37,7 +37,7 @@ mlcroissant==1.1.1
 mmh3==5.3.1
 murmurhash==1.0.15
 networkx==3.7
-numpy==2.4.6
+numpy==2.5.4
 openlineage-python==1.54.0
 packaging==26.3
 pandas==3.1.0
