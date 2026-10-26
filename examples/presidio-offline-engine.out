@@ -1,7 +1,7 @@
 en_core_web_lg installed: False
 URLs tldextract would fetch the Public Suffix List from: 0
-recognizers loaded: 16
-recognizers: CreditCardRecognizer, CryptoRecognizer, DateRecognizer, EmailRecognizer, IbanRecognizer, IpRecognizer, MacAddressRecognizer, MedicalLicenseRecognizer, NhsRecognizer, PhoneRecognizer, UrlRecognizer, UsBankRecognizer, UsItinRecognizer, UsLicenseRecognizer, UsPassportRecognizer, UsSsnRecognizer
+recognizers loaded: 17
+recognizers: CreditCardRecognizer, CryptoRecognizer, DateRecognizer, EmailRecognizer, IbanRecognizer, IpRecognizer, MacAddressRecognizer, MedicalLicenseRecognizer, NhsRecognizer, PhoneRecognizer, UrlRecognizer, UsBankRecognizer, UsItinRecognizer, UsLicenseRecognizer, UsPassportRecognizer, UsSsnRecognizer, UuidRecognizer
 default score threshold: 0
 ticket 1421: I can't open the videos in Introduction to Design Systems, they stop after a few seconds. It happened on 12/03 around 9pm. My colleague Jennifer Abbott (jennifer.abbott@example.net) wants to enrol as well. You can reach me on •••••••0440 after 6pm.
   DATE_TIME on 12/03: 0.10
