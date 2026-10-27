@@ -35,7 +35,7 @@ markupsafe==3.0.4
 mdurl==0.1.2
 mlcroissant==1.1.1
 mmh3==5.3.1
-murmurhash==1.0.15
+murmurhash==1.0.16
 networkx==3.7
 numpy==2.4.6
 openlineage-python==1.54.0
