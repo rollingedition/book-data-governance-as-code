@@ -76,6 +76,10 @@
 "AU-3" = "A U three"
 "AU-8" = "A U eight"
 "AU-9(3)" = "A U nine, enhancement three"
+"AU-9(2)" = "A U nine, enhancement two"
+"AU-9" = "A U nine"
+"AU-3(3)" = "A U three, enhancement three"
+"enhancement AU-3(3)" = "enhancement A U three, three"
 "AU" = "A U"
 "AC-2" = "A C two"
 "AC-6(7)" = "A C six, enhancement seven"
@@ -112,6 +116,7 @@
 "Oct 31" = "October thirty-first"
 "Nov 1" = "November first"
 "Dec 30" = "December thirtieth"
+"07:00" = "seven o'clock"
 
 # Country codes, as Presidio and the platform's data write them
 "AU, BR" = "A U, B R"
@@ -276,6 +281,9 @@
 "[\"select write_log('an entry', log_type := 'QueryLog')\", 'an entry']" ="select write log, an entry, log type query log; and an entry"
 "CASE WHEN <row filters> THEN <value> END" = "case when the row filters, then the value, end"
 "card_?(number|num|no)" = "card, an optional underscore, then number, num or no"
+"e_?mail" = "e, an optional underscore, then mail"
+# The placeholder that replaces a value in a recorded query, standing alone after a space
+" ?" = " a question mark"
 "write.metadata.metrics.column.<name>" = "write dot metadata dot metrics dot column dot, then the column's name"
 "http://mlcommons.org/croissant/1.1" = "M L commons dot org slash croissant slash one point one"
 "http://mlcommons.org/croissant/1.1, http://mlcommons.org/croissant/RAI/1.0" = "M L commons dot org slash croissant slash one point one, and M L commons dot org slash croissant slash R A I slash one point zero"
