@@ -241,26 +241,12 @@
 "*" = "star"
 "{}" = "an empty object"
 
-# A reading that ends next to a dot or slash in code takes the dot or slash with it, so the code around it still reads
-# as words: crm.learners is "C R M dot learners", and governance/policies/access.rego ends "access dot ray-go".
+# Dotted names and file names where they stand in prose, outside code, and a code span that starts with a dot
 "crm." = "C R M dot "
-"/crm." = " slash C R M dot "
-".crm" = " dot C R M"
-".rego" = " dot ray-go"
-"openlineage." = "open lineage dot "
-"opa." = "oh-pa dot "
-"ai." = "A I dot "
-"/ai." = " slash A I dot "
-".WHO_SEES_WHAT" = " dot who sees what"
-".DAY" = " dot day"
-".github/" = "dot github"
 ".py" = " dot pie"
 ".column" = " dot column"
 "(support.tickets)" = "(support dot tickets)"
 "data.system.log.mask" = "data dot system dot log dot mask"
-"PII.Sensitive" = "P I I dot sensitive"
-"OpaAccessControl.java" = "oh-pa access control dot java"
-"OpaHighLevelClient.java" = "oh-pa high level client dot java"
 "team-crm" = "team C R M"
 
 # Code and values the text shows whole: JSON, placeholders, revisions and hashes
@@ -280,7 +266,6 @@
 "[email]" = "the tag email"
 "[phone]" = "the tag phone"
 "bundles[_].revision" = "bundles dot revision, for each bundle"
-"filterResources[i].catalogName" = "filter resources, item i, dot catalog name"
 "[\"select write_log('an entry', log_type := 'QueryLog')\", 'an entry']" ="select write log, an entry, log type query log; and an entry"
 "CASE WHEN <row filters> THEN <value> END" = "case when the row filters, then the value, end"
 "card_?(number|num|no)" = "card, an optional underscore, then number, num or no"
@@ -314,6 +299,7 @@
 "trino" = "tree-no"
 "opa" = "oh-pa"
 "crm" = "C R M"
+"ai" = "A I"
 "emea" = "E M E A"
 "apac" = "A pac"
 
