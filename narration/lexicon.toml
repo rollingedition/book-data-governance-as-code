@@ -99,6 +99,10 @@
 "§2.2" = "section two point two"
 "20-30%" = "twenty to thirty percent"
 
+# Two ways of writing a date of birth, which chapter 3 contrasts, so each is read as written
+"1985-03-12" = "nineteen eighty-five, oh three, twelve"
+"12 March 1985" = "twelve March, nineteen eighty-five"
+
 # Dates written without a year
 "Oct 1" = "October first"
 "Oct 2" = "October second"
