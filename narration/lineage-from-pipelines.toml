@@ -1,0 +1,40 @@
+# Spoken descriptions for chapter 4, Lineage from pipelines. Narration reads these in place of the code, its output and
+# the chapter's fenced blocks.
+
+[examples.pipeline-run-events]
+say = "The code runs the four pipelines with lineage twice, into two files, and sums up what the first file's events say: each job's START names the tables its SQL reads, and its COMPLETE names the table it wrote and how many of its columns have lineage. The file holds {{out:pipeline-run-events:events}} events from {{out:pipeline-run-events:distinct run IDs}} runs, all stamped with one time, and the two files hold the same bytes. Two random run IDs differ, while two static ones made from the same time and job name match."
+
+[examples.sqlglot-misses-row-inputs]
+say = "The code builds the schema from the catalog, asks sqlglot where each column of the marketing audience comes from, and gets one source column for each, from the learners table or the courses table. Then it reads the pipeline's where clause, on marketing consent and status, and finds neither column in any output's lineage. Last, for the completions and revenue columns of course performance, sqlglot lists the column counted or summed beside the column that only filters, with nothing to say which is which."
+
+[[blocks]]
+section = "add-indirect-inputs"
+starts = 'ROW_CLAUSES = {"joins": "JOIN",'
+say = "The mapping names the clauses whose columns shape every row, and the subtype each one's columns get: a join's columns are join, those of a where, having or qualify clause are filter, a group by's are group by, and an order by's are sort."
+
+[examples.indirect-column-lineage]
+say = "The code runs the book's column lineage on the marketing audience pipeline. Each of its columns is a direct identity copy of one source column, and a second list gives the inputs that shape every row, as indirect joins, filters and groupings, so the source columns grow from {{out:indirect-column-lineage:source columns, values only}} to {{out:indirect-column-lineage:source columns, with the rows' inputs}}. In course performance, the payment amount summed and the enrollment ID counted come out as direct aggregations, and the payment status and completion time as indirect filters."
+
+[examples.insert-and-merge-lineage]
+say = "The code creates the daily revenue table, with a day and a revenue column, and asks sqlglot for the lineage of an INSERT into it and of two MERGE statements into learner activity. sqlglot names the INSERT's outputs after its SELECT, returns nothing for the MERGE whose USING clause names a table, and returns the subquery's columns for the other, email included. The book's lineage maps the INSERT onto the table's columns by position, with the payment time and status as row inputs, and refuses an INSERT with one value too many and both MERGE statements."
+
+[examples.misspelt-column-lineage]
+say = "The code asks sqlglot for the lineage of a query on the learners table with email misspelt, once qualified by the table's alias and once unqualified. Qualified, sqlglot raises an unknown column error. Unqualified, it traces the misspelt column to the learners table, and only the book's check against the schema raises an error: the table has no such column."
+
+[examples.column-impact]
+say = "The code runs the four pipelines, builds the column graph from their events alone, with {{out:column-impact:edges in the column graph}} edges, and walks it from three source columns: the learners' email, their marketing consent and the courses' category. For each, it prints every edge a change can travel and counts the columns reached through values and in all. Email reaches {{out:column-impact:crm.learners.email, columns reached in all}} column, while consent reaches {{out:column-impact:crm.learners.marketing_consent, columns reached through values}} through values and {{out:column-impact:crm.learners.marketing_consent, columns reached in all}} through its filter on the whole audience table."
+
+[examples.propagate-classifications]
+say = "The code runs the pipelines, lists the tables the metadata check reports with no metadata, the marketing audience and the review corpus, and proposes a classification for each of their columns from lineage, counting direct and indirect inputs: {{out:propagate-classifications:personal columns proposed}} come out personal, and the rest internal. Then it tests the rule on the {{out:propagate-classifications:declared classifications checked}} columns people did classify. Counting indirect inputs too reproduces {{out:propagate-classifications:declared classifications reproduced, through DIRECT and INDIRECT}}, direct inputs alone reproduce {{out:propagate-classifications:declared classifications reproduced, through DIRECT}}, and it finds {{out:propagate-classifications:declared less protected than lineage proposes}} declared classifications less protected than lineage proposes."
+
+[examples.personal-filter-propagates]
+say = "The code builds a table of the {{out:personal-filter-propagates:learners in marketing.birthday_offers}} consenting learners born in the month of the nightly run, holding only their ID and country, and records its lineage. Counting direct inputs only, both columns come out internal. Counting indirect inputs too, both come out personal, decided by the filter on date of birth."
+
+[examples.lineage-disabled-silently]
+say = "The code sets the variable that disables OpenLineage to true, then runs the review corpus pipeline with a file transport passed in explicitly. The client picks a transport that does nothing. The pipeline writes {{out:lineage-disabled-silently:rows written}} rows, but no events file exists, and nothing raises an error. Comparing the job that ran with the COMPLETE events finds the review corpus job missing."
+
+[examples.uninstrumented-job]
+say = "The code runs the four pipelines with lineage, then copies {{out:uninstrumented-job:rows exported}} rows of learner IDs, names and emails from the marketing audience into a campaign list table, with no lineage event. A walk from the learners' email still reaches only the audience's email column, and the check of the catalog against the lineage finds the campaign list, a table no job's lineage accounts for."
+
+[examples.personal-copy-tagged-internal]
+say = "The code runs the same export with its lineage recorded from the SELECT it runs, and declares all three of the campaign list's columns internal, as its owner did. The learners' email now reaches the audience's email and, one hop further, the campaign list's. The check for understated classifications flags the campaign list's full name and email: declared internal, while lineage proposes personal."

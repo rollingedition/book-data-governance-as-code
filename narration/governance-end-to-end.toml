@@ -1,0 +1,30 @@
+# Spoken descriptions for chapter 1, Governance end to end. Narration reads these in place of the code, its output and
+# the chapter's fenced blocks.
+
+[[blocks]]
+section = "catalog-a-table"
+starts = '[tables."crm.learners"]'
+say = "The metadata file's entry for the learners table gives its owner, team-crm, its domain, crm, and a one-line description. Then it lists one column under its field ID, three: email, classified personal, with a description of its own."
+
+[examples.catalog-the-learners]
+say = "The code builds a fresh catalog holding the learners table, loads the metadata file, and counts the table's columns by classification: {{out:catalog-the-learners:columns classified personal}} personal and {{out:catalog-the-learners:columns classified internal}} internal. Then it writes the owner, the domain and the descriptions into the catalog, and runs the check, which finds {{out:catalog-the-learners:problems the check finds}} problems."
+
+[examples.audience-pipeline-lineage]
+say = "The code runs the marketing audience pipeline with lineage, writing its start and complete events to a file, and reads the column lineage back from the events alone. It prints the learner columns that the audience's name and email copy, the columns whose filters and joins decide its rows, and the rows those joins kept: {{out:audience-pipeline-lineage:rows in marketing.audience}} of {{out:audience-pipeline-lineage:consenting, active learners in crm.learners}} consenting, active learners. The catalog check then finds the new table has no metadata."
+
+[[blocks]]
+section = "enforce-one-access-decision"
+starts = 'row_filters contains {"column": "support_region", "equals": user.region} if {'
+say = "The Rego rule adds a row filter, support region equals the user's own region, whenever the user is in the support group and the table read is the learners table or the support tickets table."
+
+[examples.support-region-enforced]
+say = "The code asks the policy whether agent-a05, a support agent in EMEA, may read three columns of the learners table, and prints the decision: allowed, with a filter on support region and no masks. Then it counts learners by region through the enforcement layer, which returns EMEA alone, with {{out:support-region-enforced:learners agent-a05 sees in emea}} learners, and checks that every email the agent sees is the one stored."
+
+[examples.unclassified-column-fails]
+say = "The code copies the main branch into a pull request's branch, adds a migration that gives the learners table a work email column, and runs the coverage check on both sides. The check finds {{out:unclassified-column-fails:findings the pull request introduces}} problem the pull request introduces, the new column, which has no classification and whose name suggests personal data, and {{out:unclassified-column-fails:findings already on main}} tables already on main with no metadata. The job exits with code {{out:unclassified-column-fails:exit code}}."
+
+[examples.spreadsheet-misses-new-column]
+say = "The code exports an inventory of the learners table's columns and their classifications as a spreadsheet, then runs the work email migration. The spreadsheet lists {{out:spreadsheet-misses-new-column:columns the spreadsheet lists}} columns, with {{out:spreadsheet-misses-new-column:of them without a classification, by the spreadsheet}} missing a classification, while the table now has {{out:spreadsheet-misses-new-column:columns crm.learners has}}. Only the check against the catalog reports the new column, as not classified."
+
+[examples.read-around-the-layer]
+say = "The code counts the learners table's rows by region three ways: through the enforcement layer as agent-a05, with DuckDB on the same catalog, and with PyIceberg's own scan of the table. The layer returns EMEA alone, while both readers around it return every region, and the scan returns {{out:read-around-the-layer:emails PyIceberg's scan returns}} emails. Asked for the raw scan by its name, the layer refuses: it isn't a table in the catalog."

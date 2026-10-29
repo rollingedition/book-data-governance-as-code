@@ -1,0 +1,55 @@
+# Spoken descriptions for chapter 3, Finding personal data. Narration reads these in place of the code, its output and
+# the chapter's tables.
+
+[examples.column-name-rules]
+say = "The code runs the name rules over every column of every table in the catalog, prints each column a rule marks with the entity it suggests and its classification, and compares each with the reviewed metadata. Of {{out:column-name-rules:columns in the catalog}} columns, the rules mark {{out:column-name-rules:columns a name rule marks}}, and {{out:column-name-rules:of them, agreeing with the metadata}} of them agree with the metadata. Then it counts the text columns and names the personal columns no rule marks: the learners' notes, and the body text of reviews and of tickets."
+
+[examples.presidio-offline-engine]
+say = "The code checks that spaCy's large English model isn't installed, then loads every predefined recognizer on an engine with no model, {{out:presidio-offline-engine:recognizers loaded}} of them, at a default threshold of {{out:presidio-offline-engine:default score threshold}}. It runs them on one support ticket and prints each detection with its score: the colleague's email, its domain again as a URL, the learner's phone number, as a phone number, a US bank number and a US driver's licence, and the date of the problem, but not the colleague's name. Last, it lists the default regions where the phone number is valid, and the learner's own country isn't among them."
+
+[examples.seeded-column-sample]
+say = "The code draws twenty notes from the learners table twice with the same seed, and asks whether the draws match: {{out:seeded-column-sample:second draw, same notes as the first}}. Then it runs the platform's detector over every note, and works out the chance that twenty sampled values include at least one holding personal data, counted over all {{out:seeded-column-sample:learners}} rows and over the {{out:seeded-column-sample:learners with notes}} notes alone: {{out:seeded-column-sample:chance 20 sampled rows catch one}} against {{out:seeded-column-sample:chance 20 sampled notes catch one}}. It also prints the sample size for a 99 percent chance each way."
+
+[examples.classify-sampled-columns]
+say = "The code proposes a classification for every column of the catalog, taking the strictest of what its name suggests and, for a text column, what a seeded sample of its values holds, and compares each proposal with the reviewed metadata. The samples of {{out:classify-sampled-columns:columns whose sampled values hold personal data}} columns hold personal data, and it prints what each holds and in how many values. Of the {{out:classify-sampled-columns:columns with evidence}} columns with any evidence, {{out:classify-sampled-columns:of them, equal to the metadata}} match the metadata, and the ticket body text is proposed stricter than people reviewed it."
+
+[[tables]]
+section = "classify-columns-from-their-values"
+starts = '| Column | Proposed | Found in the sample |'
+say = "A table of the columns whose sampled values hold something their names don't suggest: the payments table's card number, the learners' notes, the body text of tickets and of reviews, and the events table's IP address. For each, the table gives the proposed classification and the entities found, with how many sampled values hold each. The card number column is proposed {{out:classify-sampled-columns:billing.payments.card_number, proposed}}, the ticket text {{out:classify-sampled-columns:support.tickets.body, proposed}}, the notes {{out:classify-sampled-columns:crm.learners.notes, proposed}}, the review text {{out:classify-sampled-columns:learning.reviews.body, proposed}} and the IP addresses {{out:classify-sampled-columns:learning.events.ip_address, proposed}}."
+
+[examples.measure-pattern-recognizers]
+say = "The code runs Presidio with its defaults, every recognizer at a threshold of zero, over every ticket and review, and scores its detections against the truth's labelled spans. For each entity type it prints the spans labelled, recall by exact and by overlap matching, and the share covered whatever the label; for each label, the detections and their precision. Then it counts the texts that masking would leave with nothing personal, {{out:measure-pattern-recognizers:texts with every labelled span masked}} of {{out:measure-pattern-recognizers:texts holding personal data}}, and tests the truth's limits: the sentence templates behind the text, and a date of birth written two ways."
+
+[[tables]]
+section = "measure-against-labelled-spans"
+starts = '| Entity type | Labelled | Recall, exact | Recall, overlap | Covered |'
+say = "A table of the truth's entity types, giving for each the spans labelled, recall by exact and by overlap matching, and the share covered whatever the label. Names make up {{out:measure-pattern-recognizers:PERSON, labelled}} of the {{out:measure-pattern-recognizers:labelled spans}} labelled spans, and their exact recall is {{out:measure-pattern-recognizers:PERSON, recall, exact}}; for addresses it is {{out:measure-pattern-recognizers:LOCATION, recall, exact}}, for phone numbers {{out:measure-pattern-recognizers:PHONE_NUMBER, recall, exact}} and for card numbers {{out:measure-pattern-recognizers:CREDIT_CARD, recall, exact}}."
+
+[examples.tune-pattern-recognizers]
+say = "The code runs the detector over every ticket and review in four settings: Presidio's defaults; one threshold of zero point five for every recognizer; only the {{out:tune-pattern-recognizers:recognizers kept}} recognizers the platform keeps, each with its own threshold; and those with phone numbers read in the learners' countries. It scores each setting against the truth, and the detections fall from {{out:tune-pattern-recognizers:Presidio's defaults, detections}} with the defaults to {{out:tune-pattern-recognizers:kept recognizers, learners' phone regions, detections}} with the last setting."
+
+[[tables]]
+section = "tune-the-recognizers"
+starts = '| Measure | Defaults | One threshold, 0.5 | Kept recognizers |'
+say = "A table comparing the four settings on six measures: detections, exact precision, exact phone recall, the shares of phone and card numbers covered whatever the label, and the texts fully masked. One threshold of zero point five takes phone recall to {{out:tune-pattern-recognizers:one threshold of 0.5, phone recall, exact}}, the kept recognizers raise precision from {{out:tune-pattern-recognizers:Presidio's defaults, precision, exact}} to {{out:tune-pattern-recognizers:kept recognizers, own thresholds, precision, exact}}, and the learners' regions raise phone recall to {{out:tune-pattern-recognizers:kept recognizers, learners' phone regions, phone recall, exact}}. The last setting fully masks {{out:tune-pattern-recognizers:kept recognizers, learners' phone regions, texts with every labelled span masked}} texts, against {{out:tune-pattern-recognizers:Presidio's defaults, texts with every labelled span masked}} with the defaults."
+
+[examples.pattern-hard-cases]
+say = "The code counts, for each hard case the tickets and reviews plant, how many labelled spans the platform's detector catches with any label, and how many look-alike numbers and dates in the tickets it flags as personal data. Of the hard cases of a name it catches {{out:pattern-hard-cases:hard cases of a name, caught}}, and of {{out:pattern-hard-cases:invoice numbers, in the tickets}} invoice numbers it flags {{out:pattern-hard-cases:invoice numbers, flagged as personal data}}. Then it sorts the card numbers it misses by length and first digit, and checks the phone numbers it misses against the learner's country: {{out:pattern-hard-cases:of them, invalid in the learner's country}} of the {{out:pattern-hard-cases:phone numbers missed}} aren't valid there."
+
+[examples.privacy-filter-spans]
+say = "The code reads the recorded spans of OpenAI's Privacy Filter, maps the model's eight labels to the truth's entity types, and scores three detectors against the truth: the platform's patterns, the model, and both together, masking whatever either finds. For each it prints recall per entity type, overall precision and the texts left with nothing personal, and for the model, precision per label. The model makes {{out:privacy-filter-spans:model, detections}} detections, against {{out:privacy-filter-spans:patterns, detections}} for the patterns."
+
+[[tables]]
+section = "compare-a-named-entity-model"
+starts = '| Measure | Patterns | Model | Both |'
+say = "A table comparing the patterns, the model and both together on exact recall for names, addresses, phone numbers, card numbers and IBANs, on exact precision, and on texts fully masked. The model's exact recall is {{out:privacy-filter-spans:model, PERSON, recall, exact}} for names and {{out:privacy-filter-spans:model, LOCATION, recall, exact}} for addresses, against the patterns' {{out:privacy-filter-spans:patterns, PERSON, recall, exact}} for names and {{out:privacy-filter-spans:patterns, LOCATION, recall, exact}} for addresses. Together, their exact recall for card numbers is {{out:privacy-filter-spans:both, CREDIT_CARD, recall, exact}}, at an overall precision of {{out:privacy-filter-spans:both, precision, exact}}."
+
+[examples.privacy-filter-hard-cases]
+say = "The code counts how many of each hard case the model's recorded spans catch, and how many look-alike numbers and dates they flag. Then it lists the names it misses most often among first names that are also words and among instructors named in reviews, finds that {{out:privacy-filter-hard-cases:missed names that are one word}} of the {{out:privacy-filter-hard-cases:names the model misses}} names it misses are a single word, and prints the first ticket with a lowercase name that neither the model nor the patterns cover."
+
+[examples.privacy-filter-labels]
+say = "The code measures how much of the truth's card numbers, phone numbers and addresses the model's spans cover whatever their label, and counts the card numbers it labels as phone numbers and the phone numbers it labels as account numbers. Then it reads, for each address, the labels of the detections on it and the characters left uncovered. The model's coverage is {{out:privacy-filter-labels:PHONE_NUMBER, covered by the model, any label}} for phone numbers, but only {{out:privacy-filter-labels:LOCATION, covered by the model, any label}} for addresses."
+
+[examples.reclassify-new-columns]
+say = "The code edits the description of the tickets table's body column, then adds a callback number column and fills it with the learner's phone number for tickets opened by phone, and after each change counts the field IDs the metadata lacks. The edit gives the schema a new ID and leaves {{out:reclassify-new-columns:fields to classify after the doc edit}} fields to classify; the new column leaves {{out:reclassify-new-columns:fields to classify after adding a column}}. No name rule matches it, but its sampled values hold phone numbers, and the proposal is {{out:reclassify-new-columns:support.tickets.callback_number, proposed classification}}."

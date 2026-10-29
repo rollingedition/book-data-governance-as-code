@@ -1,0 +1,61 @@
+# Spoken descriptions for chapter 5, Access policies as code. Narration reads these in place of the code, its output
+# and the chapter's fenced blocks.
+
+[examples.trino-shaped-request]
+say = "The code builds the request for agent-a05's read of three columns of the support tickets table, the ticket ID, the time it opened and the body, and prints it as JSON. The user sits under the context's identity, and the action holds the operation, a read of columns, and the table, by catalog, schema and name, with the columns the query reads."
+
+[examples.generated-policy-data]
+say = "The code builds the document the policy reads besides the request, from the files that own each fact, and counts what it holds: {{out:generated-policy-data:users, from governance/users.toml}} users from the users file, {{out:generated-policy-data:columns classified}} classified columns across {{out:generated-policy-data:tables, from governance/metadata.toml}} tables from the metadata file, and the courses of {{out:generated-policy-data:instructors with courses, from learning.courses}} instructors from the courses table. It also prints agent-a05's group and region, instructor 17's group and instructor ID, the learners' email classified {{out:generated-policy-data:crm.learners.email}}, the card number classified {{out:generated-policy-data:billing.payments.card_number}}, and the course IDs instructor 17 teaches."
+
+[[blocks]]
+section = "deny-by-default-then-allow-by-role"
+starts = 'default allow := false'
+say = "The Rego rules set allow to false by default, then allow a request when its operation is a read of columns, some group of the user may read the table, and no attribute the group's row filters need is missing."
+
+[examples.allow-by-role]
+say = "The code prints each group the policy knows with the tables it may read, then decides four requests and prints their reasons. Finance reading the payments table is allowed, with the reason that finance may read it. Marketing on payments and someone-else, a user the policy doesn't know, on the learners table are denied, because no group of theirs may read the table; and finance deleting from payments is denied, because the policy allows no such operation."
+
+[[blocks]]
+section = "narrow-by-attribute"
+starts = 'row_filters contains {"column": "support_region", "equals": user.region} if {'
+say = "The Rego rule adds a row filter, support region equals the user's own region, whenever the user is in the support group and the table read is the learners table or the support tickets table."
+
+[examples.attributes-as-row-filters]
+say = "The code asks the policy for the row filters of seven reads. The three support agents get the same filter on support region, with americas, emea and apac; instructor 17 gets a filter to their own courses; and marketing gets one filter for consent given and another for an active account. With no purpose, the data scientist, analyst-1, gets no filter and the review text redacted; for AI training, a filter to learners who consented, and the text with contact details taken out."
+
+[[blocks]]
+section = "return-the-decision-as-one-document"
+starts = 'classification(column) := level if {'
+say = "The Rego function looks a column's classification up in the policy's data for the table read, and when the metadata has no entry for the column, it returns sensitive instead."
+
+[examples.one-decision-document]
+say = "The code asks the policy about marketing reading four columns of the learners table, the full name, email, phone and a profile link that nobody has classified yet, and prints the whole decision document. It allows the read with marketing's row filters, consent given and account active, and redacts the phone, as personal, and the profile link, as sensitive. It gives one reason for the group that allowed the read and one for each mask, and its keys are allow, column masks, reasons and row filters."
+
+[[blocks]]
+section = "unit-test-the-policy-in-rego"
+starts = 'test_finance_sees_only_the_last_four_digits if {'
+say = "The Rego test asks for the decision with the user set to finance-1 and the action set to a read of the amount and card number columns of the payments table. It then requires the read to be allowed, with no row filters, and with exactly one mask, the last four digits for the card number."
+
+[examples.policy-unit-tests]
+say = "The code runs every test rule in the policy's test file, as OPA's test runner would, and prints each test's name with its result: pass, fail or error. The tests cover each group's tables, filters and masks, a support agent with no region, an unclassified column and a user the policy doesn't know, and {{out:policy-unit-tests:tests passed}} pass."
+
+[examples.who-sees-what]
+say = "The code runs each row of the who-sees-what table through the policy and prints one line per row: the user, with the purpose if there is one, the table, allowed or denied, the columns the row filters test, and each masked column with its mask. It compares each decision with the outcome the row expects, and {{out:who-sees-what:rows of the table the policy matches}} rows match."
+
+[examples.regopy-silent-differences]
+say = "The code runs small policies in regopy and prints each answer. A false decision comes back {{out:regopy-silent-differences:a false decision, queried on its own}} when queried on its own and {{out:regopy-silent-differences:the same decision, bound to a variable}} when bound to a variable; a rule in the syntax from before OPA 1.0 answers {{out:regopy-silent-differences:a rule in pre-1.0 syntax}}; and a deny with a misspelt, unbound variable lets an apac request through, with allow {{out:regopy-silent-differences:a deny with a misspelt, unbound variable, for apac}}. A mock of the user written as a literal sets the region to emea, while the same mock written as a reference to a rule is ignored, and the real input's region, apac, comes back."
+
+[examples.regopy-failed-outputs]
+say = "The code copies the platform's policy and tests to a temporary folder, adds one test that replaces the whole input at once, and runs them all: {{out:regopy-failed-outputs:tests that end in ERROR}} end in error. A fresh interpreter loaded with the same files answers {{out:regopy-failed-outputs:the query true succeeds}} when asked whether the query true succeeded, so the book's decide function raises an error saying there is no decision to read. Printing that failed output, in a separate Python process, crashes the process with a segmentation fault."
+
+[examples.regopy-sprintf-quotes]
+say = "The code formats the same label, the schema, a dot and the table name, with the schema taken from nine places, and prints each result. Taken from the input, a rule, a function, a set, or the value the object get built-in finds, the label comes out clean. Taken from object get's default, lower, concat or a local variable set to a literal, the schema keeps its quotes, and regopy returns invalid JSON."
+
+[examples.cedar-same-rules]
+say = "The code validates the platform's Cedar policies against the schema, which passes, and again with region misspelt, which fails with an error naming the policy and the attribute the user type lacks. It then decides requests over entities generated from the Rego policy's data: finance may read the card number column; the data scientist may read the amount but not the card number; marketing may not read payments; and agent-a05 may read the first learner in emea but not those in americas or apac. For finance's card numbers, Cedar returns the decision, allow, the ID of the policy that decided it, and no errors."
+
+[examples.missing-region-guard]
+say = "The code adds a support agent with no region to the policy's data, and asks for their tickets from the platform's policy and from a copy with the guard taken out of allow, whose tests it also runs. With the guard, the request is denied, with the reason that {{out:missing-region-guard:with the guard, reasons}}. Without it, the request is allowed with no row filters, the test for a support agent without a region fails, and the agent sees the tickets of every region: {{out:missing-region-guard:without the guard, regions whose tickets the agent sees}}."
+
+[examples.cedar-missing-region]
+say = "The code asks Cedar whether a new support agent with no region may read the first learner in each region, with the support agents' forbid as written and again without its check that the agent has a region. With the check, every learner is denied. Without it, evaluating the forbid fails on the missing attribute, Cedar skips that policy and allows every learner, and validating the policies fails, unable to guarantee safe access to the optional region attribute."
