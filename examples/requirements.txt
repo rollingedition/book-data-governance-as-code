@@ -42,7 +42,7 @@ openlineage-python==1.54.0
 packaging==26.3
 pandas==3.1.0
 pandas-stubs==3.0.5.260914
-phonenumbers==9.0.41
+phonenumbers==9.0.42
 ply==3.11
 preshed==3.0.13
 presidio-analyzer==2.2.365
