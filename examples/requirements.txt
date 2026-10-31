@@ -68,7 +68,7 @@ scipy==1.18.1
 setuptools==84.2.1
 shellingham==1.5.4
 six==1.17.0
-smart-open==8.0.4
+smart-open==9.0.0
 spacy==3.8.18
 spacy-legacy==3.0.12
 spacy-loggers==1.0.5
