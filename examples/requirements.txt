@@ -38,7 +38,7 @@ mmh3==5.3.1
 murmurhash==1.0.16
 networkx==3.7
 numpy==2.4.6
-openlineage-python==1.54.0
+openlineage-python==1.55.0
 packaging==26.3
 pandas==3.1.0
 pandas-stubs==3.1.0.261029
