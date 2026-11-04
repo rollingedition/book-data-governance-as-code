@@ -55,7 +55,7 @@ pygments==2.21.0
 pyiceberg==0.12.0
 pyparsing==3.3.3
 pyroaring==1.2.0
-python-dateutil==3.0.0
+python-dateutil==4.0.0
 pytz==2026.6
 pyyaml==6.0.3
 rdflib==7.6.0
