@@ -8,7 +8,7 @@ By Rolling Edition, with AI · **In practice** · [Read it free online](https://
 
 [![The latest edition's stamp](https://rollingedition.com/data-governance-as-code/stamp.svg)](https://rollingedition.com/data-governance-as-code) [![Checks](https://github.com/rollingedition/book-data-governance-as-code/actions/workflows/checks.yml/badge.svg)](https://github.com/rollingedition/book-data-governance-as-code/actions/workflows/checks.yml)
 
-Governing a data platform with code that runs in CI: a catalog where every table has an owner and every column a classification, personal data found automatically, lineage from pipelines, access policies as tested Rego enforced as row filters and column masks, retention, consent and erasure that remove data, an audit trail, and the same rules for data that trains or grounds AI.
+Governing a data platform with code that runs in CI: a tested catalog, finding personal data, lineage from pipelines, access policies enforced as row filters and column masks, erasure that removes data, an audit trail, and rules for data used by AI, on an online learning platform's Iceberg tables.
 
 **Written with AI. Verified by people.** [How we make books](https://rollingedition.com/policies/editorial) · [Check a copy](https://rollingedition.com/check)
 

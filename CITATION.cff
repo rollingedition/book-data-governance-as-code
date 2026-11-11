@@ -4,7 +4,7 @@ message: To cite the edition you read, use the Cite button on any page of the bo
 title: Data Governance as Code
 authors:
 - name: Rolling Edition
-abstract: 'Governing a data platform with code that runs in CI: a catalog where every table has an owner and every column a classification, personal data found automatically, lineage from pipelines, access policies as tested Rego enforced as row filters and column masks, retention, consent and erasure that remove data, an audit trail, and the same rules for data that trains or grounds AI.'
+abstract: 'Governing a data platform with code that runs in CI: a tested catalog, finding personal data, lineage from pipelines, access policies enforced as row filters and column masks, erasure that removes data, an audit trail, and rules for data used by AI, on an online learning platform''s Iceberg tables.'
 url: https://rollingedition.com/data-governance-as-code
 repository-code: https://github.com/rollingedition/book-data-governance-as-code
 license:
