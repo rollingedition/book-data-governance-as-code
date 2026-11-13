@@ -1,3 +1,5 @@
+"""Runs the allowlist's regression cases through the layer, and checks that each denial comes before any policy is asked.
+The prose's points rest on the count of cases that pass, the functions-denied line and the allowed-query line at the end."""
 from lib.catalog import open_catalog
 from lib.enforce import MUST_ALLOW, MUST_DENY, Enforcer, source_cases
 
@@ -18,13 +20,16 @@ passing = [case for case in cases if case["denied"] == (case["must"] == "deny") 
 print("cases that pass:", f"{len(passing)} of {len(cases)}")
 
 # What two of the cases do on the layer's own connection, without the layer in front of it.
+# the name is used before its CTE is defined, so DuckDB resolves it to the scan of the same name
 before_the_cte = platform.connection.sql(MUST_DENY["a CTE's name before the CTE"]).fetchall()[0][0]
 print("a CTE's name before the CTE, run directly:", f"{before_the_cte:,} rows")
+# turns on DuckDB's query log, the one write_log writes into, so the entries below are what the call left
 platform.connection.execute("CALL enable_logging('QueryLog')")
 platform.connection.sql(MUST_DENY["a function that writes DuckDB's log"]).fetchall()
 logged = [message for (message,) in platform.connection.sql("select message from duckdb_logs where type = 'QueryLog'").fetchall()]
 print("the log function, run directly, query-log entries it leaves:", logged)
 
 # The query the allowlist must let through, run through the layer.
+# the query the allowlist must admit: a CTE, a join and a scalar subquery over catalog tables
 for name, query in MUST_ALLOW.items():
     print(f"{name}, allowed:", f"{platform.sql(query, 'agent-a05').fetchall()[0][0]:,} rows")

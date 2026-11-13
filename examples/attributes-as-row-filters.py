@@ -1,3 +1,4 @@
+"""Row filters the policy builds for seven reads, from three attributes: the agent's region, the learner's consent and the request's purpose. The points rest on the analyst's two review reads, with and without a purpose."""
 import json
 
 from lib import policy
@@ -12,11 +13,13 @@ reads = [
     ("instructor-17", "learning.reviews", ["rating"], None),
     ("marketing-1", "crm.learners", ["email"], None),
     ("analyst-1", "learning.reviews", ["rating", "body"], None),
+    # the same read with a purpose, the one attribute the requester supplies
     ("analyst-1", "learning.reviews", ["rating", "body"], "ai-training"),
 ]
 for user, table, columns, purpose in reads:
     decision = policy.decide(policy.request(user, table, columns, purpose), rego)
     who = user + (f" for {purpose}" if purpose else "")
+    # json shows the consent filter with its learner_consented key, not a column
     print(f"{who} reads {table}, row filters:", json.dumps(decision["row_filters"]))
     if "body" in columns:
         print(f"{who} reads {table}, body shown as:", decision["column_masks"]["body"])

@@ -1,3 +1,4 @@
+"""Each row of the who-sees-what table run through the policy and printed as one line, with the count of rows the policy matches. The point rests on the last line, which compares each decision with its row's expected outcome."""
 from lib import policy
 
 rego = policy.interpreter()
@@ -6,9 +7,11 @@ rego = policy.interpreter()
 matching = 0
 for case in policy.WHO_SEES_WHAT:
     decision = policy.decide(policy.request(case.user, case.table, case.columns, case.purpose), rego)
+    # matches returns True or False, which add as 1 or 0
     matching += policy.matches(case, decision)
     who = case.user + (f" ({case.purpose})" if case.purpose else "")
     shown = "allowed" if decision["allow"] else "denied"
+    # a consent filter has no column key, so filtered_on reads its learner_consented key
     filters = ", ".join(policy.filtered_on(decision)) or "-"
     masks = ", ".join(f"{column}: {mask}" for column, mask in decision["column_masks"].items()) or "-"
     print(f"{who:26} {case.table:17} {shown:8} rows: {filters:29} masks: {masks}")

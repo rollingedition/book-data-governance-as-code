@@ -1,6 +1,10 @@
 # Spoken descriptions for chapter 5, Access policies as code. Narration reads these in place of the code, its output
 # and the chapter's fenced blocks.
 
+[terms]
+"redact_contacts" = "redact contacts"
+"test_support_without_a_region_is_denied" = "test support without a region is denied"
+
 [examples.trino-shaped-request]
 say = "The code builds the request for agent-a05's read of three columns of the support tickets table, the ticket ID, the time it opened and the body, and prints it as JSON. The user sits under the context's identity, and the action holds the operation, a read of columns, and the table, by catalog, schema and name, with the columns the query reads."
 

@@ -1,3 +1,4 @@
+"""Cedar's support forbid with and without its `has region` check, asked about a support agent with no region. The points rest on the printed decisions with each version, and on the validation error the unguarded policy gets."""
 import cedarpy
 
 from lib import policy
@@ -9,6 +10,7 @@ schema = policy.CEDAR_SCHEMA.read_text(encoding="utf-8")
 
 # A new support agent with no region yet, and the first learner of crm.learners in each region.
 data = policy.data_document()
+# a support agent with no region yet, as when a role is given before anyone sets one
 data["platform"]["users"]["agent-new"] = {"groups": ["support"]}
 first = {}
 for learner in load("crm.learners").select(["learner_id", "support_region"]).to_pylist():
@@ -21,5 +23,7 @@ for name, policies in [("with `has region`", guarded), ("without it", unguarded)
                    "resource": f'Learner::"{learner["learner_id"]}"', "context": {}}
         answer = cedarpy.is_authorized(request, policies, entities, schema)
         print(f"{name}, a learner in {region}:", answer.decision.value)
+    # answer is the last learner's request, in emea, the last region in sorted order
     print(f"{name}, policies skipped on an error:", list(answer.diagnostics.errors))
+# the first error the validator returns for the unguarded policies
 print("validation without it:", cedarpy.validate_policies(unguarded, schema).errors[0].error)

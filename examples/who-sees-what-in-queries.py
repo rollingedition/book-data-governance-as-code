@@ -1,3 +1,5 @@
+"""Runs chapter 5's who-sees-what cases as queries and compares what each user gets with what is stored, then reads
+marketing.audience, which has no metadata. The prose's points rest on the agreement count and on the two marketing lines."""
 from lib import pipelines, policy
 from lib.catalog import open_catalog
 from lib.enforce import Enforcer, agrees, observe
@@ -22,6 +24,7 @@ print("cases where what the user gets agrees with the decision:", f"{agreeing} o
 # marketing.audience is a table marketing may read, but nobody has classified its columns, so the policy treats each
 # one as sensitive: marketing gets every row, and no value in any column.
 rows = platform.sql("select * from marketing.audience", "marketing-1").fetchall()
+# a redacted value comes back as None, so a column holds a value when one of its values isn't None
 shown = sum(any(value is not None for value in column) for column in zip(*rows))
 print("marketing-1, marketing.audience, which has no metadata, rows:", f"{len(rows):,}")
 print("marketing-1, marketing.audience, which has no metadata, columns with a value:", f"{shown} of {len(rows[0])}")

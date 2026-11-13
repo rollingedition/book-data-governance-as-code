@@ -1,3 +1,5 @@
+"""Builds requests in the shape Trino 484's OPA plugin sends, and runs them through the platform's policy. The prose's
+points rest on the allow lines, which the example asserts are False, and on the GetRowFilters and GetColumnMask lines."""
 import json
 
 from lib import metadata, policy
@@ -18,7 +20,10 @@ def trino_request(user: str, operation: str, resource: dict | None = None) -> di
 
 # Trino asks `allow` about every operation: ExecuteQuery before any query runs, AccessCatalog for each catalog it names.
 for operation, resource in [("ExecuteQuery", None), ("AccessCatalog", {"catalog": {"name": "platform"}})]:
-    print(f"allow, {operation}, agent-a05:", policy.decide(trino_request("agent-a05", operation, resource), rego)["allow"])
+    allowed = policy.decide(trino_request("agent-a05", operation, resource), rego)["allow"]
+    # allow admits only SelectFromColumns, so Trino's checks before any query are denied
+    assert allowed is False
+    print(f"allow, {operation}, agent-a05:", allowed)
 
 # GetRowFilters names a table. The policy's row_filters rule on its own skips `allow` and its missing-attribute guard,
 # so for agent-new it returns no filter, which Trino reads as no filtering. The answer comes from the decision instead,
@@ -30,7 +35,9 @@ for user, schema, table in [("agent-a05", "support", "tickets"), ("instructor-17
           json.dumps(policy.evaluate(rego, "data.platform.access.row_filters", request)))
     decision = policy.decide(policy.request(user, f"{schema}.{table}", []), rego)
     columns = {c.name: "" for c in described[f"{schema}.{table}"].columns.values()}
+    # no table alias: Trino applies the filter to the table itself, as a WHERE clause on it
     filters = [{"expression": row_filter(rule, columns, table=None).sql("trino")} for rule in decision["row_filters"]]
+    # a denied read gets a filter that keeps no rows
     print(f"GetRowFilters, {user}, {schema}.{table}, answered:", json.dumps(filters if decision["allow"] else [{"expression": "false"}]))
 
 # GetColumnMask names one column, under action.resource.column. The policy reads the columns of a SelectFromColumns

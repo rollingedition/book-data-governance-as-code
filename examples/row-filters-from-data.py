@@ -1,3 +1,6 @@
+"""Prints the condition the layer writes for each row filter in three decisions, then the reviews the assistant reads
+through its consent filter, and the denial of its read of the learners table. The prose's points rest on the read counts
+and the consent counts, and on the denied read at the end."""
 from lib.catalog import open_catalog
 from lib.enforce import Enforcer, row_filter
 
@@ -5,6 +8,7 @@ platform = Enforcer(open_catalog(["crm.learners", "learning.reviews", "support.t
 
 # Each row filter in a decision, as the condition the enforcement layer writes for it.
 for user, table in [("agent-a05", "support.tickets"), ("instructor-17", "learning.reviews"), ("assistant-1", "learning.reviews")]:
+    # the decision for this read; its row filters are data, written as SQL in the loop below
     decision = platform.decide(user, {table: set()})[table]
     for rule in decision["row_filters"]:
         print(f"{user}, {table}: {row_filter(rule, platform.columns(table)).sql('duckdb')}")
@@ -17,6 +21,7 @@ print("a region that looks like SQL:", row_filter(odd, platform.columns("support
 total = platform.connection.sql("select count(*) from learning.reviews").fetchall()[0][0]
 read = platform.sql("select count(*) from learning.reviews", "assistant-1").fetchall()[0][0]
 print("reviews the assistant reads:", f"{read:,} of {total:,}")
+# a null consent is an answer the learner never gave, so it is labelled 'never asked'
 by_consent = platform.connection.sql("""select coalesce(l.ai_training_consent::varchar, 'never asked'), count(*)
     from learning.reviews r join crm.learners l using (learner_id) group by all order by all""").fetchall()
 for consent, reviews in by_consent:

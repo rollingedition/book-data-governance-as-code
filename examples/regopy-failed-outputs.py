@@ -1,3 +1,4 @@
+"""One test that replaces the whole input, and what that does to the interpreter: every query fails, and printing a failed output ends Python. The points rest on the printed error count, the assert that true does not succeed, and the signal the crash ends with."""
 import signal
 import subprocess
 import sys
@@ -22,7 +23,10 @@ with tempfile.TemporaryDirectory() as name:
     results = policy.run_tests(folder)
     print("tests that end in ERROR:", f"{Counter(results.values())['ERROR']} of {len(results)}")
     rego = policy.interpreter(folder, tests=True)
-    print("the query true succeeds:", rego.query("true").ok())
+    succeeded = rego.query("true").ok()
+    # no query succeeds here, not even true: the interpreter loads the file with the broken test
+    assert not succeeded
+    print("the query true succeeds:", succeeded)
 
     # lib.policy checks each output before reading it, so a decision asked of this interpreter raises an error.
     try:
@@ -33,4 +37,5 @@ with tempfile.TemporaryDirectory() as name:
     # Printing one of those failed outputs, in a separate Python process.
     crash = "import sys; from pathlib import Path; from lib import policy; print(policy.interpreter(Path(sys.argv[1]), tests=True).query('true'))"
     ended = subprocess.run([sys.executable, "-c", crash, str(folder)], capture_output=True)
+    # a negative return code names the signal that ended the process
     print("printing the failed output ends Python with:", signal.Signals(-ended.returncode).name)

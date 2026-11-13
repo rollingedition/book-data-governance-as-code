@@ -1,3 +1,4 @@
+"""Small policies that regopy answers differently from OPA, each printed with the answer regopy gives. The point of each line rests on its printed value, which the prose binds."""
 import json
 
 from regopy import Input, Interpreter
@@ -9,16 +10,20 @@ def ask(rules: str, query: str, request: dict) -> str:
     rego.add_module("example", "package example\n" + rules)
     rego.set_input(Input(request))
     output = str(rego.query(query))
+    # regopy writes undefined as a bare word; otherwise the binding for x is the answer
     return output if output == "undefined" else json.dumps(json.loads(output)["bindings"]["x"])
 
 
 admins_only = 'default allow := false\nallow if input.user == "admin"\n'
+# no variable, so regopy gives no value for the false decision
 print("a false decision, queried on its own:", ask(admins_only, "data.example.allow", {"user": "guest"}))
+# bound to x, the same false decision comes back as a value
 print("the same decision, bound to a variable:", ask(admins_only, "x := data.example.allow", {"user": "guest"}))
 
 pre_1_0 = 'allow { input.user == "admin" }\n'                      # no `if`: OPA 1.x refuses to load this
 print("a rule in pre-1.0 syntax:", ask(pre_1_0, "x := data.example.allow", {"user": "admin"}))
 
+# regoin is never defined, so deny is undefined and not deny is true for any request
 typo = 'region := "emea"\ndefault allow := false\nallow if not deny\ndeny if input.region != regoin\n'
 print("a deny with a misspelt, unbound variable, for apac:", ask(typo, "x := data.example.allow", {"region": "apac"}))
 
@@ -28,4 +33,5 @@ with_a_literal := seen if { seen := region with input.user as {"region": "emea"}
 with_a_reference := seen if { seen := region with input.user as emea }
 """
 print("region under a mock written as a literal:", ask(mocks, "x := data.example.with_a_literal", {"user": {"region": "apac"}}))
+# the mock refers to the rule emea, which regopy ignores, so the real input's region comes back
 print("region under a mock that refers to a rule:", ask(mocks, "x := data.example.with_a_reference", {"user": {"region": "apac"}}))

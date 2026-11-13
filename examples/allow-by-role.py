@@ -1,3 +1,4 @@
+"""Which groups may read which tables, then four requests decided by the default-deny policy. The points rest on the four decisions and their reasons, printed last."""
 from lib import policy
 
 rego = policy.interpreter()
@@ -14,6 +15,7 @@ requests = [
     policy.request("someone-else", "crm.learners", ["learner_id"]),
 ]
 delete = policy.request("finance-1", "billing.payments", ["amount"])
+# the same request as finance's read, asking to delete instead
 delete["action"]["operation"] = "DeleteFromTable"
 for request in requests + [delete]:
     decision = policy.decide(request, rego)
