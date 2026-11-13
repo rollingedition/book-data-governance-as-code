@@ -1,4 +1,5 @@
-"""The same table, read three ways: through the enforcement layer, and around it with DuckDB and with PyIceberg."""
+"""The same table, read three ways: through the enforcement layer, and around it with DuckDB and with PyIceberg. The point
+rests on the two lines around the layer, which return every region where the layer returns only EMEA's."""
 from collections import Counter
 
 from lib import warehouse
@@ -22,7 +23,7 @@ print("DuckDB on the same catalog:", show(warehouse.connect(platform).sql(query)
 # Any reader that holds the catalog's access, here PyIceberg's own scan: no SQL to rewrite at all.
 scan = platform.load_table("crm.learners").scan(selected_fields=("support_region", "email")).to_arrow()
 print("PyIceberg's scan of the table:", show(sorted(Counter(scan.column("support_region").to_pylist()).items())))
-print("emails PyIceberg's scan returns:", f"{scan.num_rows - scan.column('email').null_count:,}")
+print("emails PyIceberg's scan returns:", f"{scan.num_rows - scan.column('email').null_count:,}")  # rows whose email isn't null
 
 # lib.warehouse builds each table's view on a scan it registers under a name of its own. Through the layer, it's denied.
 try:

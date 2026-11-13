@@ -1,3 +1,5 @@
+"""Measures the model's coverage of card numbers, phone numbers and addresses whatever their label, and counts the labels
+that would misclassify them. The prose rests on the coverage lines, the mislabelled counts and the uncovered addresses."""
 from lib import pii
 
 # What the model's labels cost. A span is covered when every character of it is inside some detection, whatever its
@@ -17,6 +19,7 @@ print("phone numbers labelled account_number:", pii.caught(spans["PHONE_NUMBER"]
 on = pii.labels_on(spans["LOCATION"], model)
 print("addresses with no detection at all:", sum(not labels for labels in on))
 print("addresses read, at least in part, as a person:", sum("private_person" in labels for labels in on))
+# A person label and no address label: the address was read as a name, which overlap matching can't credit.
 print("of them, with no address label:", sum({"private_person"} <= labels and "private_address" not in labels for labels in on))
 left = [pii.uncovered(address, model) for address in spans["LOCATION"]]
 print("addresses not fully covered:", sum(bool(chars) for chars in left))

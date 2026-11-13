@@ -1,3 +1,5 @@
+"""Loads the metadata file and counts what it describes, then prints four of the learners table's columns, looked up by
+field ID. The prose's point rests on the `columns classified internal` line, the largest of the counts."""
 from collections import Counter
 
 from lib import metadata
@@ -16,6 +18,6 @@ print("owners:", ", ".join(owners))
 learners = described["crm.learners"]
 print("crm.learners owner:", learners.owner)
 print("crm.learners domain:", learners.domain)
-for field_id in (1, 3, 5, 6):
+for field_id in (1, 3, 5, 6):                    # field IDs, which the file keys columns by, not positions in the table
     column = learners.columns[field_id]
     print(f"crm.learners field {field_id}:", column.name, "|", column.classification, "|", column.description)
