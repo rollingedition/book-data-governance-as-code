@@ -10,7 +10,7 @@ from lib.platform import load
 # agent-a05, a support agent in EMEA, asks to read three columns of crm.learners.
 request = policy.request("agent-a05", "crm.learners", ["learner_id", "email", "support_region"])  # the shape Trino's OPA plugin sends
 decision = policy.decide(request)
-assert decision["allow"] is True           # the prose states the read as allowed; a policy change that denies it fails this run
+assert decision["allow"] is True           # support may read crm.learners; a policy that denies it fails this run
 print("allow:", decision["allow"])
 print("row filters:", json.dumps(decision["row_filters"]))
 print("column masks:", json.dumps(decision["column_masks"]))
@@ -23,7 +23,7 @@ for region, learners in answer(layer, query, "agent-a05"):   # the layer adds th
     print(f"learners agent-a05 sees in {region}:", f"{learners:,}")
 
 # Compare the emails the agent gets with the platform's data, without printing any.
-stored = load("crm.learners")                                  # the generated file, read straight from its Parquet file
+stored = load("crm.learners")                                  # the generated data, not the catalog's copy
 emails = dict(zip(stored.column("learner_id").to_pylist(), stored.column("email").to_pylist()))
 seen = answer(layer, "select learner_id, email from crm.learners", "agent-a05")   # the agent's own query, with no region in it
 print("emails agent-a05 sees, as stored:", f"{sum(email == emails[learner] for learner, email in seen):,} of {len(seen):,}")

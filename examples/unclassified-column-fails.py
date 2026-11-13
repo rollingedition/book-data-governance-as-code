@@ -1,5 +1,5 @@
 """The CRM team's pull request adds a column to crm.learners and no metadata for it; the coverage check runs on its branch and
-on main. The point rests on the exit code line: the pull request's own finding fails the job, and the two findings on main don't."""
+on main. The point rests on the exit code line: the pull request's own finding fails the job, and the findings on main don't."""
 from lib import ci
 
 main = ci.checkout()                      # the main branch: the governance files and pipelines, and no migrations yet

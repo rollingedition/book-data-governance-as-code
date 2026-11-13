@@ -1,5 +1,5 @@
 """Loads the metadata file and counts what it describes, then prints four of the learners table's columns, looked up by
-field ID. The prose's point rests on the `columns classified internal` line, the largest of the counts."""
+field ID. The prose's point rests on the `country` and `city` lines, whose descriptions give the reason for each classification."""
 from collections import Counter
 
 from lib import metadata

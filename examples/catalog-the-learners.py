@@ -1,5 +1,5 @@
-"""Catalog crm.learners from governance/metadata.toml, the reviewed file: its owner, domain and classifications, written into
-the catalog and checked against it. The point rests on the last line, the problems the check finds once the file is applied."""
+"""Apply governance/metadata.toml to crm.learners: write its owner, domain and descriptions into the catalog, then run the
+check on the catalog. The point rests on the last line, the problems the check finds once the file is applied."""
 from collections import Counter
 
 from lib import metadata

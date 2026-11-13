@@ -22,7 +22,7 @@ ci.migrate(platform, "alter table crm.learners add column work_email varchar;")
 
 rows = list(csv.DictReader(io.StringIO(inventory.getvalue())))
 print("columns the spreadsheet lists:", len(rows))
-print("of them without a classification, by the spreadsheet:", sum(not row["classification"] for row in rows))  # an empty cell: none
+print("of them without a classification, by the spreadsheet:", sum(not row["classification"] for row in rows))  # a blank classification cell: a column the spreadsheet never classified
 live = [field.name for field in platform.load_table("crm.learners").schema().fields]
 print("columns crm.learners has:", len(live))
 print("columns the spreadsheet doesn't list:", ", ".join(sorted(set(live) - {row["column"] for row in rows})))

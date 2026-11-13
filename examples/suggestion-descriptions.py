@@ -9,4 +9,4 @@ suggested = {(s.table, s.column): s for s in metadata.suggestions()}   # keyed b
 for table, column in [("crm.learners", "ai_training_consent"), ("crm.learners", "support_region"),
                       ("crm.learners", "notes"), ("billing.payments", "card_number")]:
     print(f"{table}.{column}, the model:", suggested[table, column].description)
-    print(f"{table}.{column}, the review:", reviewed[table].column(column).description)   # looked up by name, unlike the field IDs above
+    print(f"{table}.{column}, the review:", reviewed[table].column(column).description)   # looked up by name: the file keys columns by field ID, but `column()` finds one by name

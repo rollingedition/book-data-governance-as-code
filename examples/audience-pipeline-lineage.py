@@ -1,5 +1,5 @@
 """Run the marketing_audience pipeline with OpenLineage events, then read its column lineage back from the events alone.
-The point rests on the two INDIRECT lines: a filter and a join decide which rows the audience table holds."""
+The point rests on the two INDIRECT lines: the filter and the joins decide which rows the audience table holds."""
 
 from lib import lineage, metadata, warehouse
 from lib.catalog import open_catalog
