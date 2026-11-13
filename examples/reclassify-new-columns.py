@@ -10,7 +10,7 @@ from lib.warehouse import connect
 catalog = open_catalog(["support.tickets"])
 tickets = catalog.load_table("support.tickets")
 reviewed = metadata.load()["support.tickets"].columns           # field ID -> the column as people reviewed it
-# A field ID the reviewed metadata doesn't have. Iceberg gives each added column a new one, and a rename keeps its ID.
+# A field ID the reviewed metadata doesn't have: Iceberg gives each added column a new one.
 unclassified = lambda: {f.field_id for f in tickets.schema().fields if f.field_id not in reviewed}
 print("schema ID at the start:", tickets.schema().schema_id)
 
@@ -28,7 +28,7 @@ fill_column(tickets, "callback_number", lambda row: phone_of[row["learner_id"]] 
 print("schema ID after adding a column:", tickets.schema().schema_id)
 print("fields to classify after adding a column:", len(unclassified()))
 
-# Only the table's field IDs the metadata lacks are classified, as the pull request that adds a column must do.
+# only= keeps the proposals to the field IDs the metadata lacks.
 for f in pii.classify(catalog, connect(catalog), pii.platform_detector(), only={"support.tickets": unclassified()}):
     found = ", ".join(f"{entity} in {n} of {f.sampled}" for entity, n in f.found.items())
     print(f"{f.table}.{f.column}, field ID: {f.field_id}")

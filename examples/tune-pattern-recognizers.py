@@ -23,7 +23,7 @@ for name, detector in settings.items():
     print(f"{name}, detections: {len(found):,}")
     print(f"{name}, precision, exact: {pii.precision_overall(scores):.2f}")
     print(f"{name}, phone recall, exact: {exact / n:.2f}")
-    # coverage counts a phone or a card hidden under another label as covered, which masking needs
+    # coverage takes a detection under any label
     for entity, short in (("PHONE_NUMBER", "phones"), ("CREDIT_CARD", "cards")):
         print(f"{name}, {short} covered, any label: {covered[entity][1] / covered[entity][0]:.2f}")
     print(f"{name}, texts with every labelled span masked: {scores.masked:,}")

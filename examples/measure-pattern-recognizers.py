@@ -11,7 +11,7 @@ print("labelled spans:", f"{len(labelled):,}")
 
 detector = pii.detector()                 # Presidio's defaults: every recognizer, threshold 0
 found = pii.find(detector)
-# scoring needs a label of the span's type; coverage doesn't, and masking needs coverage
+# scoring needs a label of the span's type; coverage doesn't
 scores, covered = pii.score(found, labelled), pii.coverage(found, labelled)
 print("detections:", f"{len(found):,}")
 
@@ -25,6 +25,8 @@ for label, (n, exact, overlap) in scores.precision.items():     # precision is p
     print(f"{label}, detections: {n:,}")
     print(f"{label}, precision, exact: {exact / n:.2f}")
 
+# every bank number and driver's licence detection is a false alarm: none matches a labelled span
+assert all(scores.precision[entity][1] == 0 for entity in ("US_BANK_NUMBER", "US_DRIVER_LICENSE"))
 print("precision of all detections, exact:", f"{pii.precision_overall(scores):.2f}")
 print("texts holding personal data:", f"{scores.texts:,}")
 print("texts with every labelled span masked:", f"{scores.masked:,}")
@@ -33,7 +35,9 @@ print("texts with every labelled span masked:", f"{scores.masked:,}")
 # one way. Presidio's date patterns don't read every way of writing one.
 print("sentence templates the texts are built from:", len(pii.templates()))
 births = [pii.text_of(s) for s in labelled if s.entity == "DATE_TIME"]    # the truth's dates are the dates of birth: dates of a problem are unlabelled
-print("dates of birth written like 1985-03-12:", sum(re.fullmatch(r"\d{4}-\d\d-\d\d", d) is not None for d in births))   # year first, the generator's one form
+written_ymd = sum(re.fullmatch(r"\d{4}-\d\d-\d\d", d) is not None for d in births)   # year first, the generator's one form
+assert written_ymd == len(births)           # so every date of birth is written this way
+print("dates of birth written like 1985-03-12:", written_ymd)
 for written in ("1985-03-12", "12 March 1985"):
     text = f"My date of birth on the account is wrong, it should be {written}."     # a sentence in the generator's shape
     print(f"dates found in a date of birth written {written}:", sum(e == "DATE_TIME" for _, _, e, _ in pii.detect(detector, text)))

@@ -22,9 +22,9 @@ for case in ("first names that are words", "instructors named in reviews"):
     print(f"{case}, missed most often:", ", ".join(name for name, _ in often))
 
 # A first name on its own says less than a full name: how many of the misses are one word?
-# islower() counts only names typed entirely in lowercase, so a name with a capital letter, such as "Jane", doesn't.
 print("missed names that are one word:", sum(len(pii.text_of(s).split()) == 1 for s in missed))
 print("missed names of two words or more:", sum(len(pii.text_of(s).split()) > 1 for s in missed))
+# islower() counts only names typed entirely in lowercase, so a name with a capital letter, such as "Jane", doesn't.
 print("of them, typed in lowercase:", sum(len(pii.text_of(s).split()) > 1 and pii.text_of(s).islower() for s in missed))
 
 # A lowercase name that neither the model nor the platform's patterns cover any part of, in the first ticket with one.

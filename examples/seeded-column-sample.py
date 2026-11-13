@@ -1,5 +1,5 @@
 """Draws the same twenty notes twice from a seeded reservoir sample, then counts the notes that hold personal data, to see
-how many sampled values a rare value needs. The prose rests on the yes line, the two chances and the sample sizes."""
+how many sampled values a rare value needs. The prose rests on the assert that the draws match, the two chances and the sample sizes."""
 import math
 
 from lib import pii
@@ -8,7 +8,8 @@ from lib.warehouse import connect
 
 con = connect(open_catalog(["crm.learners"]))
 first = pii.sample(con, "crm.learners", "notes", rows=20)
-second = pii.sample(con, "crm.learners", "notes", rows=20)     # the same call: only the seed makes the draws match
+second = pii.sample(con, "crm.learners", "notes", rows=20)     # the same call: the seed and one thread (set in lib.pii.sample) make the draws match
+assert second == first
 print("second draw, same notes as the first:", "yes" if second == first else "no")
 # Notes can hold a phone number, which may be in service: masked() prints it with only its last four digits.
 print("first sampled notes:", " | ".join(pii.masked(note) for note in first[:3]))

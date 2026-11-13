@@ -30,6 +30,6 @@ phone = next(ticket[start:end] for start, end, entity, _ in found if entity == "
 [learner] = [row["learner_id"] for row in load("support.tickets").to_pylist() if row["ticket_id"] == 1421]
 [country] = [row["country"] for row in load("crm.learners").to_pylist() if row["learner_id"] == learner]
 print("the learner's country:", country)
-# Presidio's default regions, not the learners' countries: the tuning section reads the learners' countries instead.
+# The recognizer's built-in regions, not the learner's country.
 print("default regions where it's valid:",
       ", ".join(r for r in pii.PhoneRecognizer.DEFAULT_SUPPORTED_REGIONS if pii.valid_phone(phone, r)))

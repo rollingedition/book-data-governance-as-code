@@ -1,4 +1,5 @@
-"""The same export, now sending lineage, in a table its owner tagged internal: lineage finds the personal data in it."""
+"""The same export, now recorded with lineage, into a table its owner tagged internal. The prose rests on the walk to
+the copy and on the check for understated classifications."""
 
 from lib import lineage
 from lib.catalog import open_catalog
@@ -17,6 +18,7 @@ def export() -> None:
     catalog.create_table("marketing.campaign_list", schema=rows.schema).append(rows)
 
 
+# record reads this statement's lineage before export() runs
 statement = f"create table marketing.campaign_list as {select}"
 lineage.record(lineage.client(events_file), "campaign_export", statement, catalog, export)
 
