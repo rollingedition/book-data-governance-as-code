@@ -21,7 +21,7 @@ print("source columns, values only:", len(values))
 # A column can both give a value and shape the rows, so the union counts it once.
 print("source columns, with the rows' inputs:", len(values | {dependency.source for dependency in rows}))
 
-fields, _ = lineage.column_lineage(pipelines.sql("course_performance"), schema)   # these two need no row inputs
+fields, _ = lineage.column_lineage(pipelines.sql("course_performance"), schema)   # only these two columns are printed
 for column in ("completions", "revenue_usd"):
     print(f"analytics.course_performance.{column}:",
           ", ".join(f"{dependency.source} {dependency.type} {dependency.subtype}" for dependency in fields[column]))
