@@ -1,5 +1,5 @@
-"""What the learning team's rename of learning.courses.category reaches: Iceberg readers, SQL and lineage. Then the same
-rename merged together with the fix of both pipelines that name the column."""
+"""What the learning team's rename of learning.courses.category reaches, through Iceberg readers, SQL and lineage. The
+prose's point rests on the courses an Iceberg reader still finds, the columns reached, and the job's verdict once the fix merges with the rename."""
 import pyarrow.compute as pc
 
 from lib import ci, retention

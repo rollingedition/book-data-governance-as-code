@@ -1,5 +1,5 @@
 """The platform's governance job on one pull request, run as a CI step runs it: the CRM team adds a work email to
-crm.learners. The prose's point rests on the coverage finding for the new column and on the exit code."""
+crm.learners. The prose's point rests on the coverage finding for the new column and on the exit code the step returns."""
 
 from lib import ci
 from lib.platform import scratch

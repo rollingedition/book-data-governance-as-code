@@ -1,6 +1,6 @@
-"""The platform's global rules and the crm domain's own rule, run on every contract of the CRM team's pull request,
-which this time classifies the new work_email column: as public, with no description. Then the same column described,
-with crm.learners moved to the analytics domain, which has no rules of its own."""
+"""The platform's global rules and the crm domain's own rule, run on the CRM team's two tries at work_email: classified
+public with no description, then described with crm.learners moved to the analytics domain, which has no rules of its own.
+The prose's point rests on the two contract-rules findings of the first try and on the owner-review finding after the move."""
 from lib import ci
 
 main = ci.checkout()

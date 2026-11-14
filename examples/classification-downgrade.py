@@ -21,7 +21,7 @@ for line in ci.lines(report):
     print(line)
 
 # The approvals come from the pull request's reviews: one entry per approving review, named by the reviewer's team.
-# The owner rule passes when every finding it raises has the approvals it asks for.
+# The owner rule passes when it raises no unapproved finding.
 owner_review = lambda approvals: "passed" if ci.run(before, after, approvals, checks=["owner-review"]).passed else "failed"
 print("owner-review, once team-crm approves:", owner_review(["team-crm"]))
 print("owner-review, once team-analytics approves:", owner_review(["team-analytics"]))
