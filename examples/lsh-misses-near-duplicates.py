@@ -36,7 +36,7 @@ for scheme in ["affine32", "legacy"]:
 b, r = found["affine32", threshold].bands, found["affine32", threshold].rows
 for s in [0.8, 0.9]:
     print(f"chance of a candidate at similarity {s}, LSH tuned for {threshold}:", f"{1 - (1 - s ** r) ** b:.2f}")
-# where the S-curve passes one half, approximately
+# the S-curve's approximate threshold, which the prose compares with the threshold asked for
 print("the approximate threshold, (1/b)^(1/r):", f"{(1 / b) ** (1 / r):.2f}")
 
 # What datasketch does with a sketch made under the other scheme.
