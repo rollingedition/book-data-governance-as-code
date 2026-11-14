@@ -1,3 +1,6 @@
+"""Code holding a layer's connection tries to switch DuckDB's query log off, first on a layer that doesn't lock its
+configuration and then on one that does. The printed lines show the switch working on the first, failing on the second,
+and the gap that emptying the log leaves in the second layer's check."""
 import duckdb
 
 from lib import audit
@@ -8,28 +11,28 @@ AROUND = "select email from crm.learners where learner_id = 541"       # a read 
 folder = scratch()
 
 # A layer that doesn't lock its configuration: code holding its connection tries a file log, then switches logging off.
-unlocked = audit.Audited(open_catalog(["crm.learners"]), audit.Log(folder / "unlocked.jsonl"), lock=False)
+unlocked = audit.Audited(open_catalog(["crm.learners"]), audit.Log(folder / "unlocked.jsonl"), lock=False)     # no lock
 connection = unlocked.enforcer.connection
 try:
-    connection.execute("set log_query_path = 'queries.log'")
+    connection.execute("set log_query_path = 'queries.log'")       # the layer's connection refuses to write a file
 except duckdb.Error as error:
     print("a query log in a file, on the layer's connection:", type(error).__name__)
-connection.execute("CALL disable_logging()")
-connection.sql(AROUND).fetchall()
-for query in unlocked.check_engine_log()["unrecorded"]:
+connection.execute("CALL disable_logging()")                       # nothing stops the switch here
+connection.sql(AROUND).fetchall()                                  # so this read leaves nothing in DuckDB's log
+for query in unlocked.check_engine_log()["unrecorded"]:            # only the statements made before the switch remain
     print("unlocked, unrecorded:", query)
 
 # lib.audit's layer locks its configuration: switching the log off is refused, but emptying it isn't.
 log = audit.Log(folder / "locked.jsonl")
 locked = audit.Audited(open_catalog(["crm.learners"]), log)
-locked.sql("select learner_id, email from crm.learners", "analyst-1").fetchall()
+locked.sql("select learner_id, email from crm.learners", "analyst-1").fetchall()     # its entry in DuckDB's log is emptied below
 connection = locked.enforcer.connection
 try:
     connection.execute("CALL disable_logging()")
 except duckdb.Error as error:
     print("locked, disable_logging():", type(error).__name__)
 connection.sql(AROUND).fetchall()
-connection.execute("CALL truncate_duckdb_logs()")
+connection.execute("CALL truncate_duckdb_logs()")                  # emptying isn't locked, so the log loses its entries
 found = locked.check_engine_log()
 print("locked, after truncate_duckdb_logs(), queries with no decision record:", len(found["unrecorded"]))
 print("locked, decision records DuckDB has no query for:", len(found["not in the engine log"]))

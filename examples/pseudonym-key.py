@@ -1,12 +1,11 @@
 """Hashes a list of emails the way the layer hashes pseudonyms, with and without its key, then rotates the key and counts
-the pseudonyms that change. The prose's points rest on the three count lines: none match without the key, all match with
-it, and all change on rotation."""
+the pseudonyms that change. The prose's points rest on the three count lines: the matches without the key and with it, and
+the pseudonyms that change on rotation."""
 from lib.catalog import open_catalog
 from lib.enforce import Enforcer
 
 # The pseudonyms analyst-1, the platform's data scientist, sees in crm.learners. Someone holding a list of the
-# platform's emails hashes each one and looks for it among them: without the key the hashes match nothing, and with
-# the key they match every learner.
+# platform's emails hashes each one and looks for it among them, first without the key and then with it.
 # an example key, not a secret: production keeps the real one where only the layer can read it
 platform = Enforcer(open_catalog(["crm.learners"]), key="example-key-not-a-secret")
 seen = platform.sql("select learner_id, email from crm.learners", "analyst-1").to_arrow_table()

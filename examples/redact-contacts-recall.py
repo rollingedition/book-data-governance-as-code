@@ -1,6 +1,6 @@
 """Applies the redact_contacts mask to every ticket and review, then counts the labelled personal data still left in the
-masked text, and the phone replacements made in the tickets. The prose's points rest on the 'left in the text' lines and on
-the replacement count."""
+masked text, and the phone replacements made in the tickets. The prose's points rest on the 'left in the text' lines, the
+replacement count, and the assert on the tickets' card, IBAN and date lines."""
 import duckdb
 from sqlglot import exp
 
@@ -20,6 +20,9 @@ counts = con.sql(f"""
                     union all select 'reviews', review_id, {mask} from reviews)
     select source, entity, count(*), count(*) filter (where contains(masked.body, pii_spans.text))
     from pii_spans join masked using (source, row_id) group by all order by all""").fetchall()
+# the phone pattern takes every card number, IBAN and date in the tickets, so none is left in the masked text
+left_in_tickets = {entity: left for source, entity, _, left in counts if source == "tickets"}
+assert all(left_in_tickets[entity] == 0 for entity in ("CREDIT_CARD", "IBAN_CODE", "DATE_TIME"))
 for source, entity, placed, left in counts:
     print(f"{source}, {entity}, left in the text: {left:,} of {placed:,}")
 # The phone pattern also takes card numbers, IBANs and dates, which are digits too.

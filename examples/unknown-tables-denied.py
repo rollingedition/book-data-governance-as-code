@@ -13,10 +13,10 @@ query = "select * from crm.learners as l join marketing.audience as a on a.learn
 print("qualify on its own:", qualify(sqlglot.parse_one(query, read="duckdb"), schema=platform.schema, dialect="duckdb").sql("duckdb"))
 
 # The enforcement layer denies anything that isn't a catalog table, before it asks the policy.
-# scan_crm_learners is the scan lib.warehouse registers for crm.learners, and DuckDB resolves it like a table
 attempts = {
     "a table missing from the catalog": query,
     "a column the table doesn't have": "select shoe_size from crm.learners",
+    # scan_crm_learners is the scan lib.warehouse registers for crm.learners, and DuckDB resolves it like a table
     "the scan behind a view": "select count(*) from scan_crm_learners",
     "a Parquet file": "select count(*) from read_parquet('data/platform/learners.parquet')",
     "a table function": "select count(*) from query_table('crm.learners')",

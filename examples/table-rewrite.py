@@ -14,5 +14,4 @@ query = "select course_id, rating, body from learning.reviews where rating <= 2"
 rewritten = platform.rewrite(query, "instructor-17")
 print(sqlglot.transpile(rewritten, read="duckdb", write="duckdb", pretty=True)[0])
 print("reviews returned:", len(platform.run(rewritten).fetchall()))
-# '%@%' matches any body that still has an @ sign
 print("of them holding an email:", platform.run(f"select count(*) from ({rewritten}) where body like '%@%'").fetchall()[0][0])

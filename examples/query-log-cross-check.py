@@ -1,3 +1,5 @@
+"""DuckDB's query log checked against the audit log: first on the day's queries, then after two more queries through the
+layer and a read around it. The point rests on the last check's unrecorded query, the one read that bypassed the layer."""
 from lib import audit
 from lib.catalog import open_catalog
 from lib.platform import scratch
@@ -15,10 +17,10 @@ print("queries DuckDB ran:", found["engine queries"])
 print("queries DuckDB ran with no decision record:", len(found["unrecorded"]))
 
 # Two more queries through the layer: one whose caller never fetches it, and one the caller narrows to five rows.
-platform.sql("select learner_id, country from crm.learners", "analyst-1")
-platform.sql("select learner_id, country from crm.learners", "analyst-1").limit(5).fetchall()
+platform.sql("select learner_id, country from crm.learners", "analyst-1")        # the layer fetches it, so DuckDB logs it once
+platform.sql("select learner_id, country from crm.learners", "analyst-1").limit(5).fetchall()    # narrowed after the layer's fetch
 # Then a notebook helper that was handed the layer's connection reads a learner's email with it, around the layer.
-platform.enforcer.connection.sql("select email from crm.learners where learner_id = 541").fetchall()
+platform.enforcer.connection.sql("select email from crm.learners where learner_id = 541").fetchall()    # no record for this one
 found = platform.check_engine_log()
 print("next check, records checked:", " to ".join(map(str, found["records checked"])))
 print("next check, queries with no decision record:", len(found["unrecorded"]))

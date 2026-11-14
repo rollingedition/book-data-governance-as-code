@@ -1,5 +1,5 @@
-"""Runs the allowlist's regression cases through the layer, and checks that each denial comes before any policy is asked.
-The prose's points rest on the count of cases that pass, the functions-denied line and the allowed-query line at the end."""
+"""Runs the allowlist's regression cases through the layer and prints each denial with its reason; a case passes when it's
+denied exactly when it must be and its parse logs nothing. The prose's points rest on the count of cases that pass, the functions-denied line and the allowed-query line at the end."""
 from lib.catalog import open_catalog
 from lib.enforce import MUST_ALLOW, MUST_DENY, Enforcer, source_cases
 
@@ -29,7 +29,6 @@ platform.connection.sql(MUST_DENY["a function that writes DuckDB's log"]).fetcha
 logged = [message for (message,) in platform.connection.sql("select message from duckdb_logs where type = 'QueryLog'").fetchall()]
 print("the log function, run directly, query-log entries it leaves:", logged)
 
-# The query the allowlist must let through, run through the layer.
 # the query the allowlist must admit: a CTE, a join and a scalar subquery over catalog tables
 for name, query in MUST_ALLOW.items():
     print(f"{name}, allowed:", f"{platform.sql(query, 'agent-a05').fetchall()[0][0]:,} rows")
