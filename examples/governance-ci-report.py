@@ -1,4 +1,5 @@
-"""The platform's governance job on one pull request: the CRM team adds a work email to crm.learners."""
+"""The platform's governance job on one pull request, run as a CI step runs it: the CRM team adds a work email to
+crm.learners. The prose's point rests on the coverage finding for the new column and on the exit code."""
 
 from lib import ci
 from lib.platform import scratch
@@ -11,7 +12,7 @@ print("files the pull request changes:", ", ".join(ci.changed(main, branch)))
 # What a CI step runs, `python -m lib.ci MAIN BRANCH --summary FILE`: it prints the report and its totals, writes the
 # report as Markdown for the pull request, and exits with the code it returns.
 summary = scratch() / "summary.md"
-code = ci.main([str(main), str(branch), "--summary", str(summary)])
+code = ci.main([str(main), str(branch), "--summary", str(summary)])     # 1 when a finding this pull request adds fails it
 print("the step exits with:", code)
 print("the summary it writes for the pull request:")
 print(summary.read_text(encoding="utf-8"), end="")

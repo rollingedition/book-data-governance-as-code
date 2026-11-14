@@ -29,7 +29,10 @@ for scheme in ["affine32", "legacy"]:
         print(f"{setting}, candidate pairs:", len(result.candidates))
         print(f"{setting}, confirmed:", len(result.confirmed))
         # pairs the exact comparison found that LSH never proposed as candidates
-        print(f"{setting}, missed:", len(pairs - result.candidates))
+        missed = len(pairs - result.candidates)
+        print(f"{setting}, missed:", missed)
+        if tuned_for != threshold:
+            assert missed == 0  # tuned lower, LSH finds every pair under either scheme
 
 # The chance that a pair of similarity s becomes a candidate, with b bands of r rows: 1 - (1 - s^r)^b.
 # the bands and rows LSH chose for the threshold, as the formula uses them
@@ -40,10 +43,10 @@ for s in [0.8, 0.9]:
 print("the approximate threshold, (1/b)^(1/r):", f"{(1 / b) ** (1 / r):.2f}")
 
 # What datasketch does with a sketch made under the other scheme.
-# an index takes sketches of one scheme only: the first insert fixes it
+# an index takes sketches of one scheme, so the legacy sketch below is refused
 index = MinHashLSH(threshold=threshold, num_perm=ai_data.DUPLICATES["num_perm"])
 index.insert(0, ai_data.minhash(texts[0], "affine32"))
 try:
-    index.insert(1, ai_data.minhash(texts[1], "legacy"))  # datasketch refuses a sketch of another scheme
+    index.insert(1, ai_data.minhash(texts[1], "legacy"))
 except ValueError as error:
     print("a legacy sketch in an index of affine32 sketches:", error)

@@ -18,6 +18,7 @@ for line in ci.lines(report):
 
 # The second try: a description, and the table moved to a domain whose rules allow public columns.
 ci.edit(branch, "governance/metadata.toml", 'description = "" }', 'description = "The learner\'s work address." }')
+# the table's domain changes from crm to analytics, which has no rules of its own
 ci.edit(branch, "governance/metadata.toml", 'owner = "team-crm"\ndomain = "crm"\ndescription = "Every learner',
         'owner = "team-crm"\ndomain = "analytics"\ndescription = "Every learner')
 report = ci.run(before, branch, checks=["coverage", "contract-rules", "owner-review"])

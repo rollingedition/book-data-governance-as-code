@@ -43,12 +43,14 @@ print("keyed pseudonyms:", ", ".join(keyed))
 print("the name typed in lowercase:", ai_data.pseudonym("PERSON", "patrick"))
 # the first word of each instructor's full name
 first_names = Counter(name.split()[0] for name in load("crm.instructors").column("full_name").to_pylist())
-print("instructors who share a first name with another:", sum(n for n in first_names.values() if n > 1))
+shared = sum(n for n in first_names.values() if n > 1)
+assert shared == 0
+print("instructors who share a first name with another:", shared)
 
 # What the enforcement layer's pseudonymize mask makes of the same name, run by the layer under its own key.
-# the layer's mask, written as SQL and run under the layer's own key
 mask = enforce.masked("pseudonymize", exp.Literal.string("Patrick"), "VARCHAR").sql(enforce.DIALECT)
 print("the enforcement layer's pseudonymize mask, on the same name:", layer.run(f"select {mask}").fetchall()[0][0])
-# DuckDB functions whose name mentions HMAC; zero means it has none
-hmac = layer.connection.sql("select count(*) from duckdb_functions() where function_name ilike '%hmac%'")
-print("HMAC functions in DuckDB:", hmac.fetchall()[0][0])
+# functions whose name mentions HMAC: the prose says DuckDB has none
+hmac = layer.connection.sql("select count(*) from duckdb_functions() where function_name ilike '%hmac%'").fetchall()[0][0]
+assert hmac == 0
+print("HMAC functions in DuckDB:", hmac)

@@ -1,6 +1,6 @@
-"""The support team's pull request adds two columns to support.tickets. Coverage judges them by their names; chapter
-3's classification of the table's values, added to the job, reads a sample or, the slow version, every row. Counts of
-values read stand in for time, which depends on the machine."""
+"""The support team's pull request adds two columns to support.tickets, which coverage judges by their names and chapter
+3's value checks judge by reading a sample, or every row. The prose's point rests on the callback number's empty column
+and on the values each check reads; counts of values stand in for time, which depends on the machine."""
 import pyarrow as pa
 
 from lib import ci, pii
@@ -28,8 +28,10 @@ for check in report.checks[1:]:
 text_columns, sampled, every_row = 0, 0, 0
 for name in sorted(before.described):
     data = before.catalog.load_table(name).scan().to_arrow()
+    # the non-null values of each text column, the ones a value check classifies
     filled = [len(column) - column.null_count for column in data.columns if pa.types.is_string(column.type)]
     text_columns += len(filled)
+    # the sampled check reads at most pii.ROWS values of each column
     sampled += sum(min(pii.ROWS, count) for count in filled)
     every_row += sum(filled)
 print("text columns in the described tables:", text_columns)
