@@ -35,3 +35,7 @@ say = "The code adds a check to the job's settings that treats every column name
 
 [examples.broken-files-become-findings]
 say = "The code makes a pull request that adds a support agent to the users file with a closing quote missing, adds the work email column, and changes the learners table's country column from text to a number, then runs the whole job. The policy tests and the enforcement tests each fail with one finding, that the check could not run, because the users file doesn't parse; the migrations check fails because Iceberg refuses the type change; and coverage fails on the unclassified column. Apart from those two tests, every check runs, {{out:broken-files-become-findings:checks that ran}} in all, and the job exits with code {{out:broken-files-become-findings:exit code}}."
+
+[terms]
+"course_performance" = "course performance"
+"marketing_audience" = "marketing audience"
