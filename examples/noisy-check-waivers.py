@@ -1,5 +1,6 @@
 """A noisy check added to the job: every column named like an ID is personal. The platform decided otherwise for IDs
-used for joining, so each owning team waives its findings, and the waiver count climbs."""
+used for joining, so each owning team waives its findings, and the waiver count climbs. The prose's point rests on the
+not-acted-on line of each check."""
 from collections import Counter
 
 from lib import ci
@@ -15,9 +16,11 @@ noisy = next(check for check in report.checks if check.name == "id-columns")
 print("job, before the waivers:", "passed" if report.passed else "failed")
 print("id-columns, findings:", len(noisy.findings))
 print("id-columns, findings on main:", len(noisy.on_main))
+# the last word of each message is the classification
 classified = Counter(finding.message.rpartition(" ")[2] for finding in noisy.findings)
 for level, count in sorted(classified.items()):
     print(f"id-columns, findings classified {level}:", count)
+# the part of the finding's ID after the check's name: the column's full name
 print("id-columns, the public one:", ", ".join(f.id.split("/")[1] for f in noisy.findings if f.message.endswith("public")))
 
 with open(after.governance / "waivers.toml", "a", encoding="utf-8") as waivers:

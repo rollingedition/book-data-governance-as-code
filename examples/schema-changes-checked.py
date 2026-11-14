@@ -1,3 +1,5 @@
+"""Adds an unreviewed column, drops a column and adds it back, then runs both checks and reads the dropped values by time
+travel. The prose's point rests on the two field IDs, and on the time-travel line, which still returns every country."""
 from pyiceberg.types import StringType
 
 from lib import catalog, metadata
@@ -13,12 +15,13 @@ with learners.update_schema() as update:                                     # a
 with learners.update_schema() as update:                                     # drop a column, then add it back
     update.delete_column("country")
 with learners.update_schema() as update:
-    update.add_column("country", StringType())
+    update.add_column("country", StringType())                               # an added field gets a new ID, never the old one
 
 country = learners.schema().find_field("country")
 print("country field ID, after it was added back:", country.field_id)
 values = learners.scan(selected_fields=("country",)).to_arrow().column("country")
 print("country values after it was added back:", f"{values.null_count:,} nulls of {len(values):,}")
+# Minus the one snapshot that wrote the rows: the schema changes wrote none of their own.
 print("snapshots the schema changes wrote:", len(learners.metadata.snapshots) - 1)
 old = learners.scan(snapshot_id=written.snapshot_id, selected_fields=("country",)).to_arrow().column("country")
 print("country values, read by time travel to that snapshot:", f"{len(old) - old.null_count:,} of {len(old):,}")

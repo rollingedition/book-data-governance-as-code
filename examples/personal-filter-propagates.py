@@ -1,6 +1,5 @@
-"""A table chosen by a personal column: the learners with a birthday this month, for a birthday offer. None of its
-values is personal, yet each row reveals the month of a learner's birth. Only counting INDIRECT inputs proposes
-personal."""
+"""A birthday-offer table whose only personal input is a filter on date of birth. The prose rests on the learner count,
+and on the proposals counting DIRECT inputs alone and counting DIRECT and INDIRECT inputs."""
 
 from lib import lineage
 from lib.catalog import open_catalog
@@ -20,6 +19,7 @@ def offers() -> None:
 
 
 events_file = scratch() / "events.jsonl"
+# record derives the lineage from this statement, and reads it before offers() runs
 lineage.record(lineage.client(events_file), "birthday_offers", f"create table marketing.birthday_offers as {select}",
                catalog, offers)
 offers_table = catalog.load_table("marketing.birthday_offers").scan().to_arrow()

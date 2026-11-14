@@ -1,3 +1,6 @@
+"""Masks the email in the select list only, then runs five reads aimed at one learner's email through that rewrite and
+prints what each returns. The prose's point rests on the five attack lines, each of which returns learner 2's ID, the
+stored email, or an error that holds it."""
 import re
 
 import duckdb
@@ -19,6 +22,7 @@ attacks = {
 }
 for name, sql in attacks.items():
     try:
+        # the column rewrite changes only the select list, so every other clause reads the stored email
         answer = str(platform.run(platform.mask_select_list(sql, "analyst-1")).fetchall())
     except duckdb.Error as error:
         answer = str(error).splitlines()[0]

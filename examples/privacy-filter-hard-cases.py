@@ -1,3 +1,5 @@
+"""Counts how many of each hard case the model's recorded spans catch, and reads the names it misses by case and length.
+The prose rests on the missed-name counts and on the first lowercase ticket that both detectors miss."""
 from collections import Counter
 
 from lib import pii
@@ -22,9 +24,12 @@ for case in ("first names that are words", "instructors named in reviews"):
 # A first name on its own says less than a full name: how many of the misses are one word?
 print("missed names that are one word:", sum(len(pii.text_of(s).split()) == 1 for s in missed))
 print("missed names of two words or more:", sum(len(pii.text_of(s).split()) > 1 for s in missed))
+# islower() counts only names typed entirely in lowercase, so a name with a capital letter, such as "Jane", doesn't.
 print("of them, typed in lowercase:", sum(len(pii.text_of(s).split()) > 1 and pii.text_of(s).islower() for s in missed))
 
 # A lowercase name that neither the model nor the platform's patterns cover any part of, in the first ticket with one.
+# The model's spans and the patterns' together: a name is missed only when both miss it. The lowest ticket ID is taken,
+# so the same ticket is printed on every run.
 first = min(pii.missed(cases["names in lowercase"], model + pii.find(pii.platform_detector())), key=lambda s: s.row_id)
 print("first ticket with a lowercase name both detectors miss:", first.row_id)
 print("the name, as typed:", pii.text_of(first))

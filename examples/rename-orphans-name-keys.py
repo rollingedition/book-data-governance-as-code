@@ -1,3 +1,5 @@
+"""Renames crm.learners.email in a scratch catalog, then looks the column up by field ID and by name. The prose's point
+rests on the two classification lines, which disagree, and on the check's `renamed from email` line."""
 from lib import catalog, metadata, policy
 
 platform = catalog.open_catalog(["crm.learners"])
@@ -7,7 +9,7 @@ by_name = {column.name: column.classification for column in by_id.values()}  # a
 
 learners = platform.load_table("crm.learners")
 with learners.update_schema() as update:
-    update.rename_column("email", "contact_email")
+    update.rename_column("email", "contact_email")                           # renames in place: the field ID stays
 field = learners.schema().find_field("contact_email")
 print("contact_email field ID:", field.field_id)
 values = learners.scan(selected_fields=("contact_email",)).to_arrow().column("contact_email")

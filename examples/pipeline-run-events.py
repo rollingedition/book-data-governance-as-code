@@ -1,4 +1,6 @@
-"""Run the platform's four pipelines with OpenLineage run events, then read back what the events say."""
+"""Runs the four pipelines with lineage twice, into two files, and reads back what the first file's events say. The
+prose rests on the counts of events and run IDs, on the run facet the client adds, and on the same-bytes check, which
+the example asserts."""
 
 from openlineage.client.uuid import generate_new_uuid, generate_static_uuid
 
@@ -10,6 +12,8 @@ folder = scratch()
 catalog = open_catalog()
 lineage.run_all(catalog, folder / "first.jsonl")
 lineage.run_all(catalog, folder / "second.jsonl")          # the same nightly run, sent again
+# lib.lineage fixes the event time and derives the run IDs
+assert (folder / "first.jsonl").read_bytes() == (folder / "second.jsonl").read_bytes()
 events = lineage.read_events(folder / "first.jsonl")
 
 print("events:", len(events))
@@ -26,6 +30,7 @@ print("event times:", ", ".join(sorted({event["eventTime"] for event in events})
 print("distinct run IDs:", len({event["run"]["runId"] for event in events}))
 print("run facets the client added:", ", ".join(events[0]["run"]["facets"]))
 print("same bytes when sent again:", (folder / "first.jsonl").read_bytes() == (folder / "second.jsonl").read_bytes())
+# generate_new_uuid draws a random UUID each time; generate_static_uuid derives one from its arguments.
 print("two random run IDs equal:", generate_new_uuid() == generate_new_uuid())
 print("two static run IDs equal:", generate_static_uuid(lineage.NIGHTLY, b"marketing_audience")
       == generate_static_uuid(lineage.NIGHTLY, b"marketing_audience"))

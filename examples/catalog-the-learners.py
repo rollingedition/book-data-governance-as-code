@@ -1,4 +1,5 @@
-"""Catalog crm.learners: its owner, domain and classifications come from governance/metadata.toml, the reviewed file."""
+"""Apply governance/metadata.toml to crm.learners: write its owner, domain and descriptions into the catalog, then run the
+check on the catalog. The point rests on the last line, the problems the check finds once the file is applied."""
 from collections import Counter
 
 from lib import metadata
@@ -14,7 +15,7 @@ print("columns classified personal:", counts["personal"])
 print("personal columns:", ", ".join(c.name for c in learners.columns.values() if c.classification == "personal"))
 print("columns classified internal:", counts["internal"])
 
-# Write the descriptions into the table's schema, and the owner and domain into its properties.
+# Write the descriptions into the table's schema, where readers see them, and the owner and domain into its properties.
 metadata.apply(platform, described)
 table = platform.load_table("crm.learners")
 print("table properties:", ", ".join(f"{key}={value}" for key, value in sorted(table.properties.items())))

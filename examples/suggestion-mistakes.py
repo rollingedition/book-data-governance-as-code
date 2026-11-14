@@ -1,7 +1,10 @@
+"""Counts the recorded classifications that protect a column less than the review does, and those that protect it more,
+then lists each kind of miss. The prose's point rests on the two counts and on the `personal columns the model called
+internal` line."""
 from lib import metadata
 
 reviewed = metadata.load()
-rank = metadata.LEVELS.index
+rank = metadata.LEVELS.index                                   # a column's position in LEVELS: a larger rank is more protected
 weaker, stronger = [], []
 for s in metadata.suggestions():
     if s.classification not in metadata.LEVELS:                    # an answer nobody can act on goes to a person

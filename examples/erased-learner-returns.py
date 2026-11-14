@@ -1,5 +1,5 @@
-"""An erased learner comes back: the warehouse's copy of the CRM is reloaded each night from the application's
-export, which nobody erased, and the pipelines rebuild from it. A check against the erasure register catches it."""
+"""An erased learner comes back: the nightly reload of crm.learners from the application's export brings the rows back, and
+the pipelines rebuild from them. A check against the erasure register catches the rows."""
 from datetime import timedelta
 
 from lib import pipelines, retention
@@ -12,12 +12,15 @@ print("the erasure register's entry:", register[0]["request"], register[0]["lear
 learners = catalog.load_table("crm.learners")
 print("the learner's rows in crm.learners after the erasure:", retention.count(learners, retention.rows_of([LEARNER])))
 
-learners.overwrite(retention.crm_export())          # the nightly reload, from the application's export
+# the nightly reload: the application's export still holds the learner, since nobody erased it there
+learners.overwrite(retention.crm_export())
+# the pipelines that read crm.learners rebuild from the reloaded table
 for name in ("learner_activity", "marketing_audience"):
     pipelines.run(catalog, name)
 for table in ("crm.learners", "analytics.learner_activity", "marketing.audience"):
     print(f"the learner's rows in {table} after the nightly run:",
           retention.count(catalog.load_table(table), retention.rows_of([LEARNER])))
 
+# hashes each learner_id in every table and looks it up in the register, so no learner's ID is printed
 for table, rows in retention.erased_rows(catalog, register).items():
     print(f"the check against the register, rows of erased learners in {table}:", rows)

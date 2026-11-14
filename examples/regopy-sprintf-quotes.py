@@ -1,8 +1,10 @@
+"""One label formatted from nine sources, the schema taken from each in turn. The point rests on the printed lines where regopy's JSON is invalid: a source that keeps its quotes breaks the output."""
 import json
 
 from regopy import Input, Interpreter
 
 # The same label, sprintf("%s.%s", [schema, input.table]), with the schema "crm" taken from nine places.
+# crm is a rule and schema_of a function, two of the nine sources
 helpers = 'crm := "crm"\nschema_of(x) := "crm" if x == 1\n'
 cases = [
     ("from input.schema", "input.schema", "true"),
@@ -10,6 +12,7 @@ cases = [
     ("from a function", "schema_of(1)", "true"),
     ("from iterating over a set", "s", 'some s in {"crm"}'),
     ("from object.get, the key found", 'object.get(input, "schema", "public")', "true"),
+    # namespace is not in the input, so object.get returns its default, crm
     ("from object.get, its default", 'object.get(input, "namespace", "crm")', "true"),
     ("from lower(input.schema)", "lower(input.schema)", "true"),
     ("from concat", 'concat("", ["c", "rm"])', "true"),

@@ -1,5 +1,6 @@
-"""Two incremental statements sqlglot.lineage answers without complaint and gets wrong: an INSERT, whose outputs it
-names after the SELECT, and a MERGE, for which it returns nothing, or the columns of the subquery its USING names."""
+"""sqlglot.lineage's answers for an INSERT and for two MERGE statements, beside the book's lineage: sqlglot names the
+INSERT's outputs after its SELECT, and returns nothing or a subquery's columns for a MERGE, which the book refuses. The
+prose rests on the sqlglot outputs and on the refusals at the end."""
 import pyarrow as pa
 from sqlglot.lineage import lineage as sqlglot_lineage
 
@@ -19,6 +20,8 @@ using (select l.learner_id, l.country, l.email from crm.learners l) s on a.learn
 when not matched then insert (learner_id, country) values (s.learner_id, s.country)"""}
 
 print("analytics.daily_revenue columns:", ", ".join(schema["analytics"]["daily_revenue"]))
+# The SELECT's expressions have no aliases, so sqlglot names each output after the SELECT, not the table. None asks for
+# every output column at once.
 print("sqlglot, INSERT outputs:", ", ".join(sqlglot_lineage(None, insert, schema, dialect="duckdb")))
 fields, rows = lineage.column_lineage(insert, schema)
 for column, inputs in fields.items():
@@ -29,6 +32,7 @@ for label, merge in merges.items():
     outputs = sqlglot_lineage(None, merge, schema, dialect="duckdb")
     print(f"sqlglot, MERGE {label}, outputs:", ", ".join(outputs) or "none")
 
+# One value too many for daily_revenue's two columns, caught after sqlglot parses it; each MERGE is refused before sqlglot is asked.
 refused = {"INSERT with one value too many": insert.replace("sum(p.amount)", "sum(p.amount), count(*)"),
            **{f"MERGE {label}": merge for label, merge in merges.items()}}
 for label, statement in refused.items():

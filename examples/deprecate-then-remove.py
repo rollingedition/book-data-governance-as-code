@@ -1,11 +1,12 @@
 """team-billing removes the legacy card_number column from billing.payments: once straight away, and once after a pull
-request that deprecates it has merged."""
+request that deprecates it has merged. The prose's point rests on the two removal lines."""
 import yaml
 
 from lib import ci
 
 entry = ('8 = { name = "card_number", classification = "sensitive", '
          'description = "The full card number, from a legacy export. Should not be stored at all." }\n')
+# the note goes after the description's sentence ending "at all.", and deprecated = true goes inside the entry's braces
 deprecated_entry = entry.replace("all.", "all. Deprecated: reconcile payments by payment_id.").replace(" }", ", deprecated = true }")
 
 
@@ -27,6 +28,7 @@ for base, line, name in ((main, entry, "straight away"), (deprecated, deprecated
     for finding in report.checks[0].findings:
         print(f"  {finding.id}:", finding.message)
 
+# property 7 is the eighth column, field 8: card_number, the column the deprecation marks
 card_number = ci.contract(ci.build(deprecated), "billing.payments")["schema"][0]["properties"][7]
 print("the deprecated column in its ODCS contract:")
 print(yaml.safe_dump(card_number, sort_keys=False, width=200), end="")

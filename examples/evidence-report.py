@@ -1,3 +1,5 @@
+"""The platform on Oct 1, after an erasure and the day's queries: the first evidence report, written to a file as data, with
+each section's result printed. The printed checks, the erasure's lines and the head are what the prose rests on."""
 import json
 from datetime import timedelta
 
@@ -6,9 +8,9 @@ from lib.platform import scratch
 
 # The platform on Oct 1: every table and pipeline output, chapter 7's erasure of learner 3590 at 07:00, then the day's
 # queries through the audited layer.
-catalog, graph = retention.open_platform(statistics_off=True)
+catalog, graph = retention.open_platform(statistics_off=True)      # statistics off for personal columns: each table rewritten under them, old files swept
 log = audit.Log(scratch() / "audit.jsonl")
-_, found, done = retention.erase_everywhere(catalog, graph, 3590, "erasure-0001", min_age=timedelta(0))
+_, found, done = retention.erase_everywhere(catalog, graph, 3590, "erasure-0001", min_age=timedelta(0))    # zero: no file age guard
 audit.record_erasure(log, "erasure-0001", done, retention.scan(catalog, found), at=audit.MIDNIGHT.replace(hour=7))
 platform = audit.Audited(catalog, log)
 audit.run_day(platform)
@@ -33,6 +35,6 @@ for erasure in result["erasures"]:
     for kept in erasure["kept"]:
         print(f"erasure {erasure['request']}, kept under an exception: {kept['table']}, decided by {kept['decided_by']},",
               f"{', '.join(kept['columns_erased'])} erased")
-print("chain head written down, at record:", report["audit log"]["inputs"]["head"]["records"])
+print("chain head written down, at record:", report["audit log"]["inputs"]["head"]["records"])     # the next report's anchor
 print("engine cross-check, computed again from:", "; ".join(report["engine cross-check"]["computed again from"]))
 print("engine cross-check, not computed again:", report["engine cross-check"]["not computed again"])

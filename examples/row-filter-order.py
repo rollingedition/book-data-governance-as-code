@@ -1,3 +1,5 @@
+"""Runs the evaluation-order test for each filter shape the layer writes, with the filter in a WHERE alone and as the layer
+writes it. The prose's point rests on the consent semi-join's two lines, and on the count at the end."""
 from lib.enforce import order_cases
 
 # The evaluation-order regression test, lib.enforce.order_cases, which chapter 10's CI runs on every DuckDB upgrade.

@@ -1,3 +1,5 @@
+"""Runs the course assistant's review query as instructor-17 and as assistant-1, through a tool that takes the user from
+the signed-in session. The prose's point rests on the reviews-behind-it lines for each user."""
 from lib import policy
 from lib.catalog import open_catalog
 from lib.enforce import Enforcer
@@ -9,6 +11,7 @@ courses = set(policy.data_document()["platform"]["instructor_courses"]["17"])   
 def query_tool(session_user: str):
     """The tool the course assistant calls to query the warehouse. The model writes the SQL; the user it runs as comes
     from the signed-in session, never from the model or the conversation."""
+    # the user is the session's; the SQL is all the model contributes
     return lambda sql: platform.sql(sql, user=session_user).fetchall()
 
 
@@ -18,5 +21,6 @@ for runs_as in ["instructor-17", "assistant-1"]:
     answer = query_tool(runs_as)(question)
     print(f"run as {runs_as}, courses in the answer:", len(answer))
     print(f"run as {runs_as}, reviews behind it:", sum(reviews for _, reviews, _ in answer))
+    # each answer row is (course, reviews, rating), so row[0] is the course
     mine = [row for row in answer if row[0] in courses]
     print(f"run as {runs_as}, instructor-17's reviews behind it:", sum(reviews for _, reviews, _ in mine))

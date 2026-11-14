@@ -1,6 +1,6 @@
-"""The platform's global rules and the crm domain's own rule, run on every contract of the CRM team's pull request,
-which this time classifies the new work_email column: as public, with no description. Then the same column described,
-with crm.learners moved to the analytics domain, which has no rules of its own."""
+"""The platform's global rules and the crm domain's own rule, run on the CRM team's two tries at work_email: classified
+public with no description, then described with crm.learners moved to the analytics domain, which has no rules of its own.
+The prose's point rests on the two contract-rules findings of the first try and on the owner-review finding after the move."""
 from lib import ci
 
 main = ci.checkout()
@@ -18,6 +18,7 @@ for line in ci.lines(report):
 
 # The second try: a description, and the table moved to a domain whose rules allow public columns.
 ci.edit(branch, "governance/metadata.toml", 'description = "" }', 'description = "The learner\'s work address." }')
+# the table's domain changes from crm to analytics, which has no rules of its own
 ci.edit(branch, "governance/metadata.toml", 'owner = "team-crm"\ndomain = "crm"\ndescription = "Every learner',
         'owner = "team-crm"\ndomain = "analytics"\ndescription = "Every learner')
 report = ci.run(before, branch, checks=["coverage", "contract-rules", "owner-review"])

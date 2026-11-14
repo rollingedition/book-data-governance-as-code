@@ -1,3 +1,5 @@
+"""Runs sqlglot's qualify on a join with a table the schema lacks, then sends that join and five other reads through
+the enforcement layer. The prose's point rests on the qualify line, where the star stays, and on the denial lines."""
 import sqlglot
 from sqlglot.optimizer.qualify import qualify
 
@@ -14,6 +16,7 @@ print("qualify on its own:", qualify(sqlglot.parse_one(query, read="duckdb"), sc
 attempts = {
     "a table missing from the catalog": query,
     "a column the table doesn't have": "select shoe_size from crm.learners",
+    # scan_crm_learners is the scan lib.warehouse registers for crm.learners, and DuckDB resolves it like a table
     "the scan behind a view": "select count(*) from scan_crm_learners",
     "a Parquet file": "select count(*) from read_parquet('data/platform/learners.parquet')",
     "a table function": "select count(*) from query_table('crm.learners')",
@@ -34,6 +37,7 @@ try:
     rows("select count(*) from read_parquet('data/platform/learners.parquet')")
 except Exception as error:
     print("the file, run directly:", str(error).split(":")[0])
+# the layer turned external access off, and DuckDB refuses to turn it back on while the database runs
 try:
     platform.connection.execute("set enable_external_access = true")
 except Exception as error:

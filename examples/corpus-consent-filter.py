@@ -1,3 +1,4 @@
+"""Counts the reviews that three builds of the corpus would hold, and the personal data the plain copy would keep. The prose's point rests on the "share by learners never asked" line."""
 from collections import Counter
 
 from lib import ai_data, pii
@@ -12,13 +13,16 @@ plain = layer.sql("select count(*) from learning.reviews").fetchall()[0][0]
 print("reviews the plain pipeline copies:", f"{plain:,}")
 
 # The governed build: the same SQL, through the enforcement layer, as the job's principal, for its purpose.
+# the job's own read: its principal and purpose come from the build settings
 governed = ai_data.read(platform)
 print(f"reviews the governed build reads, as {ai_data.BUILD['principal']} for {ai_data.BUILD['purpose']}:", f"{len(governed):,}")
+# no purpose stated: the layer returns every review, with its text left out
 without = ai_data.read(platform, purpose=None)
 print("reviews read without the purpose:", f"{len(without):,}")
 print("of them, with their text:", sum(r["body"] is not None for r in without))
 
 # The filter that looks right: leave out the learners who said no.
+# every review except those whose learner said no; a null answer passes, since only "= false" is excluded
 opt_out = layer.sql("""
     select count(*), count(*) filter (where l.ai_training_consent is null)
     from learning.reviews r join crm.learners l using (learner_id)
@@ -26,6 +30,7 @@ opt_out = layer.sql("""
 print("reviews a filter on refusals keeps:", f"{opt_out[0]:,}")
 print("of them, by learners never asked:", f"{opt_out[1]:,}")
 print("share by learners never asked:", f"{opt_out[1] / opt_out[0]:.0%}")
+# the signup dates of the learners whose consent is still unknown
 never = layer.sql("""select min(signup_at)::date, max(signup_at)::date from crm.learners
                      where ai_training_consent is null""").fetchall()[0]
 print("learners never asked signed up:", " to ".join(f"{day:%b} {day.day}, {day.year}" for day in never))
@@ -34,6 +39,7 @@ print("learners never asked signed up:", " to ".join(f"{day:%b} {day.day}, {day.
 raw = dict(layer.sql("select review_id, body from learning.reviews").fetchall())
 for entity, (placed, _) in ai_data.left(raw).items():
     print(f"plain pipeline, labelled {entity} values:", f"{placed:,}")
+# each labelled email's text, counted by how many spans write it
 emails = Counter(pii.text_of(s) for s in pii.truth() if s.source == "reviews" and s.entity == "EMAIL_ADDRESS")
 print("plain pipeline, distinct labelled EMAIL_ADDRESS values:", len(emails))
 print("of them, written once:", sum(n == 1 for n in emails.values()))

@@ -1,5 +1,5 @@
-"""What the learning team's rename of learning.courses.category reaches: Iceberg readers, SQL and lineage. Then the same
-rename merged together with the fix of both pipelines that name the column."""
+"""What the learning team's rename of learning.courses.category reaches, through Iceberg readers, SQL and lineage. The
+prose's point rests on the courses an Iceberg reader still finds, the columns reached, and the job's verdict once the fix merges with the rename."""
 import pyarrow.compute as pc
 
 from lib import ci, retention
@@ -12,9 +12,11 @@ ci.edit(branch, "governance/metadata.toml", '3 = { name = "category", classifica
         '3 = { name = "subject", classification = "public"')       # the same field ID, renamed
 
 before, after = ci.build(main), ci.build(branch)
+# matched by field ID, so the rename is one change, not a column dropped and another added
 change = next(c for c in ci.changes(before, after) if c.table == "learning.courses")
 print("change:", change.kind, "from", change.before, "to", change.after)
 print("field ID, before and after:", change.field_id)
+# read by the new name: Iceberg maps it to the same field ID as before
 subjects = after.catalog.load_table("learning.courses").scan(selected_fields=("subject",)).to_arrow()
 print("courses whose subject an Iceberg reader finds:", pc.count(subjects["subject"]).as_py())
 print("pipelines whose SQL names it:", ", ".join(change.jobs))
@@ -24,6 +26,7 @@ print("columns whose values come from it:", len(change.values))
 for column in change.values:
     print("  value of:", column)
 print("columns it can change, DIRECT and INDIRECT:", len(change.reached))
+# a column's table is the first two parts of its name, schema.table.column
 print("tables those columns are in:", ", ".join(sorted({".".join(c.split(".")[:2]) for c in change.reached})))
 print("owners the report goes to:", ", ".join(change.owners))
 print("tables on main:", len(retention.tables(before.catalog)))

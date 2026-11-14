@@ -1,3 +1,4 @@
+"""Runs every test in the platform's Rego test file and counts the passes. The point rests on the last line, the tests passed out of all of them."""
 from collections import Counter
 
 from lib import policy
@@ -6,4 +7,5 @@ from lib import policy
 results = policy.run_tests()
 for test, result in results.items():
     print(f"{result}: {test}")
+# len(results) counts every test, so one that fails or errors still shows in the total
 print("tests passed:", f"{Counter(results.values())['PASS']} of {len(results)}")

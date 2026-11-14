@@ -1,12 +1,15 @@
-"""A misspelt column: sqlglot raises when the column is qualified, and when it isn't, in a query on one table, traces it
-to that table anyway. lib.lineage checks every source against the schema."""
+"""A misspelt column, emial for email, in a query on one table: sqlglot raises when the column is qualified by its
+alias, and traces it to the table when it isn't. The prose rests on the sqlglot answer for each form, and on the book's
+check against the schema."""
 from sqlglot.errors import OptimizeError
 
 from lib import lineage
 from lib.catalog import open_catalog
 
-schema = lineage.schema(open_catalog(["crm.learners"]))
+schema = lineage.schema(open_catalog(["crm.learners"]))    # the schema lets sqlglot check each column name
+# the alias l is right, and only the column name is misspelt
 qualified = "create table marketing.audience as select l.learner_id, l.emial from crm.learners l"
+# no alias, so nothing names the table the column comes from
 unqualified = "create table marketing.audience as select learner_id, emial from crm.learners"
 
 try:

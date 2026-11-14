@@ -1,3 +1,6 @@
+"""Builds instructor-17's daily course report, counts its cells under the minimum and its cells of one learner, and matches
+each cell of one against the enrollments the instructor may read. The prose's points rest on the cell and lookup counts, and
+on the last line, which shows the differencing."""
 from lib.catalog import open_catalog
 from lib.enforce import Enforcer, minimum_group_size
 
@@ -15,10 +18,12 @@ platform.connection.execute("""create view mine as
 platform.connection.execute("""create view report as
     select course_id, country, count(*) as learners, avg(progress_pct) as progress from mine group by all""")
 print("cells in the report:", count("from report"))
+# the minimum is the threshold: a cell with fewer learners than it is held back
 print("cells under the minimum:", count(f"from report where learners < {minimum}"))
 
 # instructor-17 may read their courses' enrollments, with each one's progress. A cell of one learner, matched on its
 # progress, names that learner's country.
+# what instructor-17 may read: enrollments with each one's progress, and no country
 seen = platform.sql("select course_id, progress_pct from learning.enrollments", "instructor-17").to_arrow_table()
 platform.connection.register("seen", seen)
 print("cells of one learner:", count("from report where learners = 1"))
@@ -28,6 +33,7 @@ print("cells shown with the minimum:", count(f"from report where learners >= {mi
 
 # The minimum doesn't stop differencing. An enrollment that arrives alone in its course on its day, in a cell already
 # shown, raises that cell by one in the next day's report, and the instructor sees which enrollment arrived.
+# an enrollment alone in its course that day, whose country already has the minimum on earlier days
 revealed = count(f"""from mine as m
     where (select count(*) from mine as o where o.course_id = m.course_id and o.day = m.day) = 1
       and (select count(*) from mine as o where o.course_id = m.course_id and o.country = m.country and o.day < m.day) >= {minimum}""")

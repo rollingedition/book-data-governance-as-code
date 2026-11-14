@@ -1,3 +1,5 @@
+"""Edits the tickets table twice, first a column's description and then a new column, and after each change counts the field
+IDs the metadata lacks. The prose rests on the schema IDs, the field counts and the proposal for the new column."""
 from pyiceberg.types import StringType
 
 from lib import metadata, pii
@@ -8,6 +10,7 @@ from lib.warehouse import connect
 catalog = open_catalog(["support.tickets"])
 tickets = catalog.load_table("support.tickets")
 reviewed = metadata.load()["support.tickets"].columns           # field ID -> the column as people reviewed it
+# A field ID the reviewed metadata doesn't have: Iceberg gives each added column a new one.
 unclassified = lambda: {f.field_id for f in tickets.schema().fields if f.field_id not in reviewed}
 print("schema ID at the start:", tickets.schema().schema_id)
 
@@ -20,10 +23,12 @@ print("fields to classify after the doc edit:", len(unclassified()))
 with tickets.update_schema() as update:
     update.add_column("callback_number", StringType(), doc="Where to call the learner back.")
 phone_of = {row["learner_id"]: row["phone"] for row in load("crm.learners").to_pylist()}
+# tickets from other channels have no callback number, so their value is None
 fill_column(tickets, "callback_number", lambda row: phone_of[row["learner_id"]] if row["channel"] == "phone" else None)
 print("schema ID after adding a column:", tickets.schema().schema_id)
 print("fields to classify after adding a column:", len(unclassified()))
 
+# only= keeps the proposals to the field IDs the metadata lacks.
 for f in pii.classify(catalog, connect(catalog), pii.platform_detector(), only={"support.tickets": unclassified()}):
     found = ", ".join(f"{entity} in {n} of {f.sampled}" for entity, n in f.found.items())
     print(f"{f.table}.{f.column}, field ID: {f.field_id}")

@@ -1,4 +1,5 @@
-"""One access decision from the platform's Rego policy, and the same decision enforced on one query."""
+"""One access decision from the platform's Rego policy, and the same agent's query enforced in the layer. The point rests on
+the emea line: the query names no region, yet only EMEA learners come back."""
 import json
 
 from lib import policy
@@ -7,8 +8,9 @@ from lib.enforce import Enforcer, answer
 from lib.platform import load
 
 # agent-a05, a support agent in EMEA, asks to read three columns of crm.learners.
-request = policy.request("agent-a05", "crm.learners", ["learner_id", "email", "support_region"])
+request = policy.request("agent-a05", "crm.learners", ["learner_id", "email", "support_region"])  # the shape Trino's OPA plugin sends
 decision = policy.decide(request)
+assert decision["allow"] is True           # support may read crm.learners; a policy that denies it fails this run
 print("allow:", decision["allow"])
 print("row filters:", json.dumps(decision["row_filters"]))
 print("column masks:", json.dumps(decision["column_masks"]))
@@ -17,12 +19,12 @@ print("reasons:", "; ".join(decision["reasons"]))
 # The enforcement layer asks the policy about every table a query reads, then rewrites the query to apply the answer.
 layer = Enforcer(open_catalog(["crm.learners"]))
 query = "select support_region, count(*) as learners from crm.learners group by support_region order by support_region"
-for region, learners in answer(layer, query, "agent-a05"):
+for region, learners in answer(layer, query, "agent-a05"):   # the layer adds the agent's region to the query before the engine runs it
     print(f"learners agent-a05 sees in {region}:", f"{learners:,}")
 
 # Compare the emails the agent gets with the platform's data, without printing any.
-stored = load("crm.learners")
+stored = load("crm.learners")                                  # the generated data, not the catalog's copy
 emails = dict(zip(stored.column("learner_id").to_pylist(), stored.column("email").to_pylist()))
-seen = answer(layer, "select learner_id, email from crm.learners", "agent-a05")
+seen = answer(layer, "select learner_id, email from crm.learners", "agent-a05")   # the agent's own query, with no region in it
 print("emails agent-a05 sees, as stored:", f"{sum(email == emails[learner] for learner, email in seen):,} of {len(seen):,}")
 print("learners in the platform's data:", f"{stored.num_rows:,}")

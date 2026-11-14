@@ -1,5 +1,5 @@
-"""A Python step that copies marketing.audience for the email tool and tells OpenLineage nothing: impact analysis misses
-the copy, and a check of the catalog against the lineage finds it."""
+"""A Python step copies marketing.audience for the email tool and sends no lineage. The prose rests on the walk from the
+email column, which misses the copy, and on the catalog check against the lineage, which finds it."""
 
 from lib import lineage
 from lib.catalog import open_catalog
@@ -18,4 +18,5 @@ print("rows exported:", f"{len(export):,}")
 events = lineage.read_events(events_file)
 reached = lineage.downstream(lineage.graph(events), "crm.learners.email")
 print("crm.learners.email reaches:", ", ".join(edge.target for edge in reached))
+# the catalog's tables, less the platform's sources and the outputs the events name
 print("tables no job's lineage accounts for:", ", ".join(lineage.unaccounted(catalog, events)))
