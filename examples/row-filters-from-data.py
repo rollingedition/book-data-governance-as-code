@@ -21,7 +21,7 @@ print("a region that looks like SQL:", row_filter(odd, platform.columns("support
 total = platform.connection.sql("select count(*) from learning.reviews").fetchall()[0][0]
 read = platform.sql("select count(*) from learning.reviews", "assistant-1").fetchall()[0][0]
 print("reviews the assistant reads:", f"{read:,} of {total:,}")
-# a null consent is an answer the learner never gave, so it is labelled 'never asked'
+# a null consent means no answer was recorded, so the label reads 'never asked'
 by_consent = platform.connection.sql("""select coalesce(l.ai_training_consent::varchar, 'never asked'), count(*)
     from learning.reviews r join crm.learners l using (learner_id) group by all order by all""").fetchall()
 for consent, reviews in by_consent:

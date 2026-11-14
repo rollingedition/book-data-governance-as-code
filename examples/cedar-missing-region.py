@@ -8,9 +8,8 @@ guarded = policy.CEDAR_POLICIES.read_text(encoding="utf-8")
 unguarded = guarded.replace("principal has region && ", "")            # the same forbid, without its `has` check
 schema = policy.CEDAR_SCHEMA.read_text(encoding="utf-8")
 
-# A new support agent with no region yet, and the first learner of crm.learners in each region.
+# A support agent with no region yet, as when a role is given before anyone sets one, and the first learner of crm.learners in each region.
 data = policy.data_document()
-# a support agent with no region yet, as when a role is given before anyone sets one
 data["platform"]["users"]["agent-new"] = {"groups": ["support"]}
 first = {}
 for learner in load("crm.learners").select(["learner_id", "support_region"]).to_pylist():

@@ -24,7 +24,7 @@ print("cases where what the user gets agrees with the decision:", f"{agreeing} o
 # marketing.audience is a table marketing may read, but nobody has classified its columns, so the policy treats each
 # one as sensitive: marketing gets every row, and no value in any column.
 rows = platform.sql("select * from marketing.audience", "marketing-1").fetchall()
-# a redacted value comes back as None, so a column holds a value when one of its values isn't None
+# a column counts as shown when one of its values isn't None, which is what a redact mask returns
 shown = sum(any(value is not None for value in column) for column in zip(*rows))
 print("marketing-1, marketing.audience, which has no metadata, rows:", f"{len(rows):,}")
 print("marketing-1, marketing.audience, which has no metadata, columns with a value:", f"{shown} of {len(rows[0])}")

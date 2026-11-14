@@ -1,4 +1,4 @@
-"""The support policy with and without its guard, asked for a support agent's tickets. The points rest on the two allowed lines and on the test the copy without the guard fails."""
+"""The support policy with and without its guard, asked for a support agent's tickets. The prose's points rest on the printed reasons, row filters and regions seen with each version, and on the test the copy without the guard fails."""
 import tempfile
 from pathlib import Path
 

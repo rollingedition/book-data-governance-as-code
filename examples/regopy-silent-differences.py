@@ -1,4 +1,4 @@
-"""Small policies that regopy answers differently from OPA, each printed with the answer regopy gives. The point of each line rests on its printed value, which the prose binds."""
+"""Small policies that regopy answers differently from OPA, each printed with the answer regopy gives. The prose's points rest on the printed values, and the bound and literal-mock lines are the controls where regopy agrees with OPA."""
 import json
 
 from regopy import Input, Interpreter
@@ -15,7 +15,7 @@ def ask(rules: str, query: str, request: dict) -> str:
 
 
 admins_only = 'default allow := false\nallow if input.user == "admin"\n'
-# no variable, so regopy gives no value for the false decision
+# no variable in the query
 print("a false decision, queried on its own:", ask(admins_only, "data.example.allow", {"user": "guest"}))
 # bound to x, the same false decision comes back as a value
 print("the same decision, bound to a variable:", ask(admins_only, "x := data.example.allow", {"user": "guest"}))

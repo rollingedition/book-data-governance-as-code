@@ -33,5 +33,5 @@ for user, kind, name in [("finance-1", "Column", "billing.payments.card_number")
 for region, learner in sorted(first.items()):
     print(f"agent-a05 (emea) reads a learner in {region}:", ask("agent-a05", f'Learner::"{learner["learner_id"]}"').decision.value)
 answer = ask("finance-1", 'Column::"billing.payments.card_number"')
-# policy3 is the fourth policy in the file, named by position, not by its @id
+# the policies that decided the answer, and those skipped on an error, come from its diagnostics
 print("everything Cedar returns for finance-1's card numbers:", answer.decision.value, list(answer.diagnostics.reasons), list(answer.diagnostics.errors))

@@ -1,4 +1,4 @@
-"""Each row of the who-sees-what table run through the policy and printed as one line, with the count of rows the policy matches. The point rests on the last line, which compares each decision with its row's expected outcome."""
+"""Each row of the who-sees-what table run through the policy and printed as one line, with the count of rows the policy matches. The point rests on the last line, the count of rows whose decision matches the outcome its row expects."""
 from lib import policy
 
 rego = policy.interpreter()
