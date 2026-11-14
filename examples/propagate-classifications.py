@@ -1,5 +1,5 @@
 """Proposes classifications from lineage for the columns with no declared one, then checks the rule against the columns
-people did classify. The prose rests on the personal count and on the reproduced counts."""
+people did classify. The prose rests on the personal count, on the reproduced counts, and on the check that no declared class is lower."""
 
 from lib import lineage, metadata
 from lib.catalog import open_catalog
@@ -34,3 +34,4 @@ print("missed with DIRECT inputs only:", len(missed))
 for column in missed:
     print(f"  {column}: declared {known[column]}, DIRECT inputs propose {proposals[column][0]}")
 print("declared less protected than lineage proposes:", len(lineage.understated(proposed, known)))
+assert not lineage.understated(proposed, known)

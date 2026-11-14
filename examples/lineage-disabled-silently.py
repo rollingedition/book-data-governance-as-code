@@ -13,7 +13,7 @@ client = lineage.client(events_file)                # a file transport, passed i
 catalog = open_catalog(["learning.courses", "learning.reviews"])
 output = lineage.run(catalog, "review_corpus", client)
 
-print("transport the client chose:", client.transport.kind)      # noop, though a file transport was passed in
+print("transport the client chose:", client.transport.kind)      # OPENLINEAGE_DISABLED wins over the transport passed in
 print("pipeline wrote:", output)
 print("rows written:", f"{len(catalog.load_table(output).scan().to_arrow()):,}")
 assert not events_file.exists()         # the noop transport never creates the file

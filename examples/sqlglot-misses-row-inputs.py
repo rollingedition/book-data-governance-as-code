@@ -1,5 +1,6 @@
-"""What sqlglot.lineage says the pipeline outputs come from, and what it leaves out. The prose rests on the sources of
-the two course performance columns, and on the assertion that neither column the WHERE reads reaches any output."""
+"""What sqlglot.lineage says the pipeline outputs come from, and what it leaves out. The prose rests on the CTE-traced
+source of favourite_category, on the sources of the two course performance columns, and on the assertion that neither
+column the WHERE reads reaches any output."""
 import sqlglot
 from sqlglot import exp
 

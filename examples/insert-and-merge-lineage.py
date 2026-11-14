@@ -32,7 +32,7 @@ for label, merge in merges.items():
     outputs = sqlglot_lineage(None, merge, schema, dialect="duckdb")
     print(f"sqlglot, MERGE {label}, outputs:", ", ".join(outputs) or "none")
 
-# One value more than daily_revenue has columns, and each MERGE, which the book refuses before sqlglot is asked.
+# One value too many for daily_revenue's two columns, caught after sqlglot parses it; each MERGE is refused before sqlglot is asked.
 refused = {"INSERT with one value too many": insert.replace("sum(p.amount)", "sum(p.amount), count(*)"),
            **{f"MERGE {label}": merge for label, merge in merges.items()}}
 for label, statement in refused.items():

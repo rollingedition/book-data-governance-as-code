@@ -1,5 +1,6 @@
 """Runs the four pipelines with lineage twice, into two files, and reads back what the first file's events say. The
-prose rests on the counts of events and run IDs, and on the same-bytes check, which the example asserts."""
+prose rests on the counts of events and run IDs, on the run facet the client adds, and on the same-bytes check, which
+the example asserts."""
 
 from openlineage.client.uuid import generate_new_uuid, generate_static_uuid
 
@@ -11,7 +12,7 @@ folder = scratch()
 catalog = open_catalog()
 lineage.run_all(catalog, folder / "first.jsonl")
 lineage.run_all(catalog, folder / "second.jsonl")          # the same nightly run, sent again
-# A fixed event time and run IDs derived from it make the two files identical, byte for byte.
+# lib.lineage fixes the event time and derives the run IDs
 assert (folder / "first.jsonl").read_bytes() == (folder / "second.jsonl").read_bytes()
 events = lineage.read_events(folder / "first.jsonl")
 
