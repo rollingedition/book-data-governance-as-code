@@ -1,3 +1,4 @@
+"""Scores OpenAI's Privacy Filter, from its recorded detections, against the labelled spans in the reviews the corpus reads. The prose's point rests on the "names the model finds, exactly" and "names the model misses" lines."""
 from collections import Counter
 
 from lib import ai_data, pii
@@ -13,16 +14,20 @@ MATCHES = {"private_person": {"PERSON"}, "private_email": {"EMAIL_ADDRESS"}, "pr
 # each review as written, before the enforcement layer's mask, which changes no name.
 corpus = {row["review_id"] for row in ai_data.read(Enforcer(open_catalog(["crm.learners", "learning.courses",
                                                                           "learning.reviews"])))}
+# the model's detections as recorded, not a live call to the model
 model, manifest = pii.recorded("pii-entities")
 found = [span for span in model if span.source == "reviews" and span.row_id in corpus]
 labelled = [span for span in pii.truth() if span.source == "reviews" and span.row_id in corpus]
 print("model:", manifest["model"])
 print("reviews measured:", len(corpus))
 
+# per entity type: [labelled, found exactly, found overlapping], then per detector label: [found, exact, overlapping]
 scores = pii.score(found, labelled, MATCHES)
+# the overlap count is unused here: the prose counts exact matches only
 placed, exact, _ = scores.recall["PERSON"]
 print("labelled names:", placed)
 print("names the model finds, exactly:", exact)
+# private_person is the model's label for a name, so only that label counts as a match
 missed = pii.missed([span for span in labelled if span.entity == "PERSON"], found, {"private_person"})
 print("names the model misses:", len(missed))
 often = Counter(map(pii.text_of, missed)).most_common(3)
