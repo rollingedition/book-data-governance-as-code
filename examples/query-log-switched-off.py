@@ -11,7 +11,7 @@ AROUND = "select email from crm.learners where learner_id = 541"       # a read 
 folder = scratch()
 
 # A layer that doesn't lock its configuration: code holding its connection tries a file log, then switches logging off.
-unlocked = audit.Audited(open_catalog(["crm.learners"]), audit.Log(folder / "unlocked.jsonl"), lock=False)     # no lock
+unlocked = audit.Audited(open_catalog(["crm.learners"]), audit.Log(folder / "unlocked.jsonl"), lock=False)
 connection = unlocked.enforcer.connection
 try:
     connection.execute("set log_query_path = 'queries.log'")       # the layer's connection refuses to write a file

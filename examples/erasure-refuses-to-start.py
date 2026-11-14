@@ -6,7 +6,7 @@ from lib import retention
 
 LEARNER = 3590
 catalog, graph = retention.open_platform()
-# each setting keeps a snapshot from before the delete: garbage collection off, or three snapshots kept
+# each setting stops expiry from removing the snapshot from before the delete: garbage collection off, or three snapshots kept
 for name, settings in (("crm.learners", {"gc.enabled": "false"}),
                        ("learning.events", {"history.expire.min-snapshots-to-keep": "3"})):
     with catalog.load_table(name).transaction() as transaction:

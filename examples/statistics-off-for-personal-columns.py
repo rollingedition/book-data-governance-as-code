@@ -26,7 +26,6 @@ for statistics_off in (False, True):
     columns = retention.metadata.load()["crm.learners"].columns.values()
     personal = [column.name for column in columns if column.classification == "personal"]
     print(f"{label}, crm.learners personal columns:", len(personal))
-    # a bound of None means the manifest keeps no lower bound for that column
     with_bounds = sum(entry[name]["lower_bound"] is not None for name in personal)
     print(f"{label}, of them with bounds in the manifest:", with_bounds)
     steps, found, _ = retention.erase_everywhere(catalog, graph, LEARNER, "erasure-0002", min_age=timedelta(0))

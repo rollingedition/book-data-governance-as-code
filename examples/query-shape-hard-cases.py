@@ -1,6 +1,7 @@
 """Eleven places to type a learner's values into a query, and what each record keeps of it: the query's shape, with a
-placeholder for each value and a numbered alias for each name. The printed count of records that hold the email, the
-name or the ID is the line the prose rests on."""
+`?` for each value and each name the catalog doesn't hold, and a numbered alias for each alias or CTE the query defines.
+The printed count of records that hold the email, the name or the ID
+is the line the prose rests on."""
 import json
 import re
 
@@ -13,7 +14,7 @@ log = audit.Log(scratch() / "audit.jsonl")
 platform = audit.Audited(open_catalog(["crm.learners"]), log)
 
 # An EMEA learner's email, name and ID, typed into agent-a05's queries as values and as names. None is ever printed.
-learner = next(row for row in load("crm.learners").to_pylist() if row["support_region"] == "emea")     # the first one
+learner = next(row for row in load("crm.learners").to_pylist() if row["support_region"] == "emea")
 email, name, learner_id = learner["email"], learner["full_name"], learner["learner_id"]
 cases = {                                                 # each query puts the same values in one more way
     "a string": f"select learner_id from crm.learners where email = '{email}'",

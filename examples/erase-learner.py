@@ -27,7 +27,7 @@ summary = catalog.load_table("crm.learners").current_snapshot().summary
 # copy-on-write writes the rows it keeps again as new records, so this counts every other row of the file
 print("crm.learners, rows written again to delete one:", f"{int(summary['added-records']):,}")
 print("crm.learners, the commit records:", summary["erasure-request"])
-# snapshots of tables the plan deleted from, not the kept table, that still return a row the erasure deleted
+# snapshots of tables the plan deleted from (not rebuilt, not kept) that still return a row the erasure deleted
 holding = [(table, snapshot) for step in steps if step.column is not None
            for table in [catalog.load_table(step.table)] for snapshot in table.snapshots()
            if not step.kept and retention.count(table, retention.rows(step), snapshot.snapshot_id)]

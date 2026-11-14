@@ -34,6 +34,6 @@ edited = lines[:2] + [audit.canonical(json.loads(lines[2]) | {"user": "agent-a01
 removed = lines[:11] + lines[12:]                                                                    # index 11 is record 12
 for name, version in [("untouched", lines), ("record 3 edited", edited), ("record 3 edited, chain rebuilt", rechained(edited)),
                       ("record 12 removed", removed), ("record 12 removed, chain rebuilt", rechained(removed)),
-                      ("last 2 records removed", lines[:-2])]:      # the day's last two records, cut off
+                      ("last 2 records removed", lines[:-2])]:
     print(f"{name}, checked alone:", "; ".join(audit.check(version)) or "no problem found")
     print(f"{name}, checked against the noon head:", "; ".join(audit.check(version, anchor)) or "no problem found")

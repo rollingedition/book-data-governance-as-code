@@ -14,7 +14,6 @@ before = {name: catalog.load_table(name).current_snapshot().snapshot_id for name
 deleted = retention.apply(catalog, TODAY)
 for name, rows in deleted.items():
     print(f"{name}, rows deleted:", f"{rows:,}")
-# a second run for the same day finds nothing due, so it deletes nothing and makes no commit
 print("rows deleted by running again for the same day:", sum(retention.apply(catalog, TODAY).values()))
 
 for name in (name for name, rows in deleted.items() if rows):

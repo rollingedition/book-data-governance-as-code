@@ -8,7 +8,7 @@ from lib.platform import scratch
 
 # The platform on Oct 1: every table and pipeline output, chapter 7's erasure of learner 3590 at 07:00, then the day's
 # queries through the audited layer.
-catalog, graph = retention.open_platform(statistics_off=True)      # each table rewritten first, and its old files swept
+catalog, graph = retention.open_platform(statistics_off=True)      # statistics off for personal columns: each table rewritten under them, old files swept
 log = audit.Log(scratch() / "audit.jsonl")
 _, found, done = retention.erase_everywhere(catalog, graph, 3590, "erasure-0001", min_age=timedelta(0))    # zero: no file age guard
 audit.record_erasure(log, "erasure-0001", done, retention.scan(catalog, found), at=audit.MIDNIGHT.replace(hour=7))

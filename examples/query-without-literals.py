@@ -1,5 +1,5 @@
 """A record keeps a query's shape and none of its values, while DuckDB's own query log keeps the email as it was typed.
-The printed lines the prose rests on are the email's two checks and the three digest counts."""
+The printed lines the prose rests on are the asserts about the email and the four count lines at the end."""
 from lib import audit
 from lib.catalog import open_catalog
 from lib.platform import load, scratch
@@ -9,7 +9,7 @@ platform = audit.Audited(open_catalog(["crm.learners"]), log)
 
 # agent-a05 looks up an EMEA learner by the email in a ticket, then by their ID. Neither value is ever printed.
 learners = load("crm.learners").to_pylist()
-learner = next(row for row in learners if row["support_region"] == "emea")      # the first EMEA learner in the table
+learner = next(row for row in learners if row["support_region"] == "emea")      # any EMEA learner will do, since the example needs only one
 email, learner_id = learner["email"], learner["learner_id"]
 platform.sql(f"select learner_id, full_name from crm.learners where email = '{email}'", "agent-a05").fetchall()
 platform.sql(f"select email, phone from crm.learners where learner_id = {learner_id}", "agent-a05").fetchall()
@@ -25,11 +25,12 @@ assert any(email in query for query in engine)  # DuckDB logs the SQL text it ru
 print("the pseudonymization key, in DuckDB's query log:", any(platform.enforcer.key in query for query in engine))
 assert not any(platform.enforcer.key in query for query in engine)
 print("its placeholder, in DuckDB's query log:", any("$pseudonym_key" in query for query in engine))
+assert any("$pseudonym_key" in query for query in engine)
 
 # Guessing which learner the agent looked up, from a list of the platform's emails: rebuild the text DuckDB ran with
 # each email, digest it, and compare. First with a plain SHA-256 of the query, as a log might keep, then with the
 # record's keyed digest, by someone without the layer's key and by someone who holds it.
-ran = next(query for query in engine if email in query)         # the first query DuckDB logged with the email in it
+ran = next(query for query in engine if email in query)
 guesses = [ran.replace(email, row["email"]) for row in learners]    # the same text, with each learner's email in its place
 logged = log.records()[0]["rewritten_digest"]                    # record 1 is the agent's lookup by email
 print("emails tried:", f"{len(guesses):,}")

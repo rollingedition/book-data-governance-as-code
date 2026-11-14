@@ -17,7 +17,7 @@ decision = policy.decide(policy.request("marketing-1", "crm.learners", ["learner
 print("marketing's row filters on crm.learners:", json.dumps(decision["row_filters"]))
 
 
-def report(when: str) -> None:
+def report(when: str) -> list[int]:
     # marketing's query runs through the enforcement layer, which applies its row filters
     seen = [row[0] for row in Enforcer(catalog).sql("select learner_id from crm.learners", "marketing-1").fetchall()]
     print(f"{when}, learners marketing sees:", f"{len(seen):,}")
@@ -29,7 +29,7 @@ def report(when: str) -> None:
 
 
 before = report("before")
-assert LEARNER in before                                   # marketing's list holds the learner before the withdrawal
+assert LEARNER in before                                   # marketing's query returns the learner before the withdrawal
 learners = catalog.load_table("crm.learners")
 row = learners.scan(row_filter=EqualTo("learner_id", LEARNER)).to_arrow()
 row = row.set_column(row.schema.get_field_index("marketing_consent"), "marketing_consent", pa.array([False]))
