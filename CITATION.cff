@@ -8,7 +8,7 @@ abstract: 'Governing a data platform with code that runs in CI: a tested catalog
 url: https://rollingedition.com/data-governance-as-code
 repository-code: https://github.com/rollingedition/book-data-governance-as-code
 license:
-- CC-BY-4.0
+- CC-BY-NC-4.0
 - MIT
 preferred-citation:
   type: book
