@@ -974,6 +974,7 @@ context = "data-governance"
 definition = "an audit log is a record of who did what, when, and with what outcome, kept so that someone can check it later."
 section = "audit-and-evidence"
 wikidata = "Q1047174"
+agrees = [{ book = "business-intelligence-with-agents", definition = "every question the agent handles gets an audit entry, written by code beside the answer, never by the model" }]
 
 [[concepts]]
 id = "decision-record"
