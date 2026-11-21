@@ -9,6 +9,9 @@ aliases = ["shared modules"]
 definition = "The shared modules, files in `examples/lib/` that hold the code many examples need, are yours to open and read"
 section = "governance-end-to-end"
 
+[concepts.relations]
+same-as = ["https://rollingedition.com/concepts/artificial-intelligence/shared-module"]
+
 [[concepts]]
 id = "catalog"
 term = "catalog"
@@ -93,6 +96,9 @@ section = "key-column-metadata-by-field-id"
 example = "rename-orphans-name-keys"
 applies_to = ["pyiceberg"]
 
+[concepts.relations]
+same-as = ["https://rollingedition.com/concepts/data-engineering/field-id"]
+
 [[concepts]]
 id = "doc"
 term = "doc"
@@ -137,6 +143,9 @@ id = "greedy-decoding"
 term = "greedy decoding"
 definition = "The script decodes greedily, taking the most likely next token"
 section = "draft-descriptions-with-a-local-model"
+
+[concepts.relations]
+same-as = ["https://rollingedition.com/concepts/large-language-models/greedy-decoding"]
 
 [[concepts]]
 id = "model-draft"
@@ -227,6 +236,7 @@ example = "measure-pattern-recognizers"
 
 [concepts.relations]
 measured-from = ["truth"]
+close-to = ["https://rollingedition.com/concepts/llm-evaluation/true-positive-rate"]
 
 [[concepts]]
 id = "precision"
@@ -416,6 +426,7 @@ aliases = ["principals"]
 context = "data-governance"
 definition = "The principal is who asks"
 section = "access-policies-as-code"
+agrees = [{ book = "business-intelligence-with-agents", definition = "the principal, meaning whoever your sign-in system says is asking" }]
 
 [[concepts]]
 id = "role"
@@ -441,6 +452,7 @@ context = "data-governance"
 definition = "A row filter limits which rows a query returns"
 section = "access-policies-as-code"
 example = "attributes-as-row-filters"
+agrees = [{ book = "business-intelligence-with-agents", definition = "A row filter takes the decision away from the model: a condition on a table, such as region = 'EMEA', that every query reading the table gets, whatever else the query says." }]
 
 [concepts.relations]
 part-of = ["decision-document"]
@@ -453,6 +465,7 @@ context = "data-governance"
 definition = "a column mask changes how a column's values are shown"
 section = "access-policies-as-code"
 example = "one-decision-document"
+agrees = [{ book = "business-intelligence-with-agents", definition = "A column mask decides what a role sees in a column: the value replaced by something that reveals nothing, here the text (masked)." }]
 
 [concepts.relations]
 part-of = ["decision-document"]
@@ -506,6 +519,7 @@ context = "data-governance"
 definition = "With `default allow := false`, a request that no `allow` rule matches is denied, whoever sends it and whatever it asks for."
 section = "deny-by-default-then-allow-by-role"
 example = "allow-by-role"
+agrees = [{ book = "business-intelligence-with-agents", definition = "Deny by default means that any table a filtered role's filter doesn't name or list as unfiltered is refused, so a mart added later stays closed to the lead until someone writes its filter." }]
 
 [concepts.relations]
 broader = ["fail-safe-defaults"]
@@ -627,6 +641,7 @@ applies_to = ["sqlglot"]
 
 [concepts.relations]
 implemented-by = [{ to = "sqlglot", versions = ">=30.24" }]
+same-as = ["https://rollingedition.com/concepts/artificial-intelligence/column-qualification"]
 
 [[concepts]]
 id = "source-allowlist"
@@ -726,6 +741,7 @@ context = "data-governance"
 definition = "The usual defence is a minimum group size, below which a reported group is held back."
 section = "hold-back-small-groups"
 example = "small-groups-difference"
+agrees = [{ book = "business-intelligence-with-agents", definition = "a minimum group size, a number of people below which a group's values are held back" }]
 
 [[concepts]]
 id = "differencing"
@@ -735,6 +751,7 @@ context = "data-governance"
 definition = "Differencing, comparing consecutive reports, is the attack Denning, Denning and Schwartz called a tracker."
 section = "hold-back-small-groups"
 example = "small-groups-difference"
+agrees = [{ book = "business-intelligence-with-agents", definition = "Differencing involves an intruder using multiple overlapping tables and subtraction" }]
 
 [concepts.relations]
 contrasts-with = ["minimum-group-size"]
@@ -798,6 +815,7 @@ example = "apply-retention"
 
 [concepts.relations]
 contrasts-with = ["merge-on-read"]
+same-as = ["https://rollingedition.com/concepts/data-engineering/copy-on-write"]
 
 [[concepts]]
 id = "merge-on-read"
@@ -808,6 +826,7 @@ section = "delete-expired-rows"
 
 [concepts.relations]
 contrasts-with = ["copy-on-write"]
+same-as = ["https://rollingedition.com/concepts/data-engineering/merge-on-read"]
 
 [[concepts]]
 id = "position-delete"
@@ -850,6 +869,9 @@ section = "remove-unreferenced-files"
 example = "sweep-unreferenced-files"
 applies_to = ["pyiceberg"]
 
+[concepts.relations]
+same-as = ["https://rollingedition.com/concepts/data-engineering/expiry"]
+
 [[concepts]]
 id = "unreferenced-file"
 term = "unreferenced file"
@@ -859,6 +881,9 @@ definition = "An unreferenced file, which Iceberg calls an orphan, is under the 
 section = "remove-unreferenced-files"
 example = "sweep-unreferenced-files"
 
+[concepts.relations]
+same-as = ["https://rollingedition.com/concepts/data-engineering/orphan"]
+
 [[concepts]]
 id = "manifest"
 term = "manifest"
@@ -867,6 +892,9 @@ context = "data-warehousing"
 definition = "a manifest lists data files, with each file's column statistics"
 section = "remove-unreferenced-files"
 example = "sweep-unreferenced-files"
+
+[concepts.relations]
+same-as = ["https://rollingedition.com/concepts/data-engineering/manifest"]
 
 [[concepts]]
 id = "metrics-mode"
@@ -1166,6 +1194,7 @@ context = "data-governance"
 definition = "Provenance at the level of the record answers three questions: which table it came from, which row, and which run of which job put it in the corpus."
 section = "carry-provenance"
 example = "corpus-provenance"
+agrees = [{ book = "business-intelligence-with-agents", definition = "An answer's provenance is the metric or SQL behind it, the filters, the role it was computed for and how fresh the data was." }]
 
 [[concepts]]
 id = "dataset-card"
@@ -1212,6 +1241,9 @@ context = "data-governance"
 definition = "On a pull request, a check is a gate: it runs on every change, before the change merges, and it fails the pull request through its exit code."
 section = "run-every-rule-as-one-job"
 example = "governance-ci-report"
+
+[concepts.relations]
+same-as = ["https://rollingedition.com/concepts/llm-evaluation/gate"]
 
 [[concepts]]
 id = "breaking-change-checker"
