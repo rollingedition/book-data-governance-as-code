@@ -256,6 +256,7 @@ aliases = ["personally identifiable information"]
 context = "data-governance"
 definition = "The authors of the SPY dataset define PII as the entities that can identify, contact or locate a specific individual"
 section = "compare-a-named-entity-model"
+wikidata = "Q1076693"
 
 [[concepts]]
 id = "pii-model"
@@ -274,6 +275,7 @@ term = "lineage"
 context = "data-pipelines"
 definition = "Lineage is where each column's data came from, and where it goes."
 section = "lineage-from-pipelines"
+wikidata = "Q1172162"
 
 [[concepts]]
 id = "job"
@@ -532,6 +534,7 @@ context = "data-governance"
 definition = "Role-based access control, first formalized by Ferraiolo and Kuhn in 1992, grants access by the job a principal holds rather than by who they are."
 section = "deny-by-default-then-allow-by-role"
 example = "allow-by-role"
+wikidata = "Q1702839"
 
 [[concepts]]
 id = "attribute-based-access-control"
@@ -541,6 +544,7 @@ context = "data-governance"
 definition = "NIST's guide to attribute-based access control defines the general approach, in which access is decided by attributes of the subject, the object, the requested operations and, sometimes, the environment."
 section = "narrow-by-attribute"
 example = "attributes-as-row-filters"
+wikidata = "Q4818708"
 
 [[concepts]]
 id = "role-explosion"
@@ -769,6 +773,7 @@ term = "retention"
 context = "data-governance"
 definition = "Retention is how long the platform keeps each kind of data."
 section = "retention-consent-erasure"
+wikidata = "Q1935155"
 
 [[concepts]]
 id = "consent"
@@ -941,6 +946,7 @@ aliases = ["audit logs"]
 context = "data-governance"
 definition = "an audit log is a record of who did what, when, and with what outcome, kept so that someone can check it later."
 section = "audit-and-evidence"
+wikidata = "Q1047174"
 
 [[concepts]]
 id = "decision-record"
@@ -994,6 +1000,7 @@ term = "personal data"
 context = "data-governance"
 definition = "The GDPR defines personal data as \"any information relating to an identified or identifiable natural person\""
 section = "keep-values-out-of-the-record"
+wikidata = "Q63981718"
 
 [[concepts]]
 id = "normalized-query"
@@ -1082,6 +1089,7 @@ term = "HMAC"
 definition = "HMAC is the construction RFC 2104 describes for keying a hash"
 section = "consistent-pseudonyms"
 example = "keyed-pseudonyms"
+wikidata = "Q1669397"
 
 [[concepts]]
 id = "keyed-pseudonym"
