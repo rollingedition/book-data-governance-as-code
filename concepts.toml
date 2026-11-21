@@ -9,6 +9,9 @@ aliases = ["shared modules"]
 definition = "The shared modules, files in `examples/lib/` that hold the code many examples need, are yours to open and read"
 section = "governance-end-to-end"
 
+[concepts.relations]
+same-as = ["https://rollingedition.com/concepts/artificial-intelligence/shared-module"]
+
 [[concepts]]
 id = "catalog"
 term = "catalog"
@@ -93,6 +96,9 @@ section = "key-column-metadata-by-field-id"
 example = "rename-orphans-name-keys"
 applies_to = ["pyiceberg"]
 
+[concepts.relations]
+same-as = ["https://rollingedition.com/concepts/data-engineering/field-id"]
+
 [[concepts]]
 id = "doc"
 term = "doc"
@@ -137,6 +143,9 @@ id = "greedy-decoding"
 term = "greedy decoding"
 definition = "The script decodes greedily, taking the most likely next token"
 section = "draft-descriptions-with-a-local-model"
+
+[concepts.relations]
+same-as = ["https://rollingedition.com/concepts/large-language-models/greedy-decoding"]
 
 [[concepts]]
 id = "model-draft"
@@ -227,6 +236,7 @@ example = "measure-pattern-recognizers"
 
 [concepts.relations]
 measured-from = ["truth"]
+close-to = ["https://rollingedition.com/concepts/llm-evaluation/true-positive-rate"]
 
 [[concepts]]
 id = "precision"
@@ -246,6 +256,7 @@ aliases = ["personally identifiable information"]
 context = "data-governance"
 definition = "The authors of the SPY dataset define PII as the entities that can identify, contact or locate a specific individual"
 section = "compare-a-named-entity-model"
+wikidata = "Q1076693"
 
 [[concepts]]
 id = "pii-model"
@@ -264,6 +275,7 @@ term = "lineage"
 context = "data-pipelines"
 definition = "Lineage is where each column's data came from, and where it goes."
 section = "lineage-from-pipelines"
+wikidata = "Q1172162"
 
 [[concepts]]
 id = "job"
@@ -320,6 +332,9 @@ context = "data-pipelines"
 definition = "Column lineage says which input columns each output column came from, and that is what governance needs"
 section = "trace-output-columns"
 example = "sqlglot-misses-row-inputs"
+
+[concepts.relations]
+contrasts-with = ["run-event"]
 
 [[concepts]]
 id = "column-lineage-facet"
@@ -416,6 +431,7 @@ aliases = ["principals"]
 context = "data-governance"
 definition = "The principal is who asks"
 section = "access-policies-as-code"
+agrees = [{ book = "business-intelligence-with-agents", definition = "the principal, meaning whoever your sign-in system says is asking" }]
 
 [[concepts]]
 id = "role"
@@ -424,6 +440,9 @@ aliases = ["roles"]
 context = "data-governance"
 definition = "a role is a group of principals with the same job"
 section = "access-policies-as-code"
+
+[concepts.relations]
+broader = ["attribute"]
 
 [[concepts]]
 id = "attribute"
@@ -441,6 +460,7 @@ context = "data-governance"
 definition = "A row filter limits which rows a query returns"
 section = "access-policies-as-code"
 example = "attributes-as-row-filters"
+agrees = [{ book = "business-intelligence-with-agents", definition = "A row filter takes the decision away from the model: a condition on a table, such as region = 'EMEA', that every query reading the table gets, whatever else the query says." }]
 
 [concepts.relations]
 part-of = ["decision-document"]
@@ -453,6 +473,7 @@ context = "data-governance"
 definition = "a column mask changes how a column's values are shown"
 section = "access-policies-as-code"
 example = "one-decision-document"
+agrees = [{ book = "business-intelligence-with-agents", definition = "A column mask decides what a role sees in a column: the value replaced by something that reveals nothing, here the text (masked)." }]
 
 [concepts.relations]
 part-of = ["decision-document"]
@@ -483,6 +504,9 @@ definition = "Everything else a rule needs besides the request, such as each use
 section = "generate-the-data-the-policy-reads"
 example = "generated-policy-data"
 
+[concepts.relations]
+contrasts-with = ["policy-input"]
+
 [[concepts]]
 id = "undefined"
 term = "undefined"
@@ -506,6 +530,7 @@ context = "data-governance"
 definition = "With `default allow := false`, a request that no `allow` rule matches is denied, whoever sends it and whatever it asks for."
 section = "deny-by-default-then-allow-by-role"
 example = "allow-by-role"
+agrees = [{ book = "business-intelligence-with-agents", definition = "Deny by default means that any table a filtered role's filter doesn't name or list as unfiltered is refused, so a mart added later stays closed to the lead until someone writes its filter." }]
 
 [concepts.relations]
 broader = ["fail-safe-defaults"]
@@ -518,6 +543,7 @@ context = "data-governance"
 definition = "Role-based access control, first formalized by Ferraiolo and Kuhn in 1992, grants access by the job a principal holds rather than by who they are."
 section = "deny-by-default-then-allow-by-role"
 example = "allow-by-role"
+wikidata = "Q1702839"
 
 [[concepts]]
 id = "attribute-based-access-control"
@@ -527,6 +553,7 @@ context = "data-governance"
 definition = "NIST's guide to attribute-based access control defines the general approach, in which access is decided by attributes of the subject, the object, the requested operations and, sometimes, the environment."
 section = "narrow-by-attribute"
 example = "attributes-as-row-filters"
+wikidata = "Q4818708"
 
 [[concepts]]
 id = "role-explosion"
@@ -545,6 +572,9 @@ context = "data-governance"
 definition = "The purpose is an attribute of the request."
 section = "narrow-by-attribute"
 example = "attributes-as-row-filters"
+
+[concepts.relations]
+broader = ["attribute"]
 
 [[concepts]]
 id = "decision-document"
@@ -610,6 +640,9 @@ context = "data-governance"
 definition = "Cedar's experimental partial evaluation, which returns residual policies for the parts it can't yet decide, and whose result is not a final authorization decision"
 section = "the-same-rules-in-cedar"
 
+[concepts.relations]
+contrasts-with = ["decision"]
+
 [[concepts]]
 id = "enforcement-layer"
 term = "enforcement layer"
@@ -627,6 +660,7 @@ applies_to = ["sqlglot"]
 
 [concepts.relations]
 implemented-by = [{ to = "sqlglot", versions = ">=30.24" }]
+same-as = ["https://rollingedition.com/concepts/artificial-intelligence/column-qualification"]
 
 [[concepts]]
 id = "source-allowlist"
@@ -726,6 +760,7 @@ context = "data-governance"
 definition = "The usual defence is a minimum group size, below which a reported group is held back."
 section = "hold-back-small-groups"
 example = "small-groups-difference"
+agrees = [{ book = "business-intelligence-with-agents", definition = "a minimum group size, a number of people below which a group's values are held back" }]
 
 [[concepts]]
 id = "differencing"
@@ -735,6 +770,7 @@ context = "data-governance"
 definition = "Differencing, comparing consecutive reports, is the attack Denning, Denning and Schwartz called a tracker."
 section = "hold-back-small-groups"
 example = "small-groups-difference"
+agrees = [{ book = "business-intelligence-with-agents", definition = "Differencing involves an intruder using multiple overlapping tables and subtraction" }]
 
 [concepts.relations]
 contrasts-with = ["minimum-group-size"]
@@ -752,6 +788,7 @@ term = "retention"
 context = "data-governance"
 definition = "Retention is how long the platform keeps each kind of data."
 section = "retention-consent-erasure"
+wikidata = "Q1935155"
 
 [[concepts]]
 id = "consent"
@@ -798,6 +835,7 @@ example = "apply-retention"
 
 [concepts.relations]
 contrasts-with = ["merge-on-read"]
+same-as = ["https://rollingedition.com/concepts/data-engineering/copy-on-write"]
 
 [[concepts]]
 id = "merge-on-read"
@@ -808,6 +846,7 @@ section = "delete-expired-rows"
 
 [concepts.relations]
 contrasts-with = ["copy-on-write"]
+same-as = ["https://rollingedition.com/concepts/data-engineering/merge-on-read"]
 
 [[concepts]]
 id = "position-delete"
@@ -817,6 +856,9 @@ context = "data-warehousing"
 definition = "position deletes, which mark a row by its data file and its position"
 section = "delete-expired-rows"
 
+[concepts.relations]
+contrasts-with = ["equality-delete"]
+
 [[concepts]]
 id = "equality-delete"
 term = "equality delete"
@@ -824,6 +866,9 @@ aliases = ["equality deletes"]
 context = "data-warehousing"
 definition = "equality deletes, which mark it by the values of one or more columns"
 section = "delete-expired-rows"
+
+[concepts.relations]
+contrasts-with = ["position-delete"]
 
 [[concepts]]
 id = "crm"
@@ -840,6 +885,9 @@ definition = "a column copied unchanged, an IDENTITY edge in OpenLineage's terms
 section = "plan-erasure-from-lineage"
 example = "erasure-plan"
 
+[concepts.relations]
+broader = ["direct-input"]
+
 [[concepts]]
 id = "snapshot-expiry"
 term = "snapshot expiry"
@@ -850,6 +898,9 @@ section = "remove-unreferenced-files"
 example = "sweep-unreferenced-files"
 applies_to = ["pyiceberg"]
 
+[concepts.relations]
+same-as = ["https://rollingedition.com/concepts/data-engineering/expiry"]
+
 [[concepts]]
 id = "unreferenced-file"
 term = "unreferenced file"
@@ -859,6 +910,9 @@ definition = "An unreferenced file, which Iceberg calls an orphan, is under the 
 section = "remove-unreferenced-files"
 example = "sweep-unreferenced-files"
 
+[concepts.relations]
+same-as = ["https://rollingedition.com/concepts/data-engineering/orphan"]
+
 [[concepts]]
 id = "manifest"
 term = "manifest"
@@ -867,6 +921,9 @@ context = "data-warehousing"
 definition = "a manifest lists data files, with each file's column statistics"
 section = "remove-unreferenced-files"
 example = "sweep-unreferenced-files"
+
+[concepts.relations]
+same-as = ["https://rollingedition.com/concepts/data-engineering/manifest"]
 
 [[concepts]]
 id = "metrics-mode"
@@ -906,6 +963,9 @@ definition = "an erasure register: for each request, its ID and a keyed hash (HM
 section = "erased-learner-comes-back"
 example = "erased-learner-returns"
 
+[concepts.relations]
+computed-from = ["data-engineering/hmac"]
+
 [[concepts]]
 id = "audit-log"
 term = "audit log"
@@ -913,6 +973,7 @@ aliases = ["audit logs"]
 context = "data-governance"
 definition = "an audit log is a record of who did what, when, and with what outcome, kept so that someone can check it later."
 section = "audit-and-evidence"
+wikidata = "Q1047174"
 
 [[concepts]]
 id = "decision-record"
@@ -935,6 +996,10 @@ definition = "A policy revision is a fingerprint of everything a decision depend
 section = "audit-and-evidence"
 example = "explain-old-decision"
 
+[concepts.relations]
+computed-from = ["policy", "data-document"]
+part-of = ["decision-record"]
+
 [[concepts]]
 id = "tamper-evident"
 term = "tamper-evident"
@@ -952,6 +1017,9 @@ definition = "An access review compares what each person may read with what they
 section = "audit-and-evidence"
 example = "access-review"
 
+[concepts.relations]
+computed-from = ["audit-log", "policy"]
+
 [[concepts]]
 id = "evidence"
 term = "evidence"
@@ -960,12 +1028,16 @@ definition = "Evidence is a report that shows a control works, generated from re
 section = "audit-and-evidence"
 example = "evidence-report"
 
+[concepts.relations]
+computed-from = ["audit-log", "policy"]
+
 [[concepts]]
 id = "personal-data"
 term = "personal data"
 context = "data-governance"
 definition = "The GDPR defines personal data as \"any information relating to an identified or identifiable natural person\""
 section = "keep-values-out-of-the-record"
+wikidata = "Q63981718"
 
 [[concepts]]
 id = "normalized-query"
@@ -985,12 +1057,19 @@ definition = "The SQL the layer hands DuckDB is kept only as `rewritten_digest`,
 section = "keep-values-out-of-the-record"
 example = "query-without-literals"
 
+[concepts.relations]
+computed-from = ["data-engineering/hmac"]
+part-of = ["decision-record"]
+
 [[concepts]]
 id = "access-log"
 term = "access log"
 context = "data-governance"
 definition = "a separate access log, with learner IDs, a retention period and no chain"
 section = "keep-values-out-of-the-record"
+
+[concepts.relations]
+contrasts-with = ["audit-log"]
 
 [[concepts]]
 id = "hash-chain"
@@ -1054,6 +1133,7 @@ term = "HMAC"
 definition = "HMAC is the construction RFC 2104 describes for keying a hash"
 section = "consistent-pseudonyms"
 example = "keyed-pseudonyms"
+wikidata = "Q1669397"
 
 [[concepts]]
 id = "keyed-pseudonym"
@@ -1166,6 +1246,7 @@ context = "data-governance"
 definition = "Provenance at the level of the record answers three questions: which table it came from, which row, and which run of which job put it in the corpus."
 section = "carry-provenance"
 example = "corpus-provenance"
+agrees = [{ book = "business-intelligence-with-agents", definition = "An answer's provenance is the metric or SQL behind it, the filters, the role it was computed for and how fresh the data was." }]
 
 [[concepts]]
 id = "dataset-card"
@@ -1196,6 +1277,9 @@ definition = "the tables the pipeline's own SQL reads, which the values come fro
 section = "generate-the-dataset-card"
 example = "corpus-dataset-card"
 
+[concepts.relations]
+contrasts-with = ["prov-was-influenced-by"]
+
 [[concepts]]
 id = "prov-was-influenced-by"
 term = "prov:wasInfluencedBy"
@@ -1203,6 +1287,9 @@ context = "data-governance"
 definition = "the table the enforcement layer's rewrite adds, which only decides which rows exist, as `prov:wasInfluencedBy`"
 section = "generate-the-dataset-card"
 example = "corpus-dataset-card"
+
+[concepts.relations]
+contrasts-with = ["prov-was-derived-from"]
 
 [[concepts]]
 id = "gate"
@@ -1212,6 +1299,9 @@ context = "data-governance"
 definition = "On a pull request, a check is a gate: it runs on every change, before the change merges, and it fails the pull request through its exit code."
 section = "run-every-rule-as-one-job"
 example = "governance-ci-report"
+
+[concepts.relations]
+same-as = ["https://rollingedition.com/concepts/llm-evaluation/gate"]
 
 [[concepts]]
 id = "breaking-change-checker"
@@ -1236,6 +1326,9 @@ context = "data-governance"
 definition = "`lib.ci.build` builds a scratch platform the way the platform runs: the source tables, the side's migrations, the deploy, which writes the metadata into the catalog and sets every table's generated properties, then the nightly run of the side's own pipelines, with lineage"
 section = "governance-in-ci"
 example = "governance-ci-report"
+
+[concepts.relations]
+broader = ["catalog"]
 
 [[concepts]]
 id = "deploy"
@@ -1303,6 +1396,9 @@ definition = "We add a first rule of our own: lowering a column's classification
 section = "ask-the-owner-before-lowering"
 example = "classification-downgrade"
 
+[concepts.relations]
+contrasts-with = ["breaking-change-checker"]
+
 [[concepts]]
 id = "deprecation-rule"
 term = "deprecation rule"
@@ -1351,6 +1447,9 @@ definition = "The platform team keeps one package of global rules, which the dom
 section = "run-global-and-domain-rules"
 example = "global-and-domain-rules"
 
+[concepts.relations]
+part-of = ["federated-computational-governance"]
+
 [[concepts]]
 id = "domain-rule"
 term = "domain rule"
@@ -1359,6 +1458,9 @@ context = "data-governance"
 definition = "Each domain has a package of its own, owned by its team"
 section = "run-global-and-domain-rules"
 example = "global-and-domain-rules"
+
+[concepts.relations]
+contrasts-with = ["global-rule"]
 
 [[concepts]]
 id = "waiver"
