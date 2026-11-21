@@ -333,6 +333,9 @@ definition = "Column lineage says which input columns each output column came fr
 section = "trace-output-columns"
 example = "sqlglot-misses-row-inputs"
 
+[concepts.relations]
+contrasts-with = ["run-event"]
+
 [[concepts]]
 id = "column-lineage-facet"
 term = "columnLineage facet"
@@ -438,6 +441,9 @@ context = "data-governance"
 definition = "a role is a group of principals with the same job"
 section = "access-policies-as-code"
 
+[concepts.relations]
+broader = ["attribute"]
+
 [[concepts]]
 id = "attribute"
 term = "attribute"
@@ -497,6 +503,9 @@ context = "data-governance"
 definition = "Everything else a rule needs besides the request, such as each user's groups and each column's classification, comes from a second document, which OPA calls `data`."
 section = "generate-the-data-the-policy-reads"
 example = "generated-policy-data"
+
+[concepts.relations]
+contrasts-with = ["policy-input"]
 
 [[concepts]]
 id = "undefined"
@@ -564,6 +573,9 @@ definition = "The purpose is an attribute of the request."
 section = "narrow-by-attribute"
 example = "attributes-as-row-filters"
 
+[concepts.relations]
+broader = ["attribute"]
+
 [[concepts]]
 id = "decision-document"
 term = "decision document"
@@ -627,6 +639,9 @@ term = "partial evaluation"
 context = "data-governance"
 definition = "Cedar's experimental partial evaluation, which returns residual policies for the parts it can't yet decide, and whose result is not a final authorization decision"
 section = "the-same-rules-in-cedar"
+
+[concepts.relations]
+contrasts-with = ["decision"]
 
 [[concepts]]
 id = "enforcement-layer"
@@ -841,6 +856,9 @@ context = "data-warehousing"
 definition = "position deletes, which mark a row by its data file and its position"
 section = "delete-expired-rows"
 
+[concepts.relations]
+contrasts-with = ["equality-delete"]
+
 [[concepts]]
 id = "equality-delete"
 term = "equality delete"
@@ -848,6 +866,9 @@ aliases = ["equality deletes"]
 context = "data-warehousing"
 definition = "equality deletes, which mark it by the values of one or more columns"
 section = "delete-expired-rows"
+
+[concepts.relations]
+contrasts-with = ["position-delete"]
 
 [[concepts]]
 id = "crm"
@@ -863,6 +884,9 @@ context = "data-pipelines"
 definition = "a column copied unchanged, an IDENTITY edge in OpenLineage's terms"
 section = "plan-erasure-from-lineage"
 example = "erasure-plan"
+
+[concepts.relations]
+broader = ["direct-input"]
 
 [[concepts]]
 id = "snapshot-expiry"
@@ -939,6 +963,9 @@ definition = "an erasure register: for each request, its ID and a keyed hash (HM
 section = "erased-learner-comes-back"
 example = "erased-learner-returns"
 
+[concepts.relations]
+computed-from = ["data-engineering/hmac"]
+
 [[concepts]]
 id = "audit-log"
 term = "audit log"
@@ -969,6 +996,10 @@ definition = "A policy revision is a fingerprint of everything a decision depend
 section = "audit-and-evidence"
 example = "explain-old-decision"
 
+[concepts.relations]
+computed-from = ["policy", "data-document"]
+part-of = ["decision-record"]
+
 [[concepts]]
 id = "tamper-evident"
 term = "tamper-evident"
@@ -986,6 +1017,9 @@ definition = "An access review compares what each person may read with what they
 section = "audit-and-evidence"
 example = "access-review"
 
+[concepts.relations]
+computed-from = ["audit-log", "policy"]
+
 [[concepts]]
 id = "evidence"
 term = "evidence"
@@ -993,6 +1027,9 @@ context = "data-governance"
 definition = "Evidence is a report that shows a control works, generated from records rather than captured from a screen."
 section = "audit-and-evidence"
 example = "evidence-report"
+
+[concepts.relations]
+computed-from = ["audit-log", "policy"]
 
 [[concepts]]
 id = "personal-data"
@@ -1020,12 +1057,19 @@ definition = "The SQL the layer hands DuckDB is kept only as `rewritten_digest`,
 section = "keep-values-out-of-the-record"
 example = "query-without-literals"
 
+[concepts.relations]
+computed-from = ["data-engineering/hmac"]
+part-of = ["decision-record"]
+
 [[concepts]]
 id = "access-log"
 term = "access log"
 context = "data-governance"
 definition = "a separate access log, with learner IDs, a retention period and no chain"
 section = "keep-values-out-of-the-record"
+
+[concepts.relations]
+contrasts-with = ["audit-log"]
 
 [[concepts]]
 id = "hash-chain"
@@ -1233,6 +1277,9 @@ definition = "the tables the pipeline's own SQL reads, which the values come fro
 section = "generate-the-dataset-card"
 example = "corpus-dataset-card"
 
+[concepts.relations]
+contrasts-with = ["prov-was-influenced-by"]
+
 [[concepts]]
 id = "prov-was-influenced-by"
 term = "prov:wasInfluencedBy"
@@ -1240,6 +1287,9 @@ context = "data-governance"
 definition = "the table the enforcement layer's rewrite adds, which only decides which rows exist, as `prov:wasInfluencedBy`"
 section = "generate-the-dataset-card"
 example = "corpus-dataset-card"
+
+[concepts.relations]
+contrasts-with = ["prov-was-derived-from"]
 
 [[concepts]]
 id = "gate"
@@ -1276,6 +1326,9 @@ context = "data-governance"
 definition = "`lib.ci.build` builds a scratch platform the way the platform runs: the source tables, the side's migrations, the deploy, which writes the metadata into the catalog and sets every table's generated properties, then the nightly run of the side's own pipelines, with lineage"
 section = "governance-in-ci"
 example = "governance-ci-report"
+
+[concepts.relations]
+broader = ["catalog"]
 
 [[concepts]]
 id = "deploy"
@@ -1343,6 +1396,9 @@ definition = "We add a first rule of our own: lowering a column's classification
 section = "ask-the-owner-before-lowering"
 example = "classification-downgrade"
 
+[concepts.relations]
+contrasts-with = ["breaking-change-checker"]
+
 [[concepts]]
 id = "deprecation-rule"
 term = "deprecation rule"
@@ -1391,6 +1447,9 @@ definition = "The platform team keeps one package of global rules, which the dom
 section = "run-global-and-domain-rules"
 example = "global-and-domain-rules"
 
+[concepts.relations]
+part-of = ["federated-computational-governance"]
+
 [[concepts]]
 id = "domain-rule"
 term = "domain rule"
@@ -1399,6 +1458,9 @@ context = "data-governance"
 definition = "Each domain has a package of its own, owned by its team"
 section = "run-global-and-domain-rules"
 example = "global-and-domain-rules"
+
+[concepts.relations]
+contrasts-with = ["global-rule"]
 
 [[concepts]]
 id = "waiver"
