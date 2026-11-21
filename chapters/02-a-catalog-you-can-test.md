@@ -116,7 +116,7 @@ The learners' countries haven't gone anywhere. A schema change writes no snapsho
 
 ## Classify pseudonymous IDs for joining {#classify-pseudonymous-ids}
 
-[The metadata file](#keep-metadata-in-a-reviewed-file) classifies some columns that point at people as `internal`, and the most common of them is `learner_id`. It's a number with no meaning of its own, and the platform's analysts and data scientists need it to join enrollments, events, payments and tickets to each other. An ID like this is a **pseudonymous identifier**: it doesn't name anyone, but it leads to someone through another table. One ID reaches further than its classification suggests. The code counts the tables that carry it, joins enrollments to learners, and asks the access policy who can make that join and see names:
+[The metadata file](#keep-metadata-in-a-reviewed-file) classifies some columns that point at people as `internal`, and the most common of them is `learner_id`. It's a number with no meaning of its own, and the platform's analysts and data scientists need it to join enrollments, events, payments and tickets to each other. An ID with no meaning of its own, such as `learner_id`, is a **pseudonymous identifier**: it doesn't name anyone, but it leads to someone through another table. One ID reaches further than its classification suggests. The code counts the tables that carry it, joins enrollments to learners, and asks the access policy who can make that join and see names:
 
 [Example: pseudonymous-learner-id](../examples/pseudonymous-learner-id.py)
 
