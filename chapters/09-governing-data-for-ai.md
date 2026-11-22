@@ -122,6 +122,12 @@ Tuned for 0.8, datasketch's default LSH returns {{out:lsh-misses-near-duplicates
 
 The formula says why. With the {{out:lsh-misses-near-duplicates:affine32, LSH tuned for 0.8, bands}} bands of {{out:lsh-misses-near-duplicates:affine32, LSH tuned for 0.8, rows per band}} rows datasketch chose, a pair at similarity 0.8 becomes a candidate with a probability of {{out:lsh-misses-near-duplicates:chance of a candidate at similarity 0.8, LSH tuned for 0.8}}, one at 0.9 with {{out:lsh-misses-near-duplicates:chance of a candidate at similarity 0.9, LSH tuned for 0.8}}, and the approximate threshold is {{out:lsh-misses-near-duplicates:the approximate threshold, (1/b)^(1/r)}}, above the threshold asked for.
 
+{{fig:lsh-candidate-chance}} shows the candidate chance at 0.8: tuned for 0.6, it's {{out:figure-lsh-candidate-chance:tuned for 0.6, chance of a candidate at similarity 0.8}}.
+
+![Near 0.8 the 0.6 curve is at the top and the 0.8 curve is not](../examples/figures/lsh-candidate-chance.svg "The chance a pair becomes a candidate, against its similarity")
+
+[Example: figure-lsh-candidate-chance](../examples/figure-lsh-candidate-chance.py)
+
 Under the default scheme, tuned for 0.6, LSH finds every pair and returns {{out:lsh-misses-near-duplicates:affine32, LSH tuned for 0.6, candidate pairs}} candidates. Each candidate costs one exact comparison, against {{out:lsh-misses-near-duplicates:pairs compared exactly}} for comparing every pair, and the exact comparison discards every pair below 0.8. So the platform tunes LSH for 0.6 and confirms at 0.8, both settings in `governance/ai_data.toml`.
 
 datasketch's 2.0.0 release made `affine32` the default permutation scheme of MinHash, and [its release notes](https://github.com/ekzhu/datasketch/releases/tag/v2.0.0) say that hash values differ from earlier versions, so they advise rebuilding persisted sketches and LSH indexes, or passing `MinHash(..., scheme="legacy")`. With the legacy scheme, LSH tuned for 0.8 returns {{out:lsh-misses-near-duplicates:legacy, LSH tuned for 0.8, candidate pairs}} candidates and confirms {{out:lsh-misses-near-duplicates:legacy, LSH tuned for 0.8, confirmed}}, so a count recorded under one scheme isn't reproduced under the other.
