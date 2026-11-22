@@ -164,13 +164,15 @@ Overall agreement hardly moves, {{out:suggestions-with-platform-examples:the pro
 
 [The recorded drafts](#draft-descriptions-with-a-local-model), a local model's descriptions and classifications for the platform's source tables, agree with the reviewed classifications on most columns. For governance, which way they miss matters more. A classification more protected than it should be costs a reviewer a minute and an analyst a masked column. One less protected than it should be leaves personal data where the policies treat it as staff data, or as data anyone may see.
 
-{{fig:model-against-review}} has one bar for each reviewed classification, public at the top and sensitive at the bottom, and each bar splits that classification's columns by the answer the model gave.
+{{fig:model-against-review}} has one bar for each reviewed classification, `public` at the top and `sensitive` at the bottom. Each bar runs, from left to right, through the columns the model protected less than the review, the ones it agreed with, and the ones it protected more.
 
-![In every row the model's answer internal takes at least half the bar, whatever the reviewed classification](../examples/figures/model-against-review.svg "The model's answers for each reviewed classification, as shares")
+![For personal and sensitive columns, every answer the model gave protects them less than the review does](../examples/figures/model-against-review.svg "The model's answers for each reviewed classification, by how they compare with the review, as shares")
 
 [Example: figure-model-against-review](../examples/figure-model-against-review.py)
 
-Internal takes at least half of every bar, from {{out:figure-model-against-review:share of public columns the model called internal}} of the public columns to {{out:figure-model-against-review:share of sensitive columns the model called internal}} of the sensitive ones. Its misses lean the less protected way: {{out:figure-model-against-review:columns protected less than the review}} columns protected less than the review, {{out:figure-model-against-review:columns protected more than the review}} more.
+The two bottom bars lie wholly in the part that protects less: {{out:figure-model-against-review:personal columns protected less than the review}} of {{out:figure-model-against-review:reviewed personal columns}} `personal` columns and {{out:figure-model-against-review:sensitive columns protected less than the review}} of {{out:figure-model-against-review:reviewed sensitive columns}} `sensitive` ones.
+
+The `internal` bar is mostly agreement, {{out:figure-model-against-review:internal columns the model agreed with}} of {{out:figure-model-against-review:reviewed internal columns}} columns.
 
 Splitting the misses by direction shows which way the model fails:
 
