@@ -122,9 +122,9 @@ Tuned for 0.8, datasketch's default LSH returns {{out:lsh-misses-near-duplicates
 
 The formula says why. With the {{out:lsh-misses-near-duplicates:affine32, LSH tuned for 0.8, bands}} bands of {{out:lsh-misses-near-duplicates:affine32, LSH tuned for 0.8, rows per band}} rows datasketch chose, a pair at similarity 0.8 becomes a candidate with a probability of {{out:lsh-misses-near-duplicates:chance of a candidate at similarity 0.8, LSH tuned for 0.8}}, one at 0.9 with {{out:lsh-misses-near-duplicates:chance of a candidate at similarity 0.9, LSH tuned for 0.8}}, and the approximate threshold is {{out:lsh-misses-near-duplicates:the approximate threshold, (1/b)^(1/r)}}, above the threshold asked for.
 
-{{fig:lsh-candidate-chance}} shows the candidate chance at 0.8: tuned for 0.6, it's {{out:figure-lsh-candidate-chance:tuned for 0.6, chance of a candidate at similarity 0.8}}.
+{{fig:lsh-candidate-chance}} draws both S-shaped curves: tuned for 0.6, the curve moves left, to {{out:figure-lsh-candidate-chance:tuned for 0.6, chance of a candidate at similarity 0.8}} at 0.8.
 
-![Near 0.8 the 0.6 curve is at the top and the 0.8 curve is not](../examples/figures/lsh-candidate-chance.svg "The chance a pair becomes a candidate, against its similarity")
+![Tuning LSH lower makes a pair at 0.8 a near-certain candidate](../examples/figures/lsh-candidate-chance.svg "The chance a pair becomes a candidate, against its similarity, for LSH tuned for 0.6 and for 0.8")
 
 [Example: figure-lsh-candidate-chance](../examples/figure-lsh-candidate-chance.py)
 
