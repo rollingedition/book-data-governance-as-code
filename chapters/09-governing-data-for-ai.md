@@ -108,7 +108,7 @@ Deduplicating on text folds reviews of different courses into one record, under 
 
 ## Tune LSH for recall, then confirm every pair {#tune-lsh-then-confirm}
 
-[MinHash signatures](#near-duplicates-with-minhash) make each comparison cheap; locality-sensitive hashing (LSH) avoids most comparisons. LSH cuts each signature into b bands of r rows, and two texts become a candidate pair when all the rows of any one band match. Leskovec, Rajaraman and Ullman derive the chance that a pair with Jaccard similarity s becomes a candidate pair ([Mining of Massive Datasets, chapter 3](http://infolab.stanford.edu/~ullman/mmds/ch3n.pdf)):
+[MinHash signatures](#near-duplicates-with-minhash) make each comparison cheap; locality-sensitive hashing (LSH) avoids most comparisons. MinHash LSH cuts signatures into b bands of r rows, and two texts become a candidate pair when all the rows of any one band match. Leskovec, Rajaraman and Ullman derive the chance that a pair with Jaccard similarity s becomes a candidate pair ([Mining of Massive Datasets, chapter 3](http://infolab.stanford.edu/~ullman/mmds/ch3n.pdf)):
 
 P(candidate) = 1 − (1 − sʳ)ᵇ
 

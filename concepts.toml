@@ -32,7 +32,7 @@ example = "unclassified-column-fails"
 id = "coverage-check"
 term = "coverage check"
 context = "data-governance"
-definition = "The coverage check is the catalog check, `lib.metadata.problems`, run on the branch's platform, and for each column nobody classified it adds what a rule on column names suggests"
+definition = "The coverage check is the catalog check, `lib.metadata.problems` with `lib.metadata.dropped`, run on the branch's platform."
 section = "fail-the-pull-request"
 example = "unclassified-column-fails"
 
@@ -48,7 +48,7 @@ example = "unclassified-column-fails"
 id = "metadata"
 term = "metadata"
 context = "data-governance"
-definition = "A catalog's metadata is what you know about each table that the data doesn't say: who owns it, which part of the business it belongs to, what it holds, and how each column must be protected."
+definition = "Beyond each table's schema, a catalog's metadata is what you know about each table that the data doesn't say: who owns it, which part of the business it belongs to, what it holds, and how each column must be protected."
 section = "keep-metadata-in-a-reviewed-file"
 example = "metadata-model"
 
@@ -123,7 +123,7 @@ id = "catalog-label"
 term = "catalog label"
 aliases = ["labels"]
 context = "data-warehousing"
-definition = "`labels`, ownership or classification that a catalog returns with a table, per table and per field ID, kept out of properties on purpose"
+definition = "`labels`, metadata such as ownership or classification that a catalog returns with a table or view, per table and per field ID, kept out of properties on purpose"
 section = "write-descriptions-into-the-schema"
 
 [concepts.relations]
@@ -175,7 +175,7 @@ id = "recognizer"
 term = "recognizer"
 aliases = ["recognizers"]
 context = "data-governance"
-definition = "Presidio's analyzer runs recognizers: regular expressions with checksums, phone-number parsing, and a named-entity model reached through an NLP engine."
+definition = "Presidio's analyzer runs recognizers, which find entities: checksummed regular expressions, phone-number parsing, and a named-entity model reached through an NLP engine."
 section = "run-presidio-offline"
 example = "presidio-offline-engine"
 applies_to = ["presidio-analyzer"]
@@ -242,7 +242,7 @@ close-to = ["https://rollingedition.com/concepts/llm-evaluation/true-positive-ra
 id = "precision"
 term = "precision"
 context = "data-governance"
-definition = "precision, the share of each label's detections that match a labelled span"
+definition = "precision, the share of each label's detections matching a labelled span of its type"
 section = "measure-against-labelled-spans"
 example = "measure-pattern-recognizers"
 
@@ -273,7 +273,7 @@ broader = ["pii"]
 id = "lineage"
 term = "lineage"
 context = "data-pipelines"
-definition = "Lineage is where each column's data came from, and where it goes."
+definition = "Lineage is where each table's and each column's data came from, and where it goes."
 section = "lineage-from-pipelines"
 wikidata = "Q1172162"
 
@@ -303,7 +303,7 @@ id = "dataset"
 term = "dataset"
 aliases = ["datasets"]
 context = "data-pipelines"
-definition = "A dataset is a table or file, named by a namespace and a name that together identify it."
+definition = "A dataset is any discrete body of data, such as a table or file, named by a namespace and a name that together identify it."
 section = "send-run-events"
 example = "pipeline-run-events"
 
@@ -312,7 +312,7 @@ id = "run-event"
 term = "run event"
 aliases = ["run events"]
 context = "data-pipelines"
-definition = "A run reports itself through run events: a START when it begins, then one terminal event, COMPLETE, FAIL or ABORT"
+definition = "A run reports itself through run events: a START when it begins, any RUNNING or OTHER events for more metadata, then one terminal event, COMPLETE, FAIL or ABORT"
 section = "send-run-events"
 example = "pipeline-run-events"
 
@@ -390,7 +390,7 @@ section = "classifications-from-lineage"
 id = "lineage-graph"
 term = "lineage graph"
 context = "data-pipelines"
-definition = "With column lineage in every COMPLETE event, the platform has a graph: columns are nodes, and each input field is an edge to the column or table it feeds."
+definition = "With column lineage in every COMPLETE event, the platform has a graph: columns, and tables fed as a whole, are nodes, and each transformation of an input field is an edge to the column or table it feeds."
 section = "impact-of-a-column-change"
 example = "column-impact"
 
@@ -413,7 +413,7 @@ id = "policy"
 term = "policy"
 aliases = ["policies"]
 context = "data-governance"
-definition = "A policy is code that answers whether a request may go ahead."
+definition = "A policy is code that answers whether a request may go ahead, and on what terms."
 section = "access-policies-as-code"
 
 [[concepts]]
@@ -609,7 +609,7 @@ example = "who-sees-what"
 id = "cedar-schema"
 term = "Cedar schema"
 context = "data-governance"
-definition = "A schema declares every type of entity, the kinds of principal and resource a request can name, with its attributes"
+definition = "A schema declares every type of entity, the kinds of principal and resource a request can name, with its attributes, and each action with the principals and resources it applies to"
 section = "the-same-rules-in-cedar"
 example = "cedar-same-rules"
 
@@ -731,7 +731,7 @@ broader = ["column-mask"]
 id = "redact-contacts"
 term = "redact_contacts"
 context = "data-governance"
-definition = "`redact_contacts` replaces emails and phone numbers in free text with `[email]` and `[phone]`."
+definition = "`redact_contacts` replaces emails and long digit runs in free text with `[email]` and `[phone]`."
 section = "write-masks-as-sql"
 example = "redact-contacts-recall"
 
@@ -767,7 +767,7 @@ id = "differencing"
 term = "differencing"
 aliases = ["tracker"]
 context = "data-governance"
-definition = "Differencing, comparing consecutive reports, is the attack Denning, Denning and Schwartz called a tracker."
+definition = "Differencing subtracts answers for nearly identical groups"
 section = "hold-back-small-groups"
 example = "small-groups-difference"
 agrees = [{ book = "business-intelligence-with-agents", definition = "Differencing involves an intruder using multiple overlapping tables and subtraction" }]
@@ -893,7 +893,7 @@ id = "snapshot-expiry"
 term = "snapshot expiry"
 aliases = ["expiry"]
 context = "data-warehousing"
-definition = "Expiry removes snapshots, not files."
+definition = "PyIceberg's expiry removes snapshots, not files."
 section = "remove-unreferenced-files"
 example = "sweep-unreferenced-files"
 applies_to = ["pyiceberg"]
@@ -918,7 +918,7 @@ id = "manifest"
 term = "manifest"
 aliases = ["manifests"]
 context = "data-warehousing"
-definition = "a manifest lists data files, with each file's column statistics"
+definition = "a manifest lists data or delete files, with each file's column statistics"
 section = "remove-unreferenced-files"
 example = "sweep-unreferenced-files"
 
@@ -1201,7 +1201,7 @@ example = "corpus-duplicates"
 id = "lsh"
 term = "locality-sensitive hashing"
 aliases = ["LSH"]
-definition = "LSH cuts each signature into b bands of r rows"
+definition = "MinHash LSH cuts signatures into b bands of r rows"
 section = "tune-lsh-then-confirm"
 example = "lsh-misses-near-duplicates"
 applies_to = ["datasketch"]
@@ -1436,7 +1436,7 @@ example = "domain-contracts"
 id = "federated-computational-governance"
 term = "federated computational governance"
 context = "data-governance"
-definition = "federated computational governance, \"a set of global rules - rules applied to all data products and their interfaces - to ensure a healthy and interoperable ecosystem\""
+definition = "federated computational governance, a decision-making model that creates \"a set of global rules - rules applied to all data products and their interfaces - to ensure a healthy and interoperable ecosystem\""
 section = "run-global-and-domain-rules"
 
 [[concepts]]
