@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="460.8pt" height="208.8pt" viewBox="0 0 460.8 208.8" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:format>image/svg+xml</dc:format>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 208.8 
+L 460.8 208.8 
+L 460.8 0 
+L 0 0 
+L 0 208.8 
+z
+" style="fill: none"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 68.458834 174.798979 
+L 443.505229 174.798979 
+L 443.505229 26.001021 
+L 68.458834 26.001021 
+L 68.458834 174.798979 
+z
+" style="fill: none"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 68.458834 168.035435 
+L 443.505229 168.035435 
+L 443.505229 145.49029 
+L 68.458834 145.49029 
+z
+" clip-path="url(#p17adb3c7bb)" style="fill: #9a4a06; stroke: #61574a; stroke-width: 0.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 68.458834 130.460193 
+L 443.505229 130.460193 
+L 443.505229 107.915048 
+L 68.458834 107.915048 
+z
+" clip-path="url(#p17adb3c7bb)" style="fill: #9a4a06; stroke: #61574a; stroke-width: 0.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 68.458834 92.884952 
+L 111.077742 92.884952 
+L 111.077742 70.339807 
+L 68.458834 70.339807 
+z
+" clip-path="url(#p17adb3c7bb)" style="fill: #9a4a06; stroke: #61574a; stroke-width: 0.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 111.077742 92.884952 
+L 426.457665 92.884952 
+L 426.457665 70.339807 
+L 111.077742 70.339807 
+z
+" clip-path="url(#p17adb3c7bb)" style="fill: #e2d5b8; stroke: #61574a; stroke-width: 0.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 426.457665 92.884952 
+L 443.505229 92.884952 
+L 443.505229 70.339807 
+L 426.457665 70.339807 
+z
+" clip-path="url(#p17adb3c7bb)" style="fill: url(#hf4c2f48b2a); stroke: #61574a; stroke-width: 0.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 68.458834 55.30971 
+L 255.982031 55.30971 
+L 255.982031 32.764565 
+L 68.458834 32.764565 
+z
+" clip-path="url(#p17adb3c7bb)" style="fill: #e2d5b8; stroke: #61574a; stroke-width: 0.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 255.982031 55.30971 
+L 443.505229 55.30971 
+L 443.505229 32.764565 
+L 255.982031 32.764565 
+z
+" clip-path="url(#p17adb3c7bb)" style="fill: url(#hf4c2f48b2a); stroke: #61574a; stroke-width: 0.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="m85059689ef" d="M 0 0 
+L 0 3.5 
+" style="stroke: #61574a; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m85059689ef" x="68.458834" y="174.798979" style="fill: #61574a; stroke: #61574a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 10px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #61574a" x="68.458834" y="189.396635" transform="rotate(-0 68.458834 189.396635)">0%</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#m85059689ef" x="162.220433" y="174.798979" style="fill: #61574a; stroke: #61574a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 10px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #61574a" x="162.220433" y="189.396635" transform="rotate(-0 162.220433 189.396635)">25%</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3">
+      <g>
+       <use xlink:href="#m85059689ef" x="255.982031" y="174.798979" style="fill: #61574a; stroke: #61574a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 10px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #61574a" x="255.982031" y="189.396635" transform="rotate(-0 255.982031 189.396635)">50%</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m85059689ef" x="349.74363" y="174.798979" style="fill: #61574a; stroke: #61574a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 10px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #61574a" x="349.74363" y="189.396635" transform="rotate(-0 349.74363 189.396635)">75%</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5">
+      <g>
+       <use xlink:href="#m85059689ef" x="443.505229" y="174.798979" style="fill: #61574a; stroke: #61574a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 10px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #61574a" x="443.505229" y="189.396635" transform="rotate(-0 443.505229 189.396635)">100%</text>
+     </g>
+    </g>
+    <g id="text_6">
+     <text style="font-size: 10px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1b1712" x="255.982031" y="203.397416" transform="rotate(-0 255.982031 203.397416)">share of the reviewed classification's columns</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_6">
+      <defs>
+       <path id="me852b425f9" d="M 0 0 
+L -3.5 0 
+" style="stroke: #61574a; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#me852b425f9" x="68.458834" y="156.762863" style="fill: #61574a; stroke: #61574a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_7">
+      <text style="font-size: 10px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #61574a" x="61.458834" y="160.562081" transform="rotate(-0 61.458834 160.562081)">sensitive</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_7">
+      <g>
+       <use xlink:href="#me852b425f9" x="68.458834" y="119.187621" style="fill: #61574a; stroke: #61574a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font-size: 10px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #61574a" x="61.458834" y="122.98684" transform="rotate(-0 61.458834 122.98684)">personal</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#me852b425f9" x="68.458834" y="81.612379" style="fill: #61574a; stroke: #61574a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="font-size: 10px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #61574a" x="61.458834" y="85.411598" transform="rotate(-0 61.458834 85.411598)">internal</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_9">
+      <g>
+       <use xlink:href="#me852b425f9" x="68.458834" y="44.037137" style="fill: #61574a; stroke: #61574a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="font-size: 10px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #61574a" x="61.458834" y="47.836356" transform="rotate(-0 61.458834 47.836356)">public</text>
+     </g>
+    </g>
+    <g id="text_11">
+     <text style="font-size: 10px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1b1712" x="10.598678" y="100.4" transform="rotate(-90 10.598678 100.4)">reviewed classification</text>
+    </g>
+   </g>
+   <g id="patch_10">
+    <path d="M 68.458834 174.798979 
+L 68.458834 26.001021 
+" style="fill: none; stroke: #61574a; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 68.458834 174.798979 
+L 443.505229 174.798979 
+" style="fill: none; stroke: #61574a; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #e2d5b8" x="255.982031" y="159.100753" transform="rotate(-0 255.982031 159.100753)">2</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #e2d5b8" x="255.982031" y="121.525512" transform="rotate(-0 255.982031 121.525512)">12</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #e2d5b8" x="89.768288" y="83.95027" transform="rotate(-0 89.768288 83.95027)">5</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1b1712" x="268.767704" y="83.95027" transform="rotate(-0 268.767704 83.95027)">37</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1b1712" x="434.981447" y="83.95027" transform="rotate(-0 434.981447 83.95027)">2</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1b1712" x="162.220433" y="46.375028" transform="rotate(-0 162.220433 46.375028)">3</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1b1712" x="349.74363" y="46.375028" transform="rotate(-0 349.74363 46.375028)">3</text>
+   </g>
+   <g id="legend_1">
+    <g id="patch_12">
+     <path d="M 102.884375 14.598677 
+L 122.884375 14.598677 
+L 122.884375 7.598677 
+L 102.884375 7.598677 
+z
+" style="fill: #9a4a06; stroke: #61574a; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_19">
+     <text style="font-size: 10px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #1b1712" x="130.884375" y="14.598677" transform="rotate(-0 130.884375 14.598677)">protected less</text>
+    </g>
+    <g id="patch_13">
+     <path d="M 221.764063 14.598677 
+L 241.764063 14.598677 
+L 241.764063 7.598677 
+L 221.764063 7.598677 
+z
+" style="fill: #e2d5b8; stroke: #61574a; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_20">
+     <text style="font-size: 10px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #1b1712" x="249.764063" y="14.598677" transform="rotate(-0 249.764063 14.598677)">agrees</text>
+    </g>
+    <g id="patch_14">
+     <path d="M 303.646875 14.598677 
+L 323.646875 14.598677 
+L 323.646875 7.598677 
+L 303.646875 7.598677 
+z
+" style="fill: url(#hf4c2f48b2a); stroke: #61574a; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_21">
+     <text style="font-size: 10px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #1b1712" x="331.646875" y="14.598677" transform="rotate(-0 331.646875 14.598677)">protected more</text>
+    </g>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p17adb3c7bb">
+   <rect x="68.458834" y="26.001021" width="375.046395" height="148.797957"/>
+  </clipPath>
+ </defs>
+ <defs>
+  <pattern id="hf4c2f48b2a" patternUnits="userSpaceOnUse" x="0" y="0" width="72" height="72">
+   <rect x="0" y="0" width="73" height="73" fill="#e2d5b8"/>
+   <path d="M -36 36 
+L 36 -36 
+M -32 40 
+L 40 -32 
+M -28 44 
+L 44 -28 
+M -24 48 
+L 48 -24 
+M -20 52 
+L 52 -20 
+M -16 56 
+L 56 -16 
+M -12 60 
+L 60 -12 
+M -8 64 
+L 64 -8 
+M -4 68 
+L 68 -4 
+M 0 72 
+L 72 0 
+M 4 76 
+L 76 4 
+M 8 80 
+L 80 8 
+M 12 84 
+L 84 12 
+M 16 88 
+L 88 16 
+M 20 92 
+L 92 20 
+M 24 96 
+L 96 24 
+M 28 100 
+L 100 28 
+M 32 104 
+L 104 32 
+M 36 108 
+L 108 36 
+" style="fill: #61574a; stroke: #61574a; stroke-width: 1.0; stroke-linecap: butt; stroke-linejoin: miter"/>
+  </pattern>
+ </defs>
+</svg>

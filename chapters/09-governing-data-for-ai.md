@@ -108,7 +108,7 @@ Deduplicating on text folds reviews of different courses into one record, under 
 
 ## Tune LSH for recall, then confirm every pair {#tune-lsh-then-confirm}
 
-[MinHash signatures](#near-duplicates-with-minhash) make each comparison cheap; locality-sensitive hashing (LSH) avoids most comparisons. LSH cuts each signature into b bands of r rows, and two texts become a candidate pair when all the rows of any one band match. Leskovec, Rajaraman and Ullman derive the chance that a pair with Jaccard similarity s becomes a candidate pair ([Mining of Massive Datasets, chapter 3](http://infolab.stanford.edu/~ullman/mmds/ch3n.pdf)):
+[MinHash signatures](#near-duplicates-with-minhash) make each comparison cheap; locality-sensitive hashing (LSH) avoids most comparisons. MinHash LSH cuts signatures into b bands of r rows, and two texts become a candidate pair when all the rows of any one band match. Leskovec, Rajaraman and Ullman derive the chance that a pair with Jaccard similarity s becomes a candidate pair ([Mining of Massive Datasets, chapter 3](http://infolab.stanford.edu/~ullman/mmds/ch3n.pdf)):
 
 P(candidate) = 1 − (1 − sʳ)ᵇ
 
@@ -121,6 +121,12 @@ With {{out:corpus-duplicates:distinct texts}} distinct texts, the platform can a
 Tuned for 0.8, datasketch's default LSH returns {{out:lsh-misses-near-duplicates:affine32, LSH tuned for 0.8, candidate pairs}} candidate pairs, misses {{out:lsh-misses-near-duplicates:affine32, LSH tuned for 0.8, missed}} of the {{out:lsh-misses-near-duplicates:pairs at a Jaccard similarity of 0.8 or more}} pairs that reach 0.8, and so confirms only {{out:lsh-misses-near-duplicates:affine32, LSH tuned for 0.8, confirmed}} of them.
 
 The formula says why. With the {{out:lsh-misses-near-duplicates:affine32, LSH tuned for 0.8, bands}} bands of {{out:lsh-misses-near-duplicates:affine32, LSH tuned for 0.8, rows per band}} rows datasketch chose, a pair at similarity 0.8 becomes a candidate with a probability of {{out:lsh-misses-near-duplicates:chance of a candidate at similarity 0.8, LSH tuned for 0.8}}, one at 0.9 with {{out:lsh-misses-near-duplicates:chance of a candidate at similarity 0.9, LSH tuned for 0.8}}, and the approximate threshold is {{out:lsh-misses-near-duplicates:the approximate threshold, (1/b)^(1/r)}}, above the threshold asked for.
+
+{{fig:lsh-candidate-chance}} draws both curves: tuned for 0.6, the curve sits further left, reaching {{out:figure-lsh-candidate-chance:tuned for 0.6, chance of a candidate at similarity 0.8}} at 0.8.
+
+![Tuning LSH lower makes a pair at 0.8 a near-certain candidate](../examples/figures/lsh-candidate-chance.svg "The chance a pair becomes a candidate, against its similarity, for LSH tuned for 0.6 and for 0.8")
+
+[Example: figure-lsh-candidate-chance](../examples/figure-lsh-candidate-chance.py)
 
 Under the default scheme, tuned for 0.6, LSH finds every pair and returns {{out:lsh-misses-near-duplicates:affine32, LSH tuned for 0.6, candidate pairs}} candidates. Each candidate costs one exact comparison, against {{out:lsh-misses-near-duplicates:pairs compared exactly}} for comparing every pair, and the exact comparison discards every pair below 0.8. So the platform tunes LSH for 0.6 and confirms at 0.8, both settings in `governance/ai_data.toml`.
 

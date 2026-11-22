@@ -1,0 +1,7 @@
+tuned for 0.6, bands: 18
+tuned for 0.6, rows per band: 7
+tuned for 0.6, chance of a candidate at similarity 0.8: 0.99
+tuned for 0.8, bands: 9
+tuned for 0.8, rows per band: 13
+tuned for 0.8, chance of a candidate at similarity 0.8: 0.40
+figure: figures/lsh-candidate-chance.svg

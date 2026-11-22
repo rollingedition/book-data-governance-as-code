@@ -132,7 +132,7 @@ regopy is the Python binding of rego-cpp, Microsoft's C++ implementation of Rego
 
 The book's module for this is `lib.ci`, the platform's governance job. A schema change on the platform is a migration, an `alter table` statement in a file in the branch's `migrations/` folder. Each side of a pull request is a checkout in its own folder, one of main and one of the branch. For each side, `lib.ci.run` builds a [scratch platform](#governance-in-ci), a fresh catalog made the way the platform runs. It holds the source tables, the side's migrations, its metadata written into the catalog, and its pipelines. It runs the checks it's given on the branch's platform, runs them on main's alone to learn what is already there, and compares the findings by ID.
 
-This section runs one check, `coverage`. The coverage check is [the catalog check](#catalog-a-table), `lib.metadata.problems`, run on the branch's platform, and for each column nobody classified it adds what a rule on column names suggests, from the rules [chapter 3](#classify-columns-from-the-schema) writes.
+This section runs one check, `coverage`. The coverage check is [the catalog check](#catalog-a-table), `lib.metadata.problems` with `lib.metadata.dropped`, run on the branch's platform, and for each column nobody classified it adds what a rule on column names suggests, from the rules [chapter 3](#classify-columns-from-the-schema) writes, and it flags a column classified less strictly than its name suggests.
 
 The CRM team's pull request adds a column for learners' work email in one migration and forgets the column's metadata, so the coverage check has something to find:
 

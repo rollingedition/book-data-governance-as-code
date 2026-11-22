@@ -1,0 +1,7 @@
+reviewed personal columns: 12
+personal columns protected less than the review: 12
+reviewed sensitive columns: 2
+sensitive columns protected less than the review: 2
+reviewed internal columns: 44
+internal columns the model agreed with: 37
+figure: figures/model-against-review.svg

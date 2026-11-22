@@ -106,7 +106,7 @@ Each mask does one job:
 - **`redact`** is a `NULL` cast to the column's type, so the column keeps its type for anything the query does with it, such as a union or a date function.
 - **`last4`** keeps the last four digits of a card number, after removing anything that isn't a digit.
 - **`pseudonymize`** is a keyed hash, SHA-256 over the key followed by the value, because DuckDB {{version:duckdb}} has no [HMAC](#consistent-pseudonyms) function: `duckdb_functions()` lists {{out:masks-as-sql:DuckDB functions named like HMAC}} named like it. Where your engine has one, prefer HMAC ([RFC 2104](https://www.rfc-editor.org/rfc/rfc2104)).
-- **`redact_contacts`** replaces emails and phone numbers in free text with `[email]` and `[phone]`.
+- **`redact_contacts`** replaces emails and long digit runs in free text with `[email]` and `[phone]`.
 
 Picture someone holding a list of the platform's emails, who hashes each one and looks for it among the pseudonyms `analyst-1` sees in `crm.learners`:
 
@@ -182,7 +182,7 @@ A cell of one names its learner's country to anyone who can find that learner, a
 
 With the minimum, {{out:small-groups-difference:cells shown with the minimum}} cells are shown, and none of those lookups works. The minimum doesn't stop differencing. An enrollment that arrives alone in its course on its day, into a cell that's already shown, raises that cell by one in the next day's report, and the instructor sees which enrollment arrived. That reveals the country of {{out:small-groups-difference:learners whose country the daily report reveals anyway}} learners.
 
-Differencing, comparing consecutive reports, is the attack Denning, Denning and Schwartz called a tracker. They showed that "the compromise of small query sets can in fact almost always be accomplished with the help of characteristic formulas called trackers" ([Denning et al., 1979](https://doi.org/10.1145/320064.320069)).
+Differencing subtracts answers for nearly identical groups; Denning, Denning and Schwartz's tracker generalizes it. They showed that "the compromise of small query sets can in fact almost always be accomplished with the help of characteristic formulas called trackers" ([Denning et al., 1979](https://doi.org/10.1145/320064.320069)).
 
 Snowflake, which enforces a minimum group size in its engine, says its policies "do not guarantee a malicious actor could not use deliberate queries to obtain potentially sensitive data" ([Snowflake aggregation policies](https://docs.snowflake.com/en/user-guide/aggregation-policies)). Against differencing, we recommend noise, as in differential privacy ([Dwork and Roth, 2014](https://doi.org/10.1561/0400000042)), rather than higher thresholds, and *Privacy Engineering for Data Teams* covers it.
 
