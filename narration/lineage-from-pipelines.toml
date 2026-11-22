@@ -25,7 +25,7 @@ say = "The code asks sqlglot for the lineage of a query on the learners table wi
 say = "The code runs the four pipelines, builds the column graph from their events alone, with {{out:column-impact:edges in the column graph}} edges, and walks it from three source columns: the learners' email, their marketing consent and the courses' category. For each, it prints every edge a change can travel and counts the columns reached through values and in all. Email reaches {{out:column-impact:crm.learners.email, columns reached in all}} column, while consent reaches {{out:column-impact:crm.learners.marketing_consent, columns reached through values}} through values and {{out:column-impact:crm.learners.marketing_consent, columns reached in all}} through its filter on the whole audience table."
 
 [examples.figure-category-reach]
-say = "The code builds the same column graph and draws the category's reach: a solid line from the category to each column its values are copied into, and a dashed line to each table whose rows it shapes, with every column of that table reached. It prints how many columns each of those tables reaches: {{out:figure-category-reach:analytics.course_performance, columns reached through its rows}} in analytics.course_performance, and {{out:figure-category-reach:marketing.audience, columns reached through its rows}} in marketing.audience."
+say = "The code builds the same column graph and draws the category's reach: a solid line from the category to each column its values are copied into, and a dashed line to each table whose rows it shapes, with every column of that table reached. It prints how many of each table's columns its rows reach: {{out:figure-category-reach:analytics.course_performance, columns reached through its rows}} in analytics.course_performance, and {{out:figure-category-reach:marketing.audience, columns reached through its rows}} in marketing.audience."
 
 [examples.propagate-classifications]
 say = "The code runs the pipelines, lists the tables the metadata check reports with no metadata, the marketing audience and the review corpus, and proposes a classification for each of their columns from lineage, counting direct and indirect inputs: {{out:propagate-classifications:personal columns proposed}} come out personal, and the rest internal. Then it tests the rule on the {{out:propagate-classifications:declared classifications checked}} columns people did classify. Counting indirect inputs too reproduces {{out:propagate-classifications:declared classifications reproduced, through DIRECT and INDIRECT}}, direct inputs alone reproduce {{out:propagate-classifications:declared classifications reproduced, through DIRECT}}, and it finds no declared classification less protected than lineage proposes."
@@ -41,3 +41,7 @@ say = "The code runs the four pipelines with lineage, then copies {{out:uninstru
 
 [examples.personal-copy-tagged-internal]
 say = "The code runs the same export with its lineage recorded from the SELECT it runs, and declares all three of the campaign list's columns internal, as its owner did. The learners' email now reaches the audience's email and, one hop further, the campaign list's. The check for understated classifications flags the campaign list's full name and email: declared internal, while lineage proposes personal."
+
+[terms]
+"RUNNING" = "running"
+"OTHER" = "other"

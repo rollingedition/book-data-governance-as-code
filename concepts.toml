@@ -32,7 +32,7 @@ example = "unclassified-column-fails"
 id = "coverage-check"
 term = "coverage check"
 context = "data-governance"
-definition = "The coverage check is the catalog check, `lib.metadata.problems` with `lib.metadata.dropped`, run on the branch's platform."
+definition = "The coverage check is the catalog check, `lib.metadata.problems` with `lib.metadata.dropped`, run on the branch's platform, and for each column nobody classified it adds what a rule on column names suggests, from the rules chapter 3 writes, and it flags a column classified less strictly than its name suggests."
 section = "fail-the-pull-request"
 example = "unclassified-column-fails"
 
@@ -48,7 +48,7 @@ example = "unclassified-column-fails"
 id = "metadata"
 term = "metadata"
 context = "data-governance"
-definition = "Beyond each table's schema, a catalog's metadata is what you know about each table that the data doesn't say: who owns it, which part of the business it belongs to, what it holds, and how each column must be protected."
+definition = "Beyond the schema, a catalog's metadata is what you know about each table that the data doesn't say: who owns it, which part of the business it belongs to, what it holds, and how each column must be protected."
 section = "keep-metadata-in-a-reviewed-file"
 example = "metadata-model"
 
@@ -123,7 +123,7 @@ id = "catalog-label"
 term = "catalog label"
 aliases = ["labels"]
 context = "data-warehousing"
-definition = "`labels`, metadata such as ownership or classification that a catalog returns with a table or view, per table and per field ID, kept out of properties on purpose"
+definition = "`labels`, metadata such as ownership or classification that a catalog returns with a table or view, per object and per field ID, kept out of properties on purpose"
 section = "write-descriptions-into-the-schema"
 
 [concepts.relations]
@@ -175,7 +175,7 @@ id = "recognizer"
 term = "recognizer"
 aliases = ["recognizers"]
 context = "data-governance"
-definition = "Presidio's analyzer runs recognizers, which find entities: checksummed regular expressions, phone-number parsing, and a named-entity model reached through an NLP engine."
+definition = "Presidio's analyzer runs recognizers, entity finders: regular expressions with checksums, phone-number parsing, and a named-entity model reached through an NLP engine."
 section = "run-presidio-offline"
 example = "presidio-offline-engine"
 applies_to = ["presidio-analyzer"]
@@ -312,7 +312,7 @@ id = "run-event"
 term = "run event"
 aliases = ["run events"]
 context = "data-pipelines"
-definition = "A run reports itself through run events: a START when it begins, any RUNNING or OTHER events for more metadata, then one terminal event, COMPLETE, FAIL or ABORT"
+definition = "A run reports itself through run events: a START when it begins, any RUNNING events, OTHER events for more metadata at any time before the end, then one terminal event, COMPLETE, FAIL or ABORT"
 section = "send-run-events"
 example = "pipeline-run-events"
 
@@ -765,7 +765,6 @@ agrees = [{ book = "business-intelligence-with-agents", definition = "a minimum 
 [[concepts]]
 id = "differencing"
 term = "differencing"
-aliases = ["tracker"]
 context = "data-governance"
 definition = "Differencing subtracts answers for nearly identical groups"
 section = "hold-back-small-groups"

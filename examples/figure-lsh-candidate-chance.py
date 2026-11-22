@@ -1,11 +1,11 @@
 """Draws the chance LSH makes a pair a candidate against its Jaccard similarity, for the bands and rows datasketch chooses
 when tuned for 0.8 and for 0.6. The printed lines give each setting's bands, rows and chance at 0.8, which the prose rests on."""
-import numpy as np
-
 from lib import ai_data
 from lib.catalog import open_catalog
 from lib.enforce import Enforcer
 from lib.figures import ACCENT, INK, MUTED, new_figure, save
+
+import numpy as np
 
 rows, _ = ai_data.read_pseudonymized(Enforcer(open_catalog(["crm.learners", "learning.courses", "learning.reviews"])))
 texts = [row["body"] for row in ai_data.exact_distinct(rows)]

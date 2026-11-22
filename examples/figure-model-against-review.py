@@ -33,8 +33,8 @@ print("internal columns the model agreed with:", split["internal", "agrees"])
 assert 2 * split["internal", "agrees"] > total["internal"]   # the prose says the internal bar is mostly agreement
 
 # One bar per reviewed classification, public at the top. Parts run left to right in legend order. Each carries its count,
-# and the last is hatched, so colour never carries the meaning alone.
-parts = {"protected less": (ACCENT, RULE, None), "agrees": (MUTED, RULE, None), "protected more": (RULE, INK, "///")}
+# the first is dark, the middle light and the last hatched, so colour never carries the meaning alone.
+parts = {"protected less": (ACCENT, RULE, None), "agrees": (RULE, INK, None), "protected more": (RULE, INK, "///")}
 fig, ax = new_figure(height=2.9)
 for row, was in enumerate(reversed(metadata.LEVELS)):
     left = 0.0

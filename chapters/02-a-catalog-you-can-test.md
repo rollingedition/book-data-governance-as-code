@@ -14,7 +14,7 @@ The chapter's examples use five of the book's shared modules. `lib.catalog.open_
 
 ## Keep the metadata in a reviewed file {#keep-metadata-in-a-reviewed-file}
 
-Beyond each table's schema, a catalog's **metadata** is what you know about each table that the data doesn't say: who owns it, which part of the business it belongs to, what it holds, and how each column must be protected. Catalog servers keep this in their own database and edit it in a web page. That works for browsing, but a change made there is invisible to code review, and no test can say whether the catalog is complete. Keeping the metadata in a file in the repository, beside the pipelines that create the tables, makes every change a diff that someone approves, and gives a test something to compare the catalog with.
+Beyond the schema, a catalog's **metadata** is what you know about each table that the data doesn't say: who owns it, which part of the business it belongs to, what it holds, and how each column must be protected. Catalog servers keep this in their own database and edit it in a web page. That works for browsing, but a change made there is invisible to code review, and no test can say whether the catalog is complete. Keeping the metadata in a file in the repository, beside the pipelines that create the tables, makes every change a diff that someone approves, and gives a test something to compare the catalog with.
 
 The platform's file is `governance/metadata.toml`. For each table it records:
 
@@ -64,7 +64,7 @@ The ID-keyed file does notice the rename, and `lib.metadata.problems`, the check
 
 So we follow the spec as far as we can. Column descriptions go into `doc`, and classifications stay in the file, where the policies and checks read them. The owner and the domain go into two table properties, as a pointer for tools that read only the table, so anyone with a table and no repository can find the team to ask. That last choice goes against the spec's stated intent, and we keep it to those two short values.
 
-The Iceberg project's own answer is a separate channel. The REST catalog spec of Iceberg 1.12.0 adds `labels`, metadata such as ownership or classification that a catalog returns with a table or view, per table and per field ID, kept out of properties on purpose ([REST catalog spec](https://github.com/apache/iceberg/blob/apache-iceberg-1.12.0/open-api/rest-catalog-open-api.yaml)). The change came in with [pull request 15750](https://github.com/apache/iceberg/pull/15750). PyIceberg {{version:pyiceberg}}'s REST client doesn't read them ([source](https://github.com/apache/iceberg-python/blob/pyiceberg-0.12.0/pyiceberg/catalog/rest/__init__.py)).
+The Iceberg project's own answer is a separate channel. The REST catalog spec of Iceberg 1.12.0 adds `labels`, metadata such as ownership or classification that a catalog returns with a table or view, per object and per field ID, kept out of properties on purpose ([REST catalog spec](https://github.com/apache/iceberg/blob/apache-iceberg-1.12.0/open-api/rest-catalog-open-api.yaml)). The change came in with [pull request 15750](https://github.com/apache/iceberg/pull/15750). PyIceberg {{version:pyiceberg}}'s REST client doesn't read them ([source](https://github.com/apache/iceberg-python/blob/pyiceberg-0.12.0/pyiceberg/catalog/rest/__init__.py)).
 
 `lib.metadata.apply` does the copying. For every table the file describes and the catalog holds, it writes each description into its column's `doc`, and the owner and domain into the properties, changing only what differs. Against a fresh catalog of the platform's eight source tables, `apply` shows what it changes:
 
@@ -162,7 +162,13 @@ Overall agreement hardly moves, {{out:suggestions-with-platform-examples:the pro
 
 ## Measure where the model's drafts are wrong {#measure-where-the-drafts-are-wrong}
 
-[The recorded drafts](#draft-descriptions-with-a-local-model), a local model's descriptions and classifications for the platform's source tables, agree with the reviewed classifications on most columns. For governance, which way they miss matters more. A classification more protected than it should be costs a reviewer a minute and an analyst a masked column. One less protected than it should be leaves personal data where the policies treat it as staff data, or as data anyone may see.
+[The recorded drafts](#draft-descriptions-with-a-local-model), a local model's descriptions and classifications for the platform's source tables, agree with the reviewed classifications on most columns. For governance, which way they miss matters more. A classification more protected than it should be costs a reviewer a minute and an analyst a masked column. One less protected than it should be leaves personal data where the policies treat it as staff data, or as data anyone may see. Splitting the misses by direction shows which way the model fails:
+
+[Example: suggestion-mistakes](../examples/suggestion-mistakes.py)
+
+The model's misses fall on the columns that need protection most. It protected {{out:suggestion-mistakes:columns the model protects less than the review}} columns less than the review did, and {{out:suggestion-mistakes:columns the model protects more than the review}} more. Every personal and sensitive column is among the less protected. It called {{out:suggestion-mistakes:personal columns the model called internal}} personal columns `internal`, among them the names and emails in both `crm.learners` and `crm.instructors`, the learners' phone numbers, dates of birth and notes, the IP addresses of events and the text of support tickets. It called {{out:suggestion-mistakes:personal columns the model called public}} of them `public`: learners' cities and street addresses, and the text of their reviews. The prompt's own meaning for `personal` begins "identifies a person or tells something about one", and a name or an email does both.
+
+The other less protected columns are timestamps, an event's type and its user agent, which the model called `public` where the review chose `internal`: a smaller mistake, but one a reviewer still has to catch. The misses the other way cost less. The model called the {{out:suggestion-mistakes:internal columns the model called sensitive}} consent flags `sensitive`, and it called the course catalog's public ID, title and price `internal`.
 
 {{fig:model-against-review}} has one bar for each reviewed classification, `public` at the top and `sensitive` at the bottom. Each bar runs, from left to right, through the columns the model protected less than the review, the ones it agreed with, and the ones it protected more.
 
@@ -173,14 +179,6 @@ Overall agreement hardly moves, {{out:suggestions-with-platform-examples:the pro
 The two bottom bars lie wholly in the part that protects less: {{out:figure-model-against-review:personal columns protected less than the review}} of {{out:figure-model-against-review:reviewed personal columns}} `personal` columns and {{out:figure-model-against-review:sensitive columns protected less than the review}} of {{out:figure-model-against-review:reviewed sensitive columns}} `sensitive` ones.
 
 The `internal` bar is mostly agreement, {{out:figure-model-against-review:internal columns the model agreed with}} of {{out:figure-model-against-review:reviewed internal columns}} columns.
-
-Splitting the misses by direction shows which way the model fails:
-
-[Example: suggestion-mistakes](../examples/suggestion-mistakes.py)
-
-The model's misses fall on the columns that need protection most. It protected {{out:suggestion-mistakes:columns the model protects less than the review}} columns less than the review did, and {{out:suggestion-mistakes:columns the model protects more than the review}} more. Every personal and sensitive column is among the less protected. It called {{out:suggestion-mistakes:personal columns the model called internal}} personal columns `internal`, among them the names and emails in both `crm.learners` and `crm.instructors`, the learners' phone numbers, dates of birth and notes, the IP addresses of events and the text of support tickets. It called {{out:suggestion-mistakes:personal columns the model called public}} of them `public`: learners' cities and street addresses, and the text of their reviews. The prompt's own meaning for `personal` begins "identifies a person or tells something about one", and a name or an email does both.
-
-The other less protected columns are timestamps, an event's type and its user agent, which the model called `public` where the review chose `internal`: a smaller mistake, but one a reviewer still has to catch. The misses the other way cost less. The model called the {{out:suggestion-mistakes:internal columns the model called sensitive}} consent flags `sensitive`, and it called the course catalog's public ID, title and price `internal`.
 
 Descriptions fail in another way, and four of the model's show it beside the reviewed ones:
 

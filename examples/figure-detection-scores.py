@@ -25,7 +25,7 @@ for row, entity in enumerate(types):
     print(f"{entity}, at or above {THRESHOLD}: {sum(s >= THRESHOLD for s in found):,}")
     for value in sorted(set(found)):            # each distinct score is one dot; the count sits beside the type's name
         ax.scatter(value, row, s=44, color=ACCENT if entity == "PHONE_NUMBER" else MUTED, zorder=3)
-ax.axvline(THRESHOLD, linestyle="--", color=INK, linewidth=1, zorder=4)
+ax.axvline(THRESHOLD, linestyle=":", color=INK, linewidth=1, zorder=4)
 ax.text(THRESHOLD + 0.015, len(types) - 0.45, f"threshold {THRESHOLD}", color=INK, va="center")
 ax.set_yticks(range(len(types)), labels=[f"{t} ({len(scores[t]):,})" for t in types])
 ax.set_ylim(-0.6, len(types) - 0.2)
