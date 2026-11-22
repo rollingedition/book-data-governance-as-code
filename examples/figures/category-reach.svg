@@ -61,11 +61,6 @@ L 230.4 193.960423
    </g>
    <g id="line2d_4">
     <path d="M 116.70012 116.441933 
-L 230.4 201.523203 
-" clip-path="url(#p1a7379680e)" style="fill: none; stroke-dasharray: 5.18,2.24; stroke-dashoffset: 0; stroke: #61574a; stroke-width: 1.4"/>
-   </g>
-   <g id="line2d_5">
-    <path d="M 116.70012 116.441933 
 L 230.4 250.68127 
 " clip-path="url(#p1a7379680e)" style="fill: none; stroke: #9a4a06; stroke-width: 1.4; stroke-linecap: square"/>
    </g>
@@ -128,7 +123,7 @@ L 230.4 250.68127
     <text style="font-size: 8px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #9a4a06" x="448.70377" y="252.759395" transform="rotate(-0 448.70377 252.759395)">IDENTITY</text>
    </g>
    <g id="legend_1">
-    <g id="line2d_6">
+    <g id="line2d_5">
      <path d="M 12.00024 298.296635 
 L 22.00024 298.296635 
 L 32.00024 298.296635 
@@ -137,7 +132,7 @@ L 32.00024 298.296635
     <g id="text_20">
      <text style="font-size: 10px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #1b1712" x="40.00024" y="301.796635" transform="rotate(-0 40.00024 301.796635)">solid: DIRECT, the values are copied</text>
     </g>
-    <g id="line2d_7">
+    <g id="line2d_6">
      <path d="M 12.00024 313.297416 
 L 22.00024 313.297416 
 L 32.00024 313.297416 

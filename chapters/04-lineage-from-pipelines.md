@@ -112,9 +112,9 @@ Consent is the surprise. A change to it reaches {{out:column-impact:crm.learners
 
 A change to `email` reaches {{out:column-impact:crm.learners.email, columns reached in all}} column, `marketing.audience.email`, so renaming it breaks the marketing pipeline and no other job that sends lineage. A category rename reaches {{out:column-impact:learning.courses.category, columns reached through values}} columns through values, and {{out:column-impact:learning.courses.category, columns reached in all}} in all, because categories also group `analytics.course_performance` and rank each learner's favourite.
 
-{{fig:category-reach}} draws the category's walk. Each solid line carries values to one column, and each dashed line carries the rows of a whole table, so every column in that table is reached. The solid lines reach {{out:figure-category-reach:learning.courses.category, columns reached through values}} columns, and the walk reaches {{out:figure-category-reach:learning.courses.category, columns reached in all}} in all.
+{{fig:category-reach}} draws the category's walk. Each solid line carries values to one column, and each dashed line carries rows to a whole table, so every column of that table is reached. The solid lines land on `analytics.course_performance.category` and `marketing.audience.favourite_category`, and the dashed lines take in every column of each table: {{out:figure-category-reach:analytics.course_performance, columns reached through its rows}} in `analytics.course_performance` and {{out:figure-category-reach:marketing.audience, columns reached through its rows}} in `marketing.audience`.
 
-![Solid lines carry values to single columns, and dashed lines carry rows to whole tables](../examples/figures/category-reach.svg "What a change to the category reaches, by values and by rows")
+![A category change copies values into single columns, but shapes the rows of whole tables, reaching every column in them](../examples/figures/category-reach.svg "What a change to the category reaches, by values and by rows")
 
 [Example: figure-category-reach](../examples/figure-category-reach.py)
 

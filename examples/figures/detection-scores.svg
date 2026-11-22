@@ -273,11 +273,6 @@ L -3.5 0
      <text style="font-size: 10px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1b1712" x="10.598677" y="142.899609" transform="rotate(-90 10.598677 142.899609)">entity type (detections)</text>
     </g>
    </g>
-   <g id="line2d_26">
-    <path d="M 300.455406 282.798979 
-L 300.455406 3.00024 
-" clip-path="url(#pf2a4028bcc)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1b1712"/>
-   </g>
    <g id="patch_3">
     <path d="M 157.415084 282.798979 
 L 157.415084 3.00024 
@@ -391,6 +386,11 @@ z
    </g>
    <g id="text_22">
     <text style="font-size: 10px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #1b1712" x="304.746615" y="10.818413" transform="rotate(-0 304.746615 10.818413)">threshold 0.5</text>
+   </g>
+   <g id="line2d_26">
+    <path d="M 300.455406 282.798979 
+L 300.455406 3.00024 
+" clip-path="url(#pf2a4028bcc)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1b1712"/>
    </g>
   </g>
  </g>

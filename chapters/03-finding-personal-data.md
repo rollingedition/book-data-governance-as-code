@@ -124,12 +124,6 @@ The truth has its own limits, because the text is generated. Every ticket and re
 
 [Presidio's defaults](#measure-against-labelled-spans) return every weak match. The FAQ names two remedies, changing the acceptance threshold and removing the recognizers a dataset doesn't need, and it notes a trade-off between false positives and false negatives ([FAQ](https://github.com/data-privacy-stack/presidio/blob/2.2.366/docs/faq.md)). Presidio 2.2.364 added per-recognizer and per-entity score thresholds, with the analyzer's default as the fallback ([changelog](https://github.com/data-privacy-stack/presidio/blob/2.2.366/CHANGELOG.md), [release notes](https://github.com/data-privacy-stack/presidio/releases/tag/2.2.364)). The phone recognizer has one more setting that matters on a platform whose learners live in many countries: the regions whose numbering plans it reads ([source](https://github.com/data-privacy-stack/presidio/blob/2.2.366/presidio-analyzer/presidio_analyzer/predefined_recognizers/generic/phone_recognizer.py)).
 
-In {{fig:detection-scores}}, phone detections all score {{out:figure-detection-scores:PHONE_NUMBER, highest score}}, under the dashed threshold.
-
-![Every phone detection scores under the 0.5 threshold](../examples/figures/detection-scores.svg "Each detection's score, by entity type, against a threshold of 0.5")
-
-[Example: figure-detection-scores](../examples/figure-detection-scores.py)
-
 `governance/pii.toml` keeps {{out:tune-pattern-recognizers:recognizers kept}} recognizers, for the identifiers the platform's text can hold, each with its own threshold. The phone regions aren't a setting: `lib.pii.countries` reads the countries the learners live in from `crm.learners`, so the regions follow the data. Four settings are scored against the same truth:
 
 [Example: tune-pattern-recognizers](../examples/tune-pattern-recognizers.py)
@@ -144,6 +138,12 @@ In {{fig:detection-scores}}, phone detections all score {{out:figure-detection-s
 | Texts fully masked | {{out:tune-pattern-recognizers:Presidio's defaults, texts with every labelled span masked}} | {{out:tune-pattern-recognizers:one threshold of 0.5, texts with every labelled span masked}} | {{out:tune-pattern-recognizers:kept recognizers, own thresholds, texts with every labelled span masked}} | {{out:tune-pattern-recognizers:kept recognizers, learners' phone regions, texts with every labelled span masked}} |
 
 The obvious fix fails. One threshold of 0.5 removes the weak matches and every phone number with them, because a phone number scores {{out:presidio-offline-engine:PHONE_NUMBER on •••••••0440}} when no context word can raise it. Keeping only the {{out:tune-pattern-recognizers:recognizers kept}} recognizers, each with its own threshold, and setting the phone threshold at the score a phone number gets, raises precision to {{out:tune-pattern-recognizers:kept recognizers, own thresholds, precision, exact}} and leaves phone recall where it was. Reading phone numbers in the learners' regions, rather than Presidio's default regions, raises phone recall to {{out:tune-pattern-recognizers:kept recognizers, learners' phone regions, phone recall, exact}}.
+
+In {{fig:detection-scores}}, all {{out:figure-detection-scores:PHONE_NUMBER, detections}} phone detections score {{out:figure-detection-scores:PHONE_NUMBER, highest score}}, under the dashed threshold.
+
+![Every phone detection scores under the 0.5 threshold](../examples/figures/detection-scores.svg "Each detection's score, by entity type, against a threshold of 0.5")
+
+[Example: figure-detection-scores](../examples/figure-detection-scores.py)
 
 One number goes the wrong way: fewer texts come out fully masked than with the defaults. The dropped recognizers had masked some phone and card numbers under the wrong label, which still hides the digits. Without them, coverage falls from {{out:tune-pattern-recognizers:Presidio's defaults, phones covered, any label}} to {{out:tune-pattern-recognizers:kept recognizers, own thresholds, phones covered, any label}} for phone numbers, and from {{out:tune-pattern-recognizers:Presidio's defaults, cards covered, any label}} to {{out:tune-pattern-recognizers:kept recognizers, own thresholds, cards covered, any label}} for card numbers. We think precision is worth the price, because detections are the evidence a reviewer reads, and with the defaults the tickets and reviews hold {{out:measure-pattern-recognizers:US_BANK_NUMBER, detections}} bank numbers and {{out:measure-pattern-recognizers:US_DRIVER_LICENSE, detections}} driver's licences, none of them real. `governance/pii.toml` maps neither entity to a classification, so they change no proposal, but each is a finding someone has to read and dismiss. Dropping the US recognizers is also a claim about the platform's text: the truth holds no US bank or licence numbers. If the platform ever asks for one, that claim, and the measurement, must change.
 
