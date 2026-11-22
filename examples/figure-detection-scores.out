@@ -1,0 +1,53 @@
+CREDIT_CARD, detections: 151
+CREDIT_CARD, lowest score: 1.00
+CREDIT_CARD, highest score: 1.00
+CREDIT_CARD, at or above 0.5: 151
+DATE_TIME, detections: 421
+DATE_TIME, lowest score: 0.10
+DATE_TIME, highest score: 0.60
+DATE_TIME, at or above 0.5: 196
+EMAIL_ADDRESS, detections: 543
+EMAIL_ADDRESS, lowest score: 1.00
+EMAIL_ADDRESS, highest score: 1.00
+EMAIL_ADDRESS, at or above 0.5: 543
+IBAN_CODE, detections: 236
+IBAN_CODE, lowest score: 1.00
+IBAN_CODE, highest score: 1.00
+IBAN_CODE, at or above 0.5: 236
+MEDICAL_LICENSE, detections: 18
+MEDICAL_LICENSE, lowest score: 1.00
+MEDICAL_LICENSE, highest score: 1.00
+MEDICAL_LICENSE, at or above 0.5: 18
+PHONE_NUMBER, detections: 384
+PHONE_NUMBER, lowest score: 0.40
+PHONE_NUMBER, highest score: 0.40
+PHONE_NUMBER, at or above 0.5: 0
+UK_NHS, detections: 8
+UK_NHS, lowest score: 1.00
+UK_NHS, highest score: 1.00
+UK_NHS, at or above 0.5: 8
+URL, detections: 751
+URL, lowest score: 0.50
+URL, highest score: 0.50
+URL, at or above 0.5: 751
+US_BANK_NUMBER, detections: 689
+US_BANK_NUMBER, lowest score: 0.05
+US_BANK_NUMBER, highest score: 0.05
+US_BANK_NUMBER, at or above 0.5: 0
+US_DRIVER_LICENSE, detections: 683
+US_DRIVER_LICENSE, lowest score: 0.01
+US_DRIVER_LICENSE, highest score: 0.30
+US_DRIVER_LICENSE, at or above 0.5: 0
+US_ITIN, detections: 2
+US_ITIN, lowest score: 0.30
+US_ITIN, highest score: 0.30
+US_ITIN, at or above 0.5: 0
+US_PASSPORT, detections: 8
+US_PASSPORT, lowest score: 0.05
+US_PASSPORT, highest score: 0.05
+US_PASSPORT, at or above 0.5: 0
+US_SSN, detections: 8
+US_SSN, lowest score: 0.05
+US_SSN, highest score: 0.05
+US_SSN, at or above 0.5: 0
+figure: figures/detection-scores.svg

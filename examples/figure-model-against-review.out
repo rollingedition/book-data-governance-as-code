@@ -1,0 +1,16 @@
+columns the model was asked about: 64
+reviewed public columns: 6
+public columns the model called internal: 3
+share of public columns the model called internal: 50%
+reviewed internal columns: 44
+internal columns the model called internal: 37
+share of internal columns the model called internal: 84%
+reviewed personal columns: 12
+personal columns the model called internal: 9
+share of personal columns the model called internal: 75%
+reviewed sensitive columns: 2
+sensitive columns the model called internal: 2
+share of sensitive columns the model called internal: 100%
+columns protected less than the review: 19
+columns protected more than the review: 5
+figure: figures/model-against-review.svg

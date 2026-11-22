@@ -112,6 +112,12 @@ Consent is the surprise. A change to it reaches {{out:column-impact:crm.learners
 
 A change to `email` reaches {{out:column-impact:crm.learners.email, columns reached in all}} column, `marketing.audience.email`, so renaming it breaks the marketing pipeline and no other job that sends lineage. A category rename reaches {{out:column-impact:learning.courses.category, columns reached through values}} columns through values, and {{out:column-impact:learning.courses.category, columns reached in all}} in all, because categories also group `analytics.course_performance` and rank each learner's favourite.
 
+{{fig:category-reach}} draws the category's walk. Each solid line carries values to one column, and each dashed line carries the rows of a whole table, so every column in that table is reached. The solid lines reach {{out:figure-category-reach:learning.courses.category, columns reached through values}} columns, and the walk reaches {{out:figure-category-reach:learning.courses.category, columns reached in all}} in all.
+
+![Solid lines carry values to single columns, and dashed lines carry rows to whole tables](../examples/figures/category-reach.svg "What a change to the category reaches, by values and by rows")
+
+[Example: figure-category-reach](../examples/figure-category-reach.py)
+
 The same walk serves two later chapters: [chapter 7](#plan-erasure-from-lineage) follows a learner's columns downstream to find every derived table an erasure must reach, and [chapter 10](#report-what-a-schema-change-reaches) writes an impact report for every pull request that changes a schema.
 
 **Working rule:** Run impact analysis on the graph built from events, INDIRECT edges included, and report two lists: columns whose values can change, and tables whose rows can change. Treat a change to a column used only in filters and joins as a change to every column of the tables it filters, and send the report to the owners of each table it reaches.

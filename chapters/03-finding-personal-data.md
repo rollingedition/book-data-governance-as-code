@@ -124,6 +124,12 @@ The truth has its own limits, because the text is generated. Every ticket and re
 
 [Presidio's defaults](#measure-against-labelled-spans) return every weak match. The FAQ names two remedies, changing the acceptance threshold and removing the recognizers a dataset doesn't need, and it notes a trade-off between false positives and false negatives ([FAQ](https://github.com/data-privacy-stack/presidio/blob/2.2.366/docs/faq.md)). Presidio 2.2.364 added per-recognizer and per-entity score thresholds, with the analyzer's default as the fallback ([changelog](https://github.com/data-privacy-stack/presidio/blob/2.2.366/CHANGELOG.md), [release notes](https://github.com/data-privacy-stack/presidio/releases/tag/2.2.364)). The phone recognizer has one more setting that matters on a platform whose learners live in many countries: the regions whose numbering plans it reads ([source](https://github.com/data-privacy-stack/presidio/blob/2.2.366/presidio-analyzer/presidio_analyzer/predefined_recognizers/generic/phone_recognizer.py)).
 
+In {{fig:detection-scores}}, phone detections all score {{out:figure-detection-scores:PHONE_NUMBER, highest score}}, under the dashed threshold.
+
+![Every phone detection scores under the 0.5 threshold](../examples/figures/detection-scores.svg "Each detection's score, by entity type, against a threshold of 0.5")
+
+[Example: figure-detection-scores](../examples/figure-detection-scores.py)
+
 `governance/pii.toml` keeps {{out:tune-pattern-recognizers:recognizers kept}} recognizers, for the identifiers the platform's text can hold, each with its own threshold. The phone regions aren't a setting: `lib.pii.countries` reads the countries the learners live in from `crm.learners`, so the regions follow the data. Four settings are scored against the same truth:
 
 [Example: tune-pattern-recognizers](../examples/tune-pattern-recognizers.py)
