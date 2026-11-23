@@ -47,7 +47,7 @@ openlineage-python==1.55.0
 packaging==26.3
 pandas==3.1.1
 pandas-stubs==3.1.0.261029
-phonenumbers==9.0.43
+phonenumbers==9.0.44
 pillow==13.0.0
 ply==3.11
 preshed==3.0.13
