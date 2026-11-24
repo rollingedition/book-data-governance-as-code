@@ -63,7 +63,7 @@ pyparsing==3.3.3
 pyroaring==1.2.0
 python-dateutil==4.0.0
 pytz==2026.6
-pyyaml==6.0.3
+pyyaml==6.0.4
 rdflib==7.6.0
 regex==2026.11.9
 regopy==1.5.2
